@@ -1,0 +1,36 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+html, body{
+ font-size: .4rem;
+}
+body, button, input, select, textarea {
+    font: 12px/1.5 "San Francisco","Helvetica Neue","Hiragino Sans GB","Hiragino Sans GB W3","Microsoft Yahei", "微软雅黑",Tahoma,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: "antialiased"
+}
+input[type="text"], input[type="password"], input[type="submit"], input[type="reset"], input[type="button"], button{
+    -webkit-appearance: none;
+}
+input.input-txt{
+    border: none;
+    color: #101010
+}
+a, input, *{
+    -webkit-tap-highlight-color: white !important;
+    -webkit-focus-ring-color: white !important;
+    outline: none !important;
+}
+input, button, select, textarea{
+    resize: none;
+}
+ul {
+    padding: 0;
+    margin: 0;
+    li{
+        list-style: none;
+    }
+}
+.text-center{
+    text-align: center;
+}
