@@ -90,6 +90,11 @@
           }
           return fmt; 
         }   
+        window.baseUrl = "http://hzxt.it8851.com";
+        window.removeLocalItemsFun = function(){
+          localStorage.removeItem("logined");
+          localStorage.removeItem("token");
+        }
     </script>
   </body>
 </html>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .loginFrom {
   background-color: white;
   border: .01rem solid #e5e5e5;
@@ -39,3 +40,549 @@
     border: 0;
     border-radius: .1rem;
     margin-bottom: .2rem; }
+
+/*所属工会*/
+.unionTabUl {
+  flex-direction: row;
+  margin-bottom: .4rem; }
+  .unionTabUl li {
+    flex-grow: 1;
+    color: white;
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+    background-color: #0093fb; }
+    .unionTabUl li a {
+      color: white; }
+  .unionTabUl li:first-child {
+    border-bottom-left-radius: .1rem;
+    border-top-left-radius: .1rem; }
+  .unionTabUl li:last-child {
+    border-top-right-radius: .1rem;
+    border-bottom-right-radius: .1rem; }
+  .unionTabUl li.active {
+    background-color: white; }
+    .unionTabUl li.active a {
+      color: #333; }
+
+.unionUl {
+  flex-direction: column;
+  padding: .8rem .4rem; }
+  .unionUl li {
+    flex-grow: 1;
+    margin-bottom: .3rem; }
+    .unionUl li span, .unionUl li label {
+      display: inline-block; }
+    .unionUl li label {
+      width: 23%;
+      text-align: right; }
+    .unionUl li span {
+      width: 70%;
+      float: right;
+      background-color: #ebebe4; }
+
+/*我的工会*/
+.unionsLists {
+  margin-left: .6rem;
+  margin-top: .2rem; }
+  .unionsLists img {
+    vertical-align: sub;
+    margin-right: .1rem; }
+
+/*矿机网络*/
+.minerNetWorkDiv {
+  flex-direction: column; }
+  .minerNetWorkDiv ul {
+    border-bottom: .02rem solid #ccc; }
+    .minerNetWorkDiv ul li {
+      width: 33%;
+      height: .8rem;
+      line-height: .6rem;
+      float: left;
+      text-align: center; }
+
+/*个人中心*/
+.personal_overview {
+  background-color: #40B0FF;
+  color: white;
+  padding: .4rem .3rem .4rem 0;
+  position: relative; }
+  .personal_overview .exitApp {
+    font-size: .24rem;
+    position: absolute;
+    top: .4rem;
+    left: .3rem; }
+
+.weui_grids {
+  background-color: white !important;
+  overflow: hidden; }
+  .weui_grids .weui_grid {
+    position: relative;
+    float: left;
+    padding: .16rem .2rem;
+    width: 33.333333%;
+    box-sizing: border-box; }
+    .weui_grids .weui_grid .weui_grid_icon {
+      width: .56rem;
+      height: .56rem;
+      margin: 0 auto; }
+  .weui_grids .weui_grid_label {
+    text-align: center;
+    color: #333; }
+
+.weui_grid:after, .weui_grid:before {
+  content: " ";
+  position: absolute;
+  color: #d9d9d9;
+  transform-origin: 0 0; }
+
+.weui_grid:before {
+  width: .02rem;
+  height: 200%;
+  right: 0;
+  top: 0;
+  border-left: .01rem solid #d9d9d9;
+  transform: scaleY(0.5);
+  -webkit-transform: scaleY(0.5); }
+
+.weui_grid:after {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: .02rem;
+  border-bottom: .02rem solid #d9d9d9;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+  -webkit-transform: scaleY(0.5); }
+
+/*我的矿机*/
+.myMiners {
+  flex-direction: column;
+  background-color: white; }
+  .myMiners li {
+    flex-grow: 1;
+    border-bottom: .02rem solid #ccc;
+    padding: .2rem; }
+    .myMiners li img {
+      width: 20%;
+      height: 1.4rem; }
+    .myMiners li div {
+      width: 62%; }
+      .myMiners li div p {
+        font-size: .24rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: .6rem; }
+    .myMiners li span.btn {
+      width: 15%;
+      height: .5rem;
+      text-align: center;
+      line-height: .5rem;
+      font-size: .24rem;
+      background-color: #0093fb;
+      float: right;
+      margin-top: .5rem; }
+      .myMiners li span.btn a {
+        color: white; }
+
+/*矿机運行*/
+@-webkit-keyframes gogogo {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  50% {
+    -webkit-transform: rotate(180deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+.kj_running {
+  width: 90%;
+  margin-left: 5%;
+  padding-top: .2rem; }
+  .kj_running img.loading {
+    width: 56%;
+    position: absolute;
+    top: 17%;
+    left: 22%;
+    z-index: 100;
+    animation: gogogo 2s infinite linear; }
+  .kj_running .kj_text {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -1.25rem;
+    margin-top: -1.45rem;
+    color: white;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 9, 0.5); }
+
+.kj_runningDetails {
+  position: fixed;
+  bottom: .6rem; }
+  .kj_runningDetails p {
+    height: .75rem;
+    line-height: .75rem; }
+
+/*矿机收益*/
+.normal_table {
+  border-collapse: collapse;
+  width: 100%; }
+  .normal_table thead tr th {
+    font-size: .24rem;
+    line-height: .8rem; }
+  .normal_table tr td {
+    font-size: .12rem;
+    padding: .2rem; }
+
+/*提现钱包*/
+.txWalletUl {
+  flex-direction: column;
+  width: 80%;
+  margin: .2rem auto; }
+  .txWalletUl li {
+    flex-grow: 1;
+    height: .6rem;
+    line-height: .6rem; }
+    .txWalletUl li span {
+      display: inline-block; }
+
+/*上市交易*/
+.ssDealUl {
+  flex-direction: column;
+  width: 80%;
+  margin: .2rem auto; }
+  .ssDealUl li {
+    flex-grow: 1;
+    height: .8rem;
+    line-height: .8rem; }
+    .ssDealUl li input {
+      border: none;
+      height: .6rem;
+      line-height: .6rem;
+      border-radius: .05rem;
+      margin: 0 .2rem; }
+    .ssDealUl li span.btn {
+      width: 100%;
+      height: .6rem;
+      line-height: .6rem;
+      text-align: center;
+      color: white;
+      background-color: #0093fb;
+      border-radius: .05rem; }
+
+/*帮助中心*/
+@-webkit-keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+    transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+@keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+    transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0; }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+@-webkit-keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+    transform: scale(0.9) rotateX(-60deg); } }
+
+@keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+    transform: scale(0.9) rotateX(-60deg); } }
+
+.accordion {
+  margin-top: .3rem; }
+  .accordion dt a {
+    text-align: center;
+    font-weight: 700;
+    padding: .2rem;
+    display: block;
+    transition: background-color 0.5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+    border-bottom: .01rem solid #ddd;
+    background-color: #fff;
+    color: #06c1ae; }
+  .accordion dt a::before {
+    content: "+";
+    font-size: .48rem;
+    line-height: .3rem;
+    float: left;
+    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+    -webkit-transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out; }
+  .accordion dt a.active::before {
+    transform: rotate(-225deg);
+    -webkit-transform: rotate(-225deg); }
+  .accordion .accordionItem.is-collapsed {
+    max-height: 0; }
+  .accordion .animateIn {
+    animation: accordionIn .45s normal ease-in-out both 1;
+    -webkit-animation: accordionIn .45s normal ease-in-out both 1; }
+  .accordion dd.accordionItem {
+    height: auto;
+    overflow: hidden;
+    transition: max-height 1s; }
+    .accordion dd.accordionItem p {
+      text-indent: .2rem;
+      line-height: .6rem;
+      padding: .1rem .25rem; }
+
+/*密码管理*/
+.pwdForm ul {
+  flex-direction: column; }
+  .pwdForm ul li {
+    flex-grow: 1;
+    height: .6rem;
+    line-height: .6rem;
+    margin-top: .2rem; }
+    .pwdForm ul li label {
+      display: inline-block;
+      width: 30%;
+      float: left; }
+    .pwdForm ul li input {
+      width: 70%;
+      height: .6rem;
+      line-height: .6rem;
+      border: none;
+      border-radius: .1rem;
+      text-indent: .2rem; }
+
+.pwdForm span.btn {
+  width: 100%;
+  height: .6rem;
+  line-height: .6rem;
+  margin-top: .2rem; }
+
+/*矿机 矿机商城*/
+.kjLists {
+  background-color: white;
+  flex-direction: column; }
+  .kjLists li {
+    flex-grow: 1;
+    padding: .2rem;
+    border-bottom: .01rem solid #ddd;
+    display: flex; }
+    .kjLists li div p {
+      font-size: .24rem;
+      line-height: .4rem; }
+      .kjLists li div p span {
+        display: inline-block;
+        width: .15rem;
+        height: .15rem;
+        border-radius: 50%;
+        background-color: #ffa900;
+        vertical-align: middle;
+        margin-right: .1rem; }
+    .kjLists li div span.total {
+      height: .2rem;
+      line-height: .2rem;
+      text-align: center;
+      color: white;
+      font-size: .24rem;
+      background-color: #66cdcc;
+      padding: 0 .2rem; }
+    .kjLists li div .btn {
+      color: white;
+      background-color: #ffa900;
+      font-size: .26rem;
+      border-radius: .1rem;
+      padding: .1rem .2rem;
+      margin-top: .3rem; }
+
+/*任务大厅*/
+.carousel {
+  background-color: white;
+  text-align: center; }
+  .carousel span {
+    display: inline-block;
+    width: .15rem;
+    height: .15rem;
+    border: .01rem solid #0093fb;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: .05rem; }
+  .carousel span.active {
+    background-color: #0093fb; }
+
+.taskNav {
+  flex-direction: row;
+  background-color: #fff;
+  border-bottom: .01rem solid #ddd;
+  margin-top: .2rem; }
+  .taskNav li {
+    flex-grow: 1;
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center; }
+    .taskNav li a {
+      display: inline-block;
+      width: 80%; }
+  .taskNav li.active a {
+    color: #0093fb;
+    border-bottom: .01rem solid #0093fb; }
+
+.taskLists {
+  flex-direction: column;
+  margin-top: .1rem; }
+  .taskLists li {
+    flex-grow: 1;
+    padding: .2rem .3rem;
+    border-bottom: .01rem solid #ddd;
+    background-color: #fff; }
+    .taskLists li a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #333;
+      overflow: hidden; }
+    .taskLists li img {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%; }
+    .taskLists li span.icon {
+      display: inline-block;
+      background-color: red;
+      color: white;
+      border-radius: .1rem;
+      padding: .02rem .05rem;
+      margin-right: .1rem; }
+
+/*个人资料*/
+.personalUl {
+  flex-direction: column;
+  padding: .4rem; }
+  .personalUl li {
+    flex-grow: 1;
+    margin-bottom: .2rem; }
+    .personalUl li label {
+      display: inline-block;
+      width: 26%; }
+    .personalUl li input {
+      width: 45%;
+      height: .6rem;
+      line-height: .6rem;
+      text-indent: .2rem;
+      border: none; }
+    .personalUl li textarea {
+      width: 60%;
+      text-indent: .2rem;
+      border: none; }
+    .personalUl li span.certify_submit, .personalUl li span.submit {
+      width: 100%; }
+
+.myTasksNav {
+  flex-direction: row;
+  margin: .2rem 0; }
+  .myTasksNav li {
+    flex-grow: 1;
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center;
+    background-color: white; }
+    .myTasksNav li a {
+      display: block;
+      color: #333;
+      height: .6rem;
+      line-height: .6rem;
+      margin-top: .1rem; }
+
+/*交易记录*/
+.dealLists {
+  flex-direction: column;
+  width: 90%;
+  border: .01rem solid #ddd;
+  background-color: white;
+  margin: .3rem auto; }
+  .dealLists li {
+    flex-grow: 1;
+    font-size: .24rem;
+    padding: .2rem .2rem; }
+    .dealLists li p {
+      line-height: .4rem; }
+  .dealLists li:not(:last-child) {
+    border-bottom: .01rem solid #ddd; }
+
+/*任务详情*/
+.taskDetail {
+  background-color: white;
+  overflow: hidden;
+  margin-bottom: 5em; }
+  .taskDetail h3 {
+    background-color: #eaf7ff;
+    line-height: 1rem; }
+  .taskDetail span.icon {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    border-radius: .1rem;
+    padding: .02rem .05rem;
+    margin-right: .1rem; }
+  .taskDetail span.btn {
+    width: 90%;
+    text-align: center;
+    color: white;
+    background-color: #f39800;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: .05rem;
+    margin-top: 1rem; }
+
+/*主页*/
+.noticeUl {
+  flex-direction: column; }
+  .noticeUl li {
+    flex-grow: 1;
+    background-color: white;
+    border-bottom: .01rem solid #ddd;
+    padding: .2rem .3rem;
+    overflow: hidden; }
+    .noticeUl li a {
+      color: #333; }
+
+/*注册*/
+.registerUl {
+  flex-direction: column; }
+  .registerUl li {
+    flex-grow: 1;
+    height: .6rem;
+    line-height: .6rem;
+    margin-top: .2rem; }
+    .registerUl li label {
+      display: inline-block;
+      width: 30%;
+      float: left; }
+    .registerUl li input {
+      width: 70%;
+      height: .6rem;
+      line-height: .6rem;
+      border: none;
+      border-radius: .1rem;
+      text-indent: .2rem; }
