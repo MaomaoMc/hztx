@@ -86,7 +86,7 @@ class TaskDetail extends Component {
             <div className = "taskDetail">
                 <h3 className = "text-center">{data.title}</h3>
                 <div style = {{padding: ".2rem .3rem"}}>
-                    <p><span className = "f_lt">发布人ID：{data.member_id}</span>
+                    <p><span className = "f_lt">发布人ID：{data.id_num}</span>
                         <span className = "f_rt fc_red"><span className = "icon">赏</span>{data.money}元</span>
                     </p><br/>
                     <p style = {{marginTop: ".3rem", textIndent: ".3rem"}}>{data.content}</p>

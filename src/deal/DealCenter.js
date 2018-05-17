@@ -221,7 +221,7 @@ class DealCenter extends Component {
                             return <li key={i} className="fz_22">
                                 <p>
                                     <span className="fc_blue">单号：{item.trade_num}</span>
-                                    <span className="f_rt">ID：{item.trade_id}</span>
+                                    <span className="f_rt">买家ID：{item.buy_id}</span>
                                 </p>
                                 <p className = "text_center" style={{lineHeight: ".5rem"}}>挂卖{num}MAC，单价{price}元，总价{Math.round(parseFloat(num * price)*100)/100}</p>
                                 <p className="text-center" style = {{marginTop: ".2rem"}}>

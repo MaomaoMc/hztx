@@ -17,6 +17,7 @@ class PersonalItems extends Component {
             wx_num: "",
             bank_name: "",
             bank_num: "",
+            countDown: 60,
             warningShow: false,
             warningText: "",
             code: ""
@@ -41,8 +42,94 @@ class PersonalItems extends Component {
             }
         , 1000)
     }
-    sendCode (){ //发送验证码
-
+    checkMobile (phone){ //手机号码验证
+        if(!(/^[1][3,4,5,7,8,9][0-9]{9}$/.test(phone))){ 
+         return false; 
+        } else{
+          return true;
+        }
+      }
+      resendCode (){  //60s倒计时 重新发送验证码
+        let countDown = this.state.countDown;
+        let timer;
+        const self = this;
+        if(countDown !== 0){  //倒计时没结束
+             timer = setInterval(
+                function () {
+                    countDown--;
+                    if(countDown === 0){
+                        clearInterval(timer);
+                    }
+                    self.setState({
+                        countDown: countDown
+                    })
+                }
+            , 1000)
+        }
+    }
+    passValidate (e){
+        const value = e.value;
+        const page_type = this.state.page_type;
+        if(page_type === 2){ //交易密码
+            if(value.length < 6){
+                this.setState({
+                    warningShow: true,
+                    warningText: "交易密码不能小于6位"
+                }, function(){
+                    this.hanleWarningDlgTimer()
+                })
+                return;
+            } 
+        }
+        
+        if(!(/^[A-Za-z0-9]+$/.test(value))){  //密码只能是6位数 的字母加数字
+            this.setState({
+                warningShow: true,
+                warningText: "密码只能是字母或数字组成"
+            }, function(){
+                this.hanleWarningDlgTimer()
+            })
+            return;
+        }
+    }
+    sendCode (){  //获取验证码
+        const self = this;
+        const phone = this.state.phone;
+        const countDown = this.state.countDown;
+        console.log(countDown, countDown < 60 && countDown > 0, '23')
+        if(countDown < 60 && countDown > 0){  //正在倒计时就不要再让点击了
+            return;
+        }
+        if(!this.checkMobile(phone)){
+            this.setState({
+                warningShow: true,
+                warningText: "请输入正确的手机号码",
+            }, function(){
+                self.hanleWarningDlgTimer()
+            });
+            return;
+          }
+        axios.post(window.baseUrl + "/home/Login/send", qs.stringify({
+            phone: phone
+        })).then(function(res){
+            const data = res.data;
+            const data_code = data.code;
+            if(data_code === 1){  //发送成功 开始倒计时
+                self.setState({
+                    countDown: 60
+                }, function(){
+                    self.resendCode();
+                })
+                
+            }
+           self.setState({
+               warningShow: true,
+               warningText: data.msg,
+             data_code: data_code
+           }, function(){
+               self.hanleWarningDlgTimer()
+           })
+        })
     }
     submit (){  //提交
         const self = this;
@@ -108,6 +195,7 @@ class PersonalItems extends Component {
         const wx_num = this.state.wx_num;
         const bank_name = this.state.bank_name;
         const bank_num = this.state.bank_num;
+        const countDown = this.state.countDown;
         return <div> 
             <Title title = "个人资料" code = {this.state.code} />
             <div className = "pb_100">
@@ -122,60 +210,59 @@ class PersonalItems extends Component {
                     </li>
                     <li>
                         <label>手机号码：</label> 
-                        <input type="tel" placeholder = "请输入手机号" disabled = {!phone ? false : true} value = {phone} onChange = {e => {
-                            this.hanleIptChange({type: "phone", value: e.target.value})
+                        <input type="tel" placeholder = "请输入手机号" value = {phone} onChange = {e => {
+                            this.handleIptChange({type: "phone", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>验证码：</label>
-                        <input type="text" placeholder = "请输入验证码" value = {this.state.y_code} onChange = {e => {
-                            this.hanleIptChange({type: "y_code", value: e.target.value})
+                        <input type="text" placeholder = "请输入验证码" onChange = {e => {
+                            this.handleIptChange({type: "y_code", value: e.target.value})
                         }}/>
-                        <span className = "btn btn_primary f_rt" style = {{width: "26%"}} onClick = {e => {
+                        <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {
                             this.sendCode()
-                        }}>发送验证码</span>
+                        }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "获取验证码"}</span>
                     </li>
                     <li>
                         <label>姓名：</label>
-                        <input type="tel" placeholder = "请输入姓名"  disabled = {!username ? false : true} value = {username} onChange = {e => {
+                        <input type="tel" placeholder = "请输入姓名" value = {username} onChange = {e => {
                             this.handleIptChange({type: "username", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>身份证号码：</label>
-                        <input type="tel" placeholder = "请输入身份证号码"  disabled = {!card_num ? false : true} value = {card_num} onChange = {e => {
-                            this.hanleIptChange({type: "card_num", value: e.target.value})
+                        <input type="tel" placeholder = "请输入身份证号码" value = {card_num} onChange = {e => {
+                            this.handleIptChange({type: "card_num", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>银行名称：</label>
-                        <input type="tel" placeholder = "请输入银行名称"  disabled = {!bank_name ? false : true} value = {bank_name} onChange = {e => {
-                            this.hanleIptChange({type: "bank_name", value: e.target.value})
+                        <input type="tel" placeholder = "请输入银行名称" value = {bank_name} onChange = {e => {
+                            this.handleIptChange({type: "bank_name", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>银行卡号：</label>
-                        <input type="tel" placeholder = "请输入银行卡号"  disabled = {!bank_num ? false : true} value = {bank_num} onChange = {e => {
-                            this.hanleIptChange({type: "bank_num", value: e.target.value})
+                        <input type="tel" placeholder = "请输入银行卡号" value = {bank_num} onChange = {e => {
+                            this.handleIptChange({type: "bank_num", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>支付宝：</label>
-                        <input type="tel" placeholder = "请输入支付宝账号"  disabled = {!zfb_num ? false : true} value = {zfb_num} onChange = {e => {
-                            this.hanleIptChange({type: "zfb_num", value: e.target.value})
+                        <input type="tel" placeholder = "请输入支付宝账号" value = {zfb_num} onChange = {e => {
+                            this.handleIptChange({type: "zfb_num", value: e.target.value})
                         }}/>
                     </li>
                     <li>
                         <label>微信号：</label>
-                        <input type="tel" placeholder = "请输入微信账号"  disabled = {!wx_num ? false : true} value = {wx_num} onChange = {e => {
-                            this.hanleIptChange({type: "wx_num", value: e.target.value})
+                        <input type="tel" placeholder = "请输入微信账号" value = {wx_num} onChange = {e => {
+                            this.handleIptChange({type: "wx_num", value: e.target.value})
                         }}/>
                     </li>
                     <li style = {{height: "1rem"}}>
-                        <span className = "btn btn_primary submit" onClick = {e => {
+                        <span className = "btn btn_primary submit" style = {{width: "95%"}} onClick = {e => {
                             this.submit()
                         }}>完成</span>
-                        <p className = "text-center" style = {{fontSize: ".2rem"}}>温馨提示：交易账户绑定之后不可修改，请确认账户资料填写正确</p>
                     </li>
                 </ul>
             </div>

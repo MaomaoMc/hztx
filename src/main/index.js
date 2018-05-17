@@ -119,14 +119,16 @@ class Main extends Component {
                    <img src = {main_kfIcon} alt=""/>
                </a>
                <div>
-                   <p style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>
+                   <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>
                     <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>最新公告</h3>
-                   </p>
+                   </div>
                    <ul className = "noticeUl">
                        {
                            noticeData.length > 0 && noticeData.map(function(item, i){
-                               return <li>
-                                   <Link to = "/main/noticeDetails"><div className = "f_lt" style = {{width: "70%"}}>
+                               return <li key = {i}>
+                                   <Link to = "/main/noticeDetails" onClick = {e => {
+                                       localStorage.setItem("noticeDetail", JSON.stringify(item))
+                                   }}><div className = "f_lt" style = {{width: "70%"}}>
                                     <h4>{item.name}</h4>
                                     <div dangerouslySetInnerHTML = {{__html: item.content}} style = {{
                                         overflow: "hidden",
@@ -135,7 +137,7 @@ class Main extends Component {
                                     }}></div>
                                    </div>
                                    <div className = "f_rt">
-                                    {new Date(parseInt(item.add_time)).format("yyyy-MM-dd")}
+                                    {new Date(item.add_time * 1000).format("yyyy-MM-dd")}
                                    </div></Link>
                                </li>
                            })

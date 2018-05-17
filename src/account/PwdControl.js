@@ -25,12 +25,16 @@ class PwdControl extends Component {
             [e.type]: e.value
         })
     }
-    hanleWarningDlgTimer (){  //定时关闭 警告弹窗
+    hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
         const self = this;
         setTimeout(
             function(){
                 self.setState({
                     warningShow: false
+                }, function(){
+                    if(obj && obj.code === 1){
+                        window.location.reload();
+                    }
                 })
             }
         , 1000)
@@ -47,7 +51,7 @@ class PwdControl extends Component {
             repass: state.renewl_pass,
            }
        }
-       if(type === "1"){
+       if(type === "2"){
         config = {
             oldpass: state.oldt_pass,
          pass: state.newt_pass,
@@ -62,7 +66,7 @@ class PwdControl extends Component {
               warningText: data.msg,
               code: code
           }, function(){
-              self.hanleWarningDlgTimer();
+              self.hanleWarningDlgTimer({code: code});
           })
        })
     }
@@ -114,7 +118,7 @@ class PwdControl extends Component {
                    </li>
                </ul>
                <span className = "btn btn_primary" onClick = {e => {
-                   this.handleSubmit({type: "1"})
+                   this.handleSubmit({type: "2"})
                }}>完成</span>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null }

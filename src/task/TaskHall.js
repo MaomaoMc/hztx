@@ -147,7 +147,7 @@ class TaskHall extends Component {
         const taskLists = this.state.taskLists;
         return <div>
             <Title title="任务大厅" />
-            <div className="pd_100">
+            <div className="pb_100">
                 <div className="weui_grids">
                     {
                         this.getRows().map(function (item, i) {
@@ -185,10 +185,11 @@ class TaskHall extends Component {
                         taskLists.length === 0 ? <li>暂时没有数据可显示...</li> :
                             taskLists.length > 0 && taskLists.map(function (list, i) {
                                 return <li key={i}>
-                                    <Link to = {"/taskDetail/" + list.id}><img className="f_lt" src={window.baseUrl + list.pic} alt="" />
+                                    <Link to = {"/taskDetail/" + list.id}>
+                                    <img className="f_lt" src={list.pic} alt="" />
                                         <div className="f_lt">
                                             <h4>{list.title}</h4>
-                                            <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>总数{list.num} 已完成数{list.ynum}</p>
+                                            <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>总数{list.num} 已接取数{list.ynum}</p>
                                         </div>
                                         <div className="f_rt">
                                             <p className="fc_red"><span className="icon">赏</span><span>{list.money}</span></p>

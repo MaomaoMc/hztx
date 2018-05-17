@@ -88,7 +88,7 @@ class Login extends Component {
                         <button className = "submit" onClick = {e => {
                             this.login()
                         }}>登录</button>
-                        <p style = {{color: "#f04447", textAlign: "right"}}>忘记密码</p>
+                        <p style = {{textAlign: "right"}}><Link to = "/forgetPwd/loginPwd" style = {{color: "#f04447"}}>忘记密码</Link></p>
                         <p className = "text-center"><Link to = "/register">注册</Link></p>
                     </div>
                 </form>

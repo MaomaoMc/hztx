@@ -86,7 +86,7 @@ class MyAcceptTasks extends Component {
                                 const task = list.task;
                                 const status = list.status;
                                 return <li key={i}>
-                                    <img className="f_lt" src={window.baseUrl + task.pic} alt="" />
+                                    <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">
                                         <h4>{task.title}</h4>
                                         <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{task.money}</p>
@@ -95,17 +95,15 @@ class MyAcceptTasks extends Component {
                                         {status === "正进行" ? <p>
                                             <span className = "btn btn_orange" style = {{marginRight: ".2rem"}}
                                             onClick = {e =>{
-                                                self.handleTask({type: "abandon", id: list.task_id})
+                                                self.handleTask({type: "abandon", id: list.id})
                                             }}>放弃</span>
                                             <span className = "btn btn_orange"
                                              onClick = {e =>{
-                                                self.handleTask({type: "submit", id: list.task_id})
+                                                self.handleTask({type: "submit", id: list.id})
                                             }}>提交</span>
                                             </p>:
                                              <p>{status}</p>}
                                         <p style = {{fontSize: ".12rem", textAlign: "right", marginTop: ".2rem"}}>{list.add_time}</p>
-                                        {/* <p className="fc_red"><span className="icon">赏</span><span>{task.money}</span></p>
-                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>{task.add_time}</p> */}
                                     </div>
                                 </li>
                             })

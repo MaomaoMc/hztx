@@ -67,7 +67,8 @@ class MyPedTasks extends Component {
                             data.length > 0 && data.map(function (list, i) {
                                 const status = list.status;
                                 return <li key={i}>
-                                    <Link to = {"/account/examineTask/" + list.id}><img className="f_lt" src={window.baseUrl + list.pic} alt="" />
+                                    <Link to = {"/account/examineTask/" + list.id}>
+                                    <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">
                                         <h4>{list.title}</h4>
                                         <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{list.money}</p>

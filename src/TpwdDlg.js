@@ -24,7 +24,7 @@ class TpwdDlg extends Component {
                         this.handlePwdEvent({value: e.target.value})
                     }}
                     />
-                    <div className="fgtTradepass"><Link to = "/account/forgetTradePwd"><span className="fz_24 fc_blue">忘记交易密码?</span></Link></div>
+                    <div className="fgtTradepass"><Link to = "/forgetPwd/tradePwd"><span className="fz_24 fc_blue">忘记交易密码?</span></Link></div>
                     <div className="over_hidden" style={{marginTop: ".2rem"}}>
                         <span className="btn f_lt btn_default" onClick = {e => {
                             self.setState({

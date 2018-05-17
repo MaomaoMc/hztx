@@ -100,9 +100,9 @@ class ExamineTask extends Component {
                                         <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>接收人ID：{member.id_num}</p>
                                     </div>
                                     <div className="f_rt"  style={{textAlign: "right"}}>
-                                        <span className = "btn btn_orange" onClick = {e => {
-                                            self.handleFinishTask({id: data[0].id})
-                                        }}>完成</span>
+                                        {status === "已提交" ? <span className = "btn btn_orange" onClick = {e => {
+                                            self.handleFinishTask({id: list.id})
+                                        }}>完成</span> : <span>{status}</span>}
                                         <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>{new Date(parseInt(list.add_time)).format("yyyy-MM-dd")}</p>
                                     </div>
                                 </li>

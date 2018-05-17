@@ -74,25 +74,6 @@ class MyDeal extends Component {
             }
         })
     }
-    renderStatus (status){
-        let text = "";
-        if(status === 1){
-            text = "等待中";
-        }
-        if(status === 2){
-            text = "交易中";
-        }
-        if(status === 3){
-            text = "已打款";
-        }
-        if(status === 4){
-            text = "已完成";
-        }
-        if(status === 5){
-            text = "已取消";
-        }
-        return text;
-    }
     componentDidMount(){
         this.ajax();
     }
@@ -122,7 +103,7 @@ class MyDeal extends Component {
                             return <li key = {i}>
                                 <p className = "fc_blue" style = {{overflow: "hidden"}}>
                                     <span className = "f_lt">单号：{item.trade_num}</span>
-                                    <span className = "f_rt">{self.renderStatus(item.status)}</span>
+                                    <span className = "f_rt">{item.status}</span>
                                 </p>
                                 <p>{tabIndex === 0 ? "卖家ID：" + item.sell_id : "买家ID：" + item.buy_id}</p>
                                 <p>挂卖{item.num}BTA，单价{item.price}元，总价{item.num * item.price}</p>

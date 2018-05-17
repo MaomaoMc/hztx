@@ -12,6 +12,7 @@ import Main from './main/index.js';
 import TaskDetail from './task/TaskDetail.js';
 import NoticeDetail from './main/NoticeDetail.js';
 import Register from './Register.js';
+import ForgetPwd from './account/ForgetPwd.js';
 
 ReactDOM.render(
     <Router>
@@ -29,6 +30,7 @@ ReactDOM.render(
                 <Route path="/deal" component={Deal} />
                  <Route path="/account/personalData" component = {PersonalData} />
                 <Route path="/register" component={Register} />
+                <Route path="/forgetPwd/:type" component={ForgetPwd} /> {/*忘记密码*/}
                 <Route path="/" component={Account} />
             </Switch>
         </div>
