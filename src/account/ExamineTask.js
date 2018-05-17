@@ -77,16 +77,15 @@ class ExamineTask extends Component {
     render(){
         const self = this;
         const data = this.state.data;
-        // const task = data[0].task[0];  //任务信息
-        // const member = data.member; //接收人列表
+        // const task = ;
         return <div> 
-            <Title title = "审核任务"/>
+            <Title title = "审核任务" code = {this.state.code}/>
             <div className = "pb_100">
                 {data.length > 0 ? <div style = {{overflow: "hidden", padding: ".2rem"}}>
-                    
-                    {/* <p style = {{fontSize: ".24rem", textAlign: "right"}}>{task.add_time}</p> */}
-                    <img src={window.baseUrl + data[0].task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem"}}/>
+                    <img src={data[0].task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/>
                     <h4>{data[0].task[0].title}</h4>
+                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{data[0].task[0].content}</p>
+                    <p style = {{fontSize: ".24rem"}}>总数{data[0].task[0].num} 已接取数{data[0].task[0].ynum}</p>
                 </div> : null}
                 <ul className="taskLists f_flex">
                     {
@@ -103,7 +102,7 @@ class ExamineTask extends Component {
                                         {status === "已提交" ? <span className = "btn btn_orange" onClick = {e => {
                                             self.handleFinishTask({id: list.id})
                                         }}>完成</span> : <span>{status}</span>}
-                                        <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>{new Date(parseInt(list.add_time)).format("yyyy-MM-dd")}</p>
+                                        <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>{new Date(list.add_time * 1000).format("yyyy-MM-dd")}</p>
                                     </div>
                                 </li>
                             })

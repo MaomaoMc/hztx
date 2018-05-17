@@ -194,7 +194,7 @@ class Register extends Component {
                    </li>
                    <li>
                        <label>确认登录密码:</label>
-                       <input type="password" placeholder = "请确认登录密码" value = {this.state.rt_pass} onChange = {e => {
+                       <input type="password" placeholder = "请确认登录密码" value = {this.state.rl_pass} onChange = {e => {
                            this.handleIptChange({type: "rl_pass", value: e.target.value})
                        }}/>
                    </li>

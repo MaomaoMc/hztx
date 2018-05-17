@@ -80,9 +80,9 @@ class PersonalData extends Component {
                     this.exitApp()
                 }}>安全退出</a>
                 <div>
-                    <p className = "text-right" style = {{fontSize: ".24rem"}}>可用BTA:&nbsp;{data.jd_num}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem"}}>可用JD:&nbsp;{data.jd_num}</p>
                     <p className = "text-right fz_30" style = {{marginTop: ".2rem"}}>{data.money}</p>
-                    <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}>冻结BTA:&nbsp;{data.dmoney}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}>冻结金额:&nbsp;{data.dmoney}</p>
                 </div>
             </div>
             <ul className = "f_flex myTasksNav">
