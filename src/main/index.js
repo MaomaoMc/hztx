@@ -87,21 +87,10 @@ class Main extends Component {
             slidesToShow:1,
             slidesToScroll:1
         }
-        // return (
-        //        <Slider {...settings}>
-        //         <div><h3>1</h3></div>
-        //         <div><h3>2</h3></div>
-        //         <div><h3>3</h3></div>
-        //         <div><h3>4</h3></div>
-        //         <div><h3>5</h3></div>
-        //         <div><h3>6</h3></div>
-        //     </Slider>
-        // );
         const advData = this.state.advData;
         const noticeData = this.state.noticeData;
         return <div> 
             <Title title = "主页" code = {this.state.code}/>
-            
             <div className = "pb_100">
                <Slider {...settings}>
                {
@@ -109,15 +98,14 @@ class Main extends Component {
                        return <div key = {i}>
                        <a href = {item.url}><div style = {{width: "100%", height: "3rem", backgroundImage: "url(" + window.baseUrl + item.pic + ")", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}></div>
                       
-                       </a> {/* {i} */}
-                        {/* <img src={window.baseUrl + item.pic} alt=""/> */}
+                       </a>
                        </div>
                    })
                }
                </Slider>
-               <a style = {{display: "block", marginTop: ".5rem"}}>
+               <Link to = "/account/contactUs" style = {{display: "block", marginTop: ".5rem"}}>
                    <img src = {main_kfIcon} alt=""/>
-               </a>
+               </Link>
                <div>
                    <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>
                     <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>最新公告</h3>
@@ -145,6 +133,8 @@ class Main extends Component {
                    </ul>
                </div>
             </div>
+            {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
+            <Footer />
             <Footer />
         </div>
     }

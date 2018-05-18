@@ -19,10 +19,6 @@
       line-height: .4rem;
       font-size: .24rem;
       font-weight: 500; }
-  .deal_head div:last-child {
-    text-align: center;
-    color: #0093fb;
-    font-size: .48rem; }
 
 ul.chartNav {
   flex-direction: row;

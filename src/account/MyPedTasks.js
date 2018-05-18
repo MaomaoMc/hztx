@@ -95,6 +95,7 @@ class MyPedTasks extends Component {
                     }
                 </ul>
             </div>
+            {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>
     }

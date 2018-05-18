@@ -112,6 +112,8 @@ class MyDeal extends Component {
                     }
                 </ul>
             </div>
+            {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
+            <Footer />
             <Footer />
         </div>
     }

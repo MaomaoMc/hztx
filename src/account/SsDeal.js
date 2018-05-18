@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Title from "./../Title";
 import Footer from "./../Footer";
 
-const recruitImg = require("../img/18351534598.png");
 const heads = [
     {
         name: "name",

@@ -466,7 +466,8 @@
     .taskLists li img {
       width: 1rem;
       height: 1rem;
-      border-radius: 50%; }
+      border-radius: 50%;
+      margin-right: .2rem; }
     .taskLists li span.icon {
       display: inline-block;
       background-color: red;

@@ -77,15 +77,14 @@ class ExamineTask extends Component {
     render(){
         const self = this;
         const data = this.state.data;
-        // const task = ;
         return <div> 
             <Title title = "审核任务" code = {this.state.code}/>
             <div className = "pb_100">
                 {data.length > 0 ? <div style = {{overflow: "hidden", padding: ".2rem"}}>
                     <img src={data[0].task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/>
                     <h4>{data[0].task[0].title}</h4>
-                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{data[0].task[0].content}</p>
                     <p style = {{fontSize: ".24rem"}}>总数{data[0].task[0].num} 已接取数{data[0].task[0].ynum}</p>
+                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{data[0].task[0].content}</p>
                 </div> : null}
                 <ul className="taskLists f_flex">
                     {

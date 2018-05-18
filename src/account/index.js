@@ -33,10 +33,6 @@ class Account extends Component {
                 <Route path="/account/myPedTasks" component = {MyPedTasks} />
                 <Route path="/account/myAcceptTasks" component = {MyAcceptTasks} />
                 <Route path="/account/examineTask/:id" component = {ExamineTask} />
-                {/* <Route path="/account/unionEarnings" component = {UnionEarnings} /> */}
-                {/* <Route path="/account/unionRecruit" component = {UnionRecruit} /> */}
-                {/* <li><Link to = "/account/myPedTasks">发布的任务</Link></li> */}
-                {/* <li><Link to = "/account/myAcceptTasks">接受的任务</Link></li> */}
                 <Route path="/account/txWallet" component = {TxWallet} />
                 <Route path="/account/ssDeal" component = {SsDeal} />
                 <Route path="/account/help" component = {Help} />

@@ -191,6 +191,7 @@ class PersonalData extends Component {
                     <p className="weui_grid_label" style={{marginTop: ".24rem"}}>联系我们</p>
                 </Link>
             </div>
+            {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null}
             <Footer />
         </div>
     }
