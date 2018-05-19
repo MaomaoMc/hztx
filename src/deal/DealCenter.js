@@ -275,11 +275,10 @@ class DealCenter extends Component {
             <Title title = "交易中心" code = {this.state.code}/>
             <div className = "deal_head">
                 <div>
-                    <p>最高：{tradeMsg_data.topPrice}%</p>
-                    <p>最低：{tradeMsg_data.bottomPrice}%</p>
-                    <p>最新：{tradeMsg_data.newPrice}%</p>
+                    <p>最高：{tradeMsg_data.topPrice}</p>
+                    <p>最低：{tradeMsg_data.bottomPrice}</p>
                 </div>
-                {/* <div>$:0.01</div> */}
+                <div>{tradeMsg_data.newPrice}</div>
             </div>
             <div id = "chart"></div>
             <div className = "dealWrap">

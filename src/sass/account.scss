@@ -283,7 +283,8 @@
     }
     tr{
         td{
-            font-size: .12rem;
+            font-size: .24rem;
+            text-align: center;
             padding: .2rem;
         }
     }
@@ -712,5 +713,28 @@
             border-radius: .1rem;
             text-indent: .2rem;
         }
+    }
+}
+/*推广*/
+.inviteOpt{
+    flex-direction: column;
+    span.inviteId, span.inviteLink{
+        float: left;
+        font-size: .24rem;
+        height: .6rem;
+        line-height: .6rem;
+        padding: 0 !important;
+        // color: #333;
+        border: .01rem solid #00a8ff;
+        // background-color: rgba(7, 79, 155, .5);
+        overflow: hidden;
+        text-indent: .05rem;
+        margin-right: .2rem;
+    }
+    p{
+       flex-grow: 1;
+    }
+    span.inviteLink{
+        width: 3rem;
     }
 }

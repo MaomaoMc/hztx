@@ -10,6 +10,11 @@ const loginImg = require("./img/logo.jpg");
 class Register extends Component {
     constructor(props){
         super(props);
+        let tui_id = "";
+        const hash = window.location.hash;
+        if(hash.indexOf("tui_id") !== -1){
+            tui_id = hash.substring(hash.indexOf("tui_id") + 7);
+        }
         this.state = {
             phone: "",
             code: "",
@@ -17,7 +22,7 @@ class Register extends Component {
             rl_pass: "",
             t_pass: "",
             rt_pass: "",
-            tui_id: "",
+            tui_id: tui_id,
             countDown: 60,
             warningShow: false,
             warningText: "",
@@ -212,9 +217,10 @@ class Register extends Component {
                    </li>
                    <li>
                        <label>推荐人ID:</label>
-                       <input type="text" placeholder = "请确认推荐人ID" value = {this.state.tui_id} onChange = {e => {
-                           this.handleIptChange({type: "tui_id", value: e.target.value})
-                       }}/>
+                       {window.location.hash.indexOf("tui_id") !== -1 ? <input type="text" placeholder="推荐人手机号或ID：" disabled = "true" readOnly="true" defaultValue= {this.state.tui_id} />
+                        : <input type="text" placeholder="推荐人ID：" value = {this.state.tui_id} onChange = {e => {
+                            this.handleIptChange({type: "tui_id", value: e.target.value})
+                        }}/>}
                    </li>
                    <li>
                        <span className = "btn btn_primary" style = {{width : "95%", marginTop: ".5rem"}} onClick = {e => {

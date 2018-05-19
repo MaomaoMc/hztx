@@ -11,6 +11,7 @@ class ExamineTask extends Component {
         super(props);
         this.state = {
             data: [],
+            task: [], //任务详情
             warningShow: false,
             warningText: "",
             code: ""
@@ -40,7 +41,8 @@ class ExamineTask extends Component {
             const code = data.code;
             if(code === 1){
                 self.setState({
-                   data: data.data
+                   data: data.data,  //接收人列表
+                   task: data.task
                 })
             }else{
                 self.setState({
@@ -59,7 +61,6 @@ class ExamineTask extends Component {
             token: localStorage.getItem("token"),
             id: e.id
         })).then(function(res){
-            console.log(res)
             const data = res.data;
             const code = data.code;
             self.setState({
@@ -77,18 +78,19 @@ class ExamineTask extends Component {
     render(){
         const self = this;
         const data = this.state.data;
+        const task = this.state.task;
         return <div> 
             <Title title = "审核任务" code = {this.state.code}/>
             <div className = "pb_100">
-                {data.length > 0 ? <div style = {{overflow: "hidden", padding: ".2rem"}}>
-                    <img src={data[0].task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/>
-                    <h4>{data[0].task[0].title}</h4>
-                    <p style = {{fontSize: ".24rem"}}>总数{data[0].task[0].num} 已接取数{data[0].task[0].ynum}</p>
-                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{data[0].task[0].content}</p>
+                {task.length > 0 ? <div style = {{overflow: "hidden", padding: ".2rem"}}>
+                    <img src={task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/>
+                    <h4>{task[0].title}</h4>
+                    <p style = {{fontSize: ".24rem"}}>总数{task[0].num} 已接取数{task[0].ynum}</p>
+                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{task[0].content}</p>
                 </div> : null}
                 <ul className="taskLists f_flex">
                     {
-                        data.length === 0 ? <li>暂时没有数据可显示...</li> :
+                        data.length === 0 ? <li>暂时没有接收人数据可显示...</li> :
                         data.length > 0  && data.map(function (list, i) {
                                 const status = list.status;
                                 const member = list.member[0];

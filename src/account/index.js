@@ -19,6 +19,8 @@ import PublishTask from './PublishTask';
 import MyPedTasks from './MyPedTasks';
 import MyAcceptTasks from './MyAcceptTasks';
 import ExamineTask from './ExamineTask';
+import Spead from './Spread';
+import ReCharge from './ReCharge';
 
 class Account extends Component {
     render(){
@@ -33,8 +35,10 @@ class Account extends Component {
                 <Route path="/account/myPedTasks" component = {MyPedTasks} />
                 <Route path="/account/myAcceptTasks" component = {MyAcceptTasks} />
                 <Route path="/account/examineTask/:id" component = {ExamineTask} />
+                <Route path="/account/recharge" component = {ReCharge} />
                 <Route path="/account/txWallet" component = {TxWallet} />
                 <Route path="/account/ssDeal" component = {SsDeal} />
+                <Route path="/account/spead" component = {Spead} />
                 <Route path="/account/help" component = {Help} />
                 <Route path="/account/pwdControl" component = {PwdControl} />
                 <Route path="/account/contactUs" component = {ContactUs} />

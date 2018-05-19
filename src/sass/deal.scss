@@ -13,7 +13,6 @@
         padding-left: .1rem;
         font-weight: 600;
         p{
-            float: left;
             width: 50%;
             height: .4rem;
             line-height: .4rem;
@@ -22,11 +21,11 @@
         }
         
     }
-    // div:last-child{
-    //     text-align: center;
-    //     color: #0093fb;
-    //     font-size: .48rem;
-    // }
+    div:last-child{
+        text-align: center;
+        color: #0093fb;
+        font-size: .48rem;
+    }
 }
 ul.chartNav{
     flex-direction: row;
