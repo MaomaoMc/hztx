@@ -121,13 +121,52 @@ header{
         flex-direction: row;
         li{
             flex-grow: 1;
-            text-align: center;
+           
             a{
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                text-align: center;
                 color: #767676;
             }
             i{
                 display: block;
-                margin-top: .1rem;
+                width: .45rem;
+                height: .45rem;
+                background-repeat: no-repeat;
+                margin: .1rem auto 0;
+            }
+            i.icon_main {
+                background-image: url(../img/icon_main.png)
+            }
+            i.icon_task {
+                background-image: url(../img/icon_task.png)
+            }
+            i.icon_jy {
+                background-image: url(../img/icon_jy.png)
+            }
+            i.icon_kj {
+                background-image: url(../img/icon_kj.png)
+            }
+            i.icon_account {
+                background-image: url(../img/icon_account.png)
+            }
+        }
+        li.active{
+            i.icon_main {
+                background-image: url(../img/icon_main_hot.png)
+            }
+            i.icon_task {
+                background-image: url(../img/icon_task_hot.png)
+            }
+            i.icon_jy {
+                background-image: url(../img/icon_jy_hot.png)
+            }
+            i.icon_kj {
+                background-image: url(../img/icon_kj_hot.png)
+            }
+            i.icon_account {
+                background-image: url(../img/icon_account_hot.png)
             }
         }
     }

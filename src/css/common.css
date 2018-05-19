@@ -114,13 +114,39 @@ header {
   .footer ul {
     flex-direction: row; }
     .footer ul li {
-      flex-grow: 1;
-      text-align: center; }
+      flex-grow: 1; }
       .footer ul li a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
         color: #767676; }
       .footer ul li i {
         display: block;
-        margin-top: .1rem; }
+        width: .45rem;
+        height: .45rem;
+        background-repeat: no-repeat;
+        margin: .1rem auto 0; }
+      .footer ul li i.icon_main {
+        background-image: url(../img/icon_main.png); }
+      .footer ul li i.icon_task {
+        background-image: url(../img/icon_task.png); }
+      .footer ul li i.icon_jy {
+        background-image: url(../img/icon_jy.png); }
+      .footer ul li i.icon_kj {
+        background-image: url(../img/icon_kj.png); }
+      .footer ul li i.icon_account {
+        background-image: url(../img/icon_account.png); }
+    .footer ul li.active i.icon_main {
+      background-image: url(../img/icon_main_hot.png); }
+    .footer ul li.active i.icon_task {
+      background-image: url(../img/icon_task_hot.png); }
+    .footer ul li.active i.icon_jy {
+      background-image: url(../img/icon_jy_hot.png); }
+    .footer ul li.active i.icon_kj {
+      background-image: url(../img/icon_kj_hot.png); }
+    .footer ul li.active i.icon_account {
+      background-image: url(../img/icon_account_hot.png); }
 
 span.btn {
   display: inline-block; }
