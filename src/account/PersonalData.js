@@ -15,6 +15,7 @@ class PersonalData extends Component {
                 "jd_num": "0",
                 "money": "0",
                 "dmoney": "0",
+                "sign_status": "2"
             } , //个人信息数据
             warningShow: false,
             warningText: ""
@@ -63,6 +64,22 @@ class PersonalData extends Component {
             exitApp: true
         })
     }
+    handleSign (){  //签到
+        const self = this;
+        axios.post(window.baseUrl + "/home/Member/sign_in", qs.stringify({
+            token: localStorage.getItem("token")
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            self.setState({
+                warningShow: true,
+                warningText: data.msg,
+                code: code
+            }, function(){
+                self.hanleWarningDlgTimer({code: code})
+            })
+        })
+    }
     componentDidMount (){
         this.ajax();
     }
@@ -73,6 +90,7 @@ class PersonalData extends Component {
             )
         }
         const data = this.state.data;
+        const sign_status = data.sign_status;
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
@@ -82,7 +100,10 @@ class PersonalData extends Component {
                 <div>
                     <p className = "text-right" style = {{fontSize: ".24rem"}}>可用JD:&nbsp;{data.jd_num}</p>
                     <p className = "text-right fz_30" style = {{marginTop: ".2rem"}}>{data.money}</p>
-                    <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}>冻结金额:&nbsp;{data.dmoney}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}>
+                        {sign_status != "1" ? <span className = "f_lt sign_btn" onClick = {e => {
+                            this.handleSign()
+                        }}>签到</span> : <span className = "f_lt" style = {{marginLeft: ".3rem"}}>已签到</span>}冻结金额:&nbsp;{data.dmoney}</p>
                 </div>
             </div>
             <ul className = "f_flex myTasksNav">
