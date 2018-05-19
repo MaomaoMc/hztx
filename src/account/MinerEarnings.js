@@ -11,10 +11,6 @@ const heads = [
         text: "矿机名称"
     },
     {
-        name: "mill_id",
-        text: "编号"
-    },
-    {
         name: "time",
         text: "运行时间/(h)"
     },
@@ -90,10 +86,10 @@ class MinerEarnings extends Component {
                     <tbody>
                         {
                             data.length > 0 && data.map(function(item, i){
-                                return <tr>
+                                return <tr key = {i}>
                                     {
-                                        heads.map(function(head, i){
-                                            return <td key = {i} style = {{borderBottom: ".02rem solid #ddd"}}>{item[head.name]}</td>
+                                        heads.map(function(head, n){
+                                            return <td key = {n} style = {{borderBottom: ".02rem solid #ddd"}}>{item[head.name]}</td>
                                         })
                                     }
                                 </tr>
