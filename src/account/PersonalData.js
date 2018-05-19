@@ -86,8 +86,8 @@ class PersonalData extends Component {
                 </div>
             </div>
             <ul className = "f_flex myTasksNav">
-                <li><Link to = "/account/myPedTasks" style = {{borderRight: ".01rem solid #ddd"}}>发布的任务</Link></li>
-                <li><Link to = "/account/myAcceptTasks">接受的任务</Link></li>
+                <li><Link to = "/account/myPedTasks" style = {{borderRight: ".01rem solid #ddd"}}><i className = "icon_fashe"></i>发布的任务</Link></li>
+                <li><Link to = "/account/myAcceptTasks"><i className = "icon_accept"></i>接受的任务</Link></li>
             </ul>
             <div className="weui_grids">
                 <Link to = "/account/myMiner" className="weui_grid js_grid" data-id="toast">

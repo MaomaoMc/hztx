@@ -515,6 +515,17 @@
       height: .6rem;
       line-height: .6rem;
       margin-top: .1rem; }
+      .myTasksNav li a i {
+        display: inline-block;
+        width: .45rem;
+        height: .45rem;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+        margin-right: .1rem; }
+      .myTasksNav li a i.icon_fashe {
+        background-image: url(../img/icon_fshe.png); }
+      .myTasksNav li a i.icon_accept {
+        background-image: url(../img/icon_accept.png); }
 
 /*交易记录*/
 .dealLists {
