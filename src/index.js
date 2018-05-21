@@ -6,7 +6,7 @@ import Deal from './deal/index.js';
 import PersonalData from './account/PersonalData';
 import "./css/common.css";
 import registerServiceWorker from './registerServiceWorker';
-import TaskHall from './task/TaskHall.js';
+import Task from './task/index.js';
 import KjMarket from './kjMarket/index.js';
 import Main from './main/index.js';
 import TaskDetail from './task/TaskDetail.js';
@@ -24,7 +24,7 @@ ReactDOM.render(
                 <Route path="/newerGdNotes" component={NewerGdNotes} /> */}
                 <Route path="/main/noticeDetails" component={NoticeDetail} />  {/*公告详情*/}
                 <Route path="/main" component={Main} />  {/*主页*/}
-                <Route path="/taskHall" component={TaskHall} />  {/*任务  跳转到任务大厅*/}
+                <Route path="/task" component={Task} />  {/*任务  跳转到任务大厅*/}
                 <Route path="/taskDetail/:id" component={TaskDetail} />  {/*任务详情*/}
                 <Route path="/kjMarket" component={KjMarket} />  {/*矿机  跳转到矿机商城*/}
                 <Route path="/deal" component={Deal} />

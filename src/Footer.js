@@ -13,27 +13,27 @@ class Footer extends Component {
                     </Link>
                 </li>
                 <li className = {hash.indexOf("task") !== -1 ? "active" : ""}>
-                    <Link to = "/taskHall">
+                    <Link to = "/task">
                         <i className = "icon_task"></i>
-                        <span>任务</span>
+                        <span>任务中心</span>
                     </Link>
                 </li>
                 <li className = {hash.indexOf("kjMarket") !== -1 ? "active" : ""}>
-                    <Link to = "/kjMarket">  {/*矿机商城*/}
+                    <Link to = "/kjMarket"> 
                         <i className = "icon_kj"></i>
-                        <span>矿机</span>
+                        <span>金豆中心</span>
                     </Link>
                 </li>
                 <li className = {hash.indexOf("deal") !== -1 ? "active" : ""}>
                     <Link to = "/deal">
                         <i className = "icon_jy"></i>
-                        <span>交易</span>
+                        <span>交易中心</span>
                     </Link>
                 </li>
                 <li className = {hash.indexOf("account") !== -1 ? "active" : ""}>
                     <Link to = "/account/personalData">
                         <i className = "icon_account"></i>
-                        <span>个人</span>
+                        <span>用户中心</span>
                     </Link>
                 </li>
            </ul>

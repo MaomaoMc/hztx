@@ -518,6 +518,30 @@
     }
 }
 /*任务大厅*/
+.head_nav{
+    flex-direction: row;
+    border-bottom: .01rem solid #ddd;
+    background-color: white;
+    margin-bottom: .3rem;
+    li{
+        flex-grow: 1;
+        text-align: center;
+        height: .8rem;
+        line-height: .8rem;
+        a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color: #333;
+        }
+    }
+    li.active{
+        a{
+            color: #0093fb;
+            border-bottom: .01rem solid #0093fb;
+        }
+    }
+}
 .carousel{
     background-color: white;
     text-align: center;

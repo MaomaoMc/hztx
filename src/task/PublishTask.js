@@ -132,7 +132,6 @@ class PublishTask extends Component {
         const self = this;
         const type_arr = this.state.type_arr;
         const pic_arr = this.state.pic_arr;
-        console.log(pic_arr, '999')
         return <div> 
             <Title title = "发布任务" code = {this.state.code}/>
             <ul className = "f_flex personalUl pb_100">

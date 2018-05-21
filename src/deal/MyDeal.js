@@ -18,6 +18,7 @@ class MyDeal extends Component {
         super(props);
         this.state = {
             data: [],
+            hash: window.location.hash,
             tabIndex: 0,
             warningShow: false,
             warningText: "",
@@ -45,11 +46,12 @@ class MyDeal extends Component {
     ajax (){
         const self = this;
         const tabIndex = this.state.tabIndex;
+        const hash = this.state.hash;
         let paramStr = "";
-        if(tabIndex === 0){
+        if(hash.indexOf("buylist") !== -1){
             paramStr = "my_buytradeList"
         }
-        if(tabIndex === 1){
+        if(hash.indexOf("selllist") !== -1){
             paramStr = "my_selltradeList"
         }
         axios.post(window.baseUrl + "/home/Trade/" + paramStr, qs.stringify({
@@ -77,14 +79,23 @@ class MyDeal extends Component {
     componentDidMount(){
         this.ajax();
     }
+    componentDidUpdate (){
+        if(window.location.hash !== this.state.hash){
+            this.setState({
+                hash: window.location.hash
+            }, function(){
+                this.ajax();
+            })
+        }
+    }
     render(){
         const self = this;
         const data = this.state.data;
-        const tabIndex = this.state.tabIndex;
+        const hash = this.state.hash;
         return <div> 
             <Title title = "我的交易" code = {this.state.code}/>
             <div className = "pb_100">
-                <ul className = "dealNav f_flex" style = {{marginTop: ".3rem"}}>
+                {/* <ul className = "dealNav f_flex" style = {{marginTop: ".3rem"}}>
                     {
                         dealNav.map(function(item, i){
                             return <li key = {i} className = {self.state.tabIndex === i ? "active" : ""}
@@ -95,7 +106,7 @@ class MyDeal extends Component {
                             </li>
                         })
                     }
-                </ul>
+                </ul> */}
                 <ul className = "f_flex dealLists">
                     {
                         data.length === 0 ? <li>暂无数据可显示</li> :
@@ -105,7 +116,7 @@ class MyDeal extends Component {
                                     <span className = "f_lt">单号：{item.trade_num}</span>
                                     <span className = "f_rt">{item.status}</span>
                                 </p>
-                                <p>{tabIndex === 0 ? "卖家ID：" + item.sell_id : "买家ID：" + item.buy_id}</p>
+                                <p>{hash.indexOf("buylist") !== -1 ? "卖家ID：" + item.sell_id : "买家ID：" + item.buy_id}</p>
                                 <p>挂卖{item.num}BTA，单价{item.price}元，总价{item.num * item.price}</p>
                             </li>
                         })

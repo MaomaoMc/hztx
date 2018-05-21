@@ -146,7 +146,7 @@ class TaskHall extends Component {
         const type_arr = this.state.type_arr;
         const taskLists = this.state.taskLists;
         return <div>
-            <Title title="任务大厅" />
+            <Title title="任务中心" />
             <div className="pb_100">
                 <div className="weui_grids">
                     {

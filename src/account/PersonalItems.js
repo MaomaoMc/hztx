@@ -201,8 +201,10 @@ class PersonalItems extends Component {
             <div className = "pb_100">
                 <ul className = "f_flex personalUl">
                     <li>
-                        <label>会员账号：</label>
-                        <span>24563112323</span>
+                        <label>设置昵称：</label>
+                        <input type="tel" placeholder = "请输入昵称" value = {phone} onChange = {e => {
+                            this.handleIptChange({type: "name", value: e.target.value})
+                        }}/>
                     </li>
                     <li>
                         <label>会员等级：</label>
