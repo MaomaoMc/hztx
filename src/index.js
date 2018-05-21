@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import Account from './account/index.js';
+import HomePage from './main/index.js';
 import Deal from './deal/index.js';
 import PersonalData from './account/PersonalData';
 import "./css/common.css";
 import registerServiceWorker from './registerServiceWorker';
 import Task from './task/index.js';
 import KjMarket from './kjMarket/index.js';
-import Main from './main/index.js';
+// import Main from './main/index.js';
 import TaskDetail from './task/TaskDetail.js';
 import NoticeDetail from './main/NoticeDetail.js';
 import Register from './Register.js';
 import ForgetPwd from './account/ForgetPwd.js';
+
 
 ReactDOM.render(
     <Router>
@@ -23,7 +25,7 @@ ReactDOM.render(
                 // 
                 <Route path="/newerGdNotes" component={NewerGdNotes} /> */}
                 <Route path="/main/noticeDetails" component={NoticeDetail} />  {/*公告详情*/}
-                <Route path="/main" component={Main} />  {/*主页*/}
+                <Route path="/main" component={HomePage} />  {/*主页*/}
                 <Route path="/task" component={Task} />  {/*任务  跳转到任务大厅*/}
                 <Route path="/taskDetail/:id" component={TaskDetail} />  {/*任务详情*/}
                 <Route path="/kjMarket" component={KjMarket} />  {/*矿机  跳转到矿机商城*/}

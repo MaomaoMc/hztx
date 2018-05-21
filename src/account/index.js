@@ -5,10 +5,10 @@ import Login from './Login';
 import MinerUnion from './MinerUnion';
 import MyUnion from './MyUnion';
 import MinerNetWork from './MinerNetWork';
-import MyMiner from './MyMiner';
+// import MyMiner from './MyMiner';
 import MinerRunning from './MinerRunning';
 // import MyDeal from './MyDeal';
-import MinerEarnings from './MinerEarnings'; //矿机收益
+// import MinerEarnings from './MinerEarnings'; //矿机收益
 import PersonalItems from './PersonalItems';
 import MyWallet from './MyWallet';
 import SsDeal from './SsDeal';
@@ -28,9 +28,9 @@ class Account extends Component {
         return <div> 
             <Switch>
                 <Route path="/account/myMiner/running" component = {MinerRunning} />
-                <Route path="/account/myMiner" component = {MyMiner} />
+                {/* <Route path="/account/myMiner" component = {MyMiner} /> */}
                 {/* <Route path="/account/mydeal" component = {MyDeal} /> */}
-                <Route path="/account/minerEarnings" component = {MinerEarnings} />
+                {/* <Route path="/account/minerEarnings" component = {MinerEarnings} /> */}
                 <Route path="/account/personalItems" component = {PersonalItems} />
                 {/* <Route path="/account/publishTask" component = {PublishTask} />
                 <Route path="/account/myPedTasks" component = {MyPedTasks} />
