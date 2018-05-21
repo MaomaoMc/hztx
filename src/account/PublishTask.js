@@ -19,6 +19,7 @@ class PublishTask extends Component {
             pic : "",
             typeid : "",
             num : "",
+            pic_arr: [],
             warningShow: false,
             warningText: "",
             code: ""
@@ -55,8 +56,11 @@ class PublishTask extends Component {
             const data = res.data;
             const code = data.code;
             if(code === 1){ //成功
+                let pic_arr = self.state.pic_arr;
+                const pic = window.baseUrl + data.data;
+                pic_arr.push(pic)
                 self.setState({
-                    pic: window.baseUrl + data.data
+                    pic_arr: pic_arr
                 })
             } else {
                 self.setState({
@@ -127,6 +131,8 @@ class PublishTask extends Component {
     render(){
         const self = this;
         const type_arr = this.state.type_arr;
+        const pic_arr = this.state.pic_arr;
+        console.log(pic_arr, '999')
         return <div> 
             <Title title = "发布任务" code = {this.state.code}/>
             <ul className = "f_flex personalUl pb_100">
@@ -147,19 +153,12 @@ class PublishTask extends Component {
                             })
                         }
                     </select>
-                    {/* <input type="text" placeholder = "请输入任务类型" value = {this.state.title} onChange = {e => {
-                        this.handleIptChange({type: "title", value: e.target.value})
-                    }}/> */}
                 </li>
-                
                 <li>
                     <label style = {{verticalAlign: "top"}}>任务内容：</label>
                     <textarea name="" id="" cols="30" rows="10" placeholder = "请输入任务内容" onChange = {e => {
                         this.handleIptChange({type: "content", value: e.target.value})
                     }}></textarea>
-                    {/* <textarea type="tel" placeholder = "请输入姓名"  disabled = {!username ? false : true} value = {username} onChange = {e => {
-                        this.handleIptChange({type: "username", value: e.target.value})
-                    }}/> */}
                 </li>
                 <li>
                     <label>任务金额：</label> 
@@ -173,16 +172,22 @@ class PublishTask extends Component {
                         this.handleIptChange({type: "time", value: e.target.value})
                     }}/>
                 </li>
-                <li>
+                <li style = {{height: "auto"}}>
                     <label>图片路径：</label> 
+                    {
+                        pic_arr.length > 0 && pic_arr.map(function(pic, i){
+                            return <i key = {i} style = {{display: "block", width: "1.5rem", height: "1.5rem",
+                             backgroundImage: "url(" + pic +")", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", marginLeft: "26%", marginBottom: ".2rem"}}></i>
+                        })
+                    }
                     <form action="" id="form" style = {{display: "inline"}}> 
-                        <input type="file" name="photo" id="photo" 
-                            onChange = {e => {this.handleUploadPic({value: e.target.value, obj: e.target})}}
-                            />
+                        <span className = "upload_wrap">
+                            <span className = "btn btn_primary upload">上传图片</span>
+                            <input type="file" name="photo" id="photo" style = {{width: "1.55rem"}}
+                                    onChange = {e => {this.handleUploadPic({value: e.target.value, obj: e.target})}}
+                                    />
+                        </span>
                     </form>
-                    {/* <input type="file" onChange = {e => {
-                        this.handleUploadPic({type: "pic", value: e.target.value})
-                    }}/> */}
                 </li>
                 <li>
                     <label>任务数量：</label> 

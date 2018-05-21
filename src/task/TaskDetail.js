@@ -93,7 +93,7 @@ class TaskDetail extends Component {
                     <p className = "text-center"><span className = "btn"
                     onClick = {e => {
                         this.handleAcceptTask()
-                    }}>接收任务</span></p>
+                    }}>接受任务</span></p>
                 </div>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}

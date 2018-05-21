@@ -593,8 +593,6 @@
     padding: .4rem;
     li{
         flex-grow: 1;
-        // height: .6rem;
-        // line-height: .6rem;
         margin-bottom: .2rem;
         label{
             display: inline-block;
@@ -618,6 +616,24 @@
         span.certify_submit, span.submit{
             width: 100%;
         }
+    }
+}
+.upload_wrap{
+    position: relative;
+    width: 45%;
+    display: inline-block;
+    height: .6rem;
+    input{
+        opacity: 0;
+        // width: 1.55rem !important;
+        height: .6rem;
+        // z-index: 10;
+    }
+    span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        // z-index: 9;
     }
 }
 .myTasksNav{

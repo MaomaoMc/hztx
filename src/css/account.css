@@ -507,6 +507,19 @@
     .personalUl li span.certify_submit, .personalUl li span.submit {
       width: 100%; }
 
+.upload_wrap {
+  position: relative;
+  width: 45%;
+  display: inline-block;
+  height: .6rem; }
+  .upload_wrap input {
+    opacity: 0;
+    height: .6rem; }
+  .upload_wrap span {
+    position: absolute;
+    top: 0;
+    left: 0; }
+
 .myTasksNav {
   flex-direction: row;
   margin: .2rem 0; }

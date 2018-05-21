@@ -96,15 +96,20 @@ class Main extends Component {
                {
                    advData.length > 0 && advData.map(function(item, i){
                        return <div key = {i}>
-                       <a href = {item.url}><div style = {{width: "100%", height: "3rem", backgroundImage: "url(" + window.baseUrl + item.pic + ")", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}></div>
-                      
+                       <a href = {item.url}>
+                            <div style = {{width: "100%", height: "3rem",
+                                backgroundImage: "url(" + window.baseUrl + item.pic + ")", 
+                                backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
+                            </div>
                        </a>
                        </div>
                    })
                }
                </Slider>
-               <Link to = "/account/contactUs" style = {{display: "block", marginTop: ".5rem"}}>
-                   <img src = {main_kfIcon} alt=""/>
+               <Link to = "/account/contactUs"
+                style = {{display: "block", width: "100%", height: "1.75rem",
+                 margin: ".5rem 0 .2rem", backgroundImage: "url(" + main_kfIcon + ")",
+                  backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
                </Link>
                <div>
                    <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>

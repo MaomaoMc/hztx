@@ -45,7 +45,7 @@ class Spead extends Component {
                 const id_num = data.data[0].id_num;
                 self.setState({
                     id_num: id_num,
-                    path: window.baseUrl + "/register?tui_id=" + id_num
+                    path: window.baseUrl + "/build/index.html?#/register?tui_id=" + id_num
                 })
             }else{  //失败
                 self.setState({

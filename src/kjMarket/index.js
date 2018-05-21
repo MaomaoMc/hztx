@@ -107,7 +107,7 @@ class KjMarket extends Component {
                                     <span className = "total">共计{item.num}台</span>
                                 </div>
                                 <div style = {{flexGrow: "1"}}>
-                                    <p>算力{item.force}G</p>
+                                    <p>产力{item.force}</p>
                                     <span className = "btn" onClick = {e => {
                                         self.hanldBuyMill({id: item.id})
                                     }}>兑换</span>

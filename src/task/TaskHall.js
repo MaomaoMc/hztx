@@ -192,7 +192,7 @@ class TaskHall extends Component {
                                             <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>总数{list.num} 已接取数{list.ynum}</p>
                                         </div>
                                         <div className="f_rt">
-                                            <p className="fc_red"><span className="icon">赏</span><span>{list.money}</span></p>
+                                            <p className="fc_red"><span className="icon">赏</span><span>{list.money}元</span></p>
                                             <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>{list.add_time}</p>
                                         </div></Link>
                                 </li>
