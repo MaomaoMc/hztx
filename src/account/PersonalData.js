@@ -106,10 +106,10 @@ class PersonalData extends Component {
                         }}>签到</span> : <span className = "f_lt" style = {{marginLeft: ".3rem"}}>已签到</span>}冻结金额:&nbsp;{data.dmoney}</p>
                 </div>
             </div>
-            <ul className = "f_flex myTasksNav">
+            {/* <ul className = "f_flex myTasksNav">
                 <li><Link to = "/account/myPedTasks" style = {{borderRight: ".01rem solid #ddd"}}><i className = "icon_fashe"></i>发布的任务</Link></li>
                 <li><Link to = "/account/myAcceptTasks"><i className = "icon_accept"></i>接受的任务</Link></li>
-            </ul>
+            </ul> */}
             <div className="weui_grids">
                 <Link to = "/account/myWallet" className="weui_grid js_grid" data-id="toast">
                     <div className="weui_grid_icon">

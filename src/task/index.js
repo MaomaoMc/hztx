@@ -10,7 +10,7 @@ import MyAcceptTasks from './MyAcceptTasks';
 const task_nav = [
     {
         text: "任务大厅",
-        link: "/task/taskHall",
+        link: "/task",
     },
     {
         text: "发布任务",

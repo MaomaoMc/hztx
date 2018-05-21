@@ -9,7 +9,6 @@ class Nav extends Component {
            <ul className = "head_nav f_flex">
             {
                 nav.map(function(item, i){
-                    console.log(hash, item.link)
                     return <li key = {i} className = {hash === item.link? "active" : ""}>
                         <Link to = {item.link}>{item.text}</Link>
                     </li>
