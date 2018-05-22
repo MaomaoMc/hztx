@@ -8,6 +8,32 @@ import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 import TpwdDlg from "./../TpwdDlg";
 
+const heads = [
+    {
+        text: "单号",
+        value: "trade_num"
+    },
+    {
+        text: "买家ID",
+        value: "buy_id"
+    },
+    {
+        text: "挂卖",
+        value: "num"
+    },
+    {
+        text: "单价",
+        value: "price"
+    },
+    {
+        text: "总价",
+        value: "total_price"
+    },
+    {
+        text: "操作",
+        value: "opt"
+    }
+]
 class DealCenter extends Component {
     constructor (props){
         super(props);
@@ -293,7 +319,40 @@ class DealCenter extends Component {
                         this.handleBuyJd()
                     }}>发布买币</span>
                 </form>
-                <ul className="dealLists f_flex">
+                <table className = "normal_table">
+                    <thead>
+                        <tr>
+                            {heads.map(function(head, i){
+                                return <th key = {i}>{head.text}</th>
+                            })}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            lists_data.length > 0 && lists_data.map(function (item, m) {
+                                const num = item.num;
+                                const price = item.price;
+                                return <tr key = {m}>
+                                    {heads.map(function(head, i){
+                                        const value = head.value;
+                                        if(value === "total_price"){
+                                            return <td key = {i}>{Math.round(parseFloat(num * price)*100)/100}</td>
+                                        }
+                                        if(value === "opt"){
+                                            return <td key = {i}>
+                                            <span className="btn btn_primary" style = {{height: ".6rem", lineHeight: ".6rem"}} onClick = { e => {
+                                                self.handleSellEvent({trade_id: item.trade_id})
+                                            }}>卖给他</span>
+                                            </td>
+                                        }
+                                        return <td key = {i}>{item[head.value]}</td>
+                                    })}
+                                </tr>
+                            })
+                        }
+                    </tbody>
+                </table>
+                {/* <ul className="dealLists f_flex">
                     {
                         lists_data.length > 0 && lists_data.map(function (item, i) {
                             const num = item.num;
@@ -312,7 +371,7 @@ class DealCenter extends Component {
                             </li>
                         })
                     }
-                </ul>
+                </ul> */}
             </div>
             <Footer />
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null}

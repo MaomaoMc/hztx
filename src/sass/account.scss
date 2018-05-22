@@ -286,6 +286,7 @@
             th{
                 font-size: .24rem;
                 line-height: .8rem;
+                border-bottom: .01rem solid rgb(221, 221, 221)
             }
         }
     }
@@ -294,6 +295,7 @@
             font-size: .24rem;
             text-align: center;
             padding: .2rem;
+            border-bottom: .01rem solid rgb(221, 221, 221)
         }
     }
 }
@@ -640,6 +642,27 @@
         span.certify_submit, span.submit{
             width: 100%;
         }
+    }
+}
+.file {
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: .95rem;
+    margin: .5rem auto 0;
+    background-size: 100% 100%;
+    position: relative;
+    input[type='file']{
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 0;
+    }
+    img{
+        width: 1.5rem;
+        max-height: 1.5rem;
     }
 }
 .upload_wrap{

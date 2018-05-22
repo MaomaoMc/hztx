@@ -240,11 +240,13 @@
   width: 100%; }
   .normal_table thead tr th {
     font-size: .24rem;
-    line-height: .8rem; }
+    line-height: .8rem;
+    border-bottom: 0.01rem solid #dddddd; }
   .normal_table tr td {
     font-size: .24rem;
     text-align: center;
-    padding: .2rem; }
+    padding: .2rem;
+    border-bottom: 0.01rem solid #dddddd; }
 
 /*提现钱包*/
 .txWalletUl {
@@ -525,6 +527,25 @@
       border: none; }
     .personalUl li span.certify_submit, .personalUl li span.submit {
       width: 100%; }
+
+.file {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: .95rem;
+  margin: .5rem auto 0;
+  background-size: 100% 100%;
+  position: relative; }
+  .file input[type='file'] {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0; }
+  .file img {
+    width: 1.5rem;
+    max-height: 1.5rem; }
 
 .upload_wrap {
   position: relative;

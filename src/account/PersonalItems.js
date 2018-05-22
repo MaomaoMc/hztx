@@ -5,10 +5,13 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
+const defaultHeadPic = require("../img/pic_morentx.png");
 class PersonalItems extends Component {
     constructor(props){
         super(props);
+        const head_pic = localStorage.getItem("head_pic");
         this.state = {
+            profile_pic: head_pic === "null" ? defaultHeadPic : head_pic ,//头像
             username: "",
             phone: "",
             y_code: "",  //验证码
@@ -23,6 +26,37 @@ class PersonalItems extends Component {
             code: ""
         }
     }
+
+    uploadedFile (e){ //修改头像
+        const self = this;
+        let file = document.getElementById("photo").files[0];
+        let formData = new FormData()  // 创建form对象
+        formData.append('pic', file)  // 通过append向form对象添加数据
+        axios.post(window.baseUrl +  "/home/Base/uploadPic?token=" + localStorage.getItem("token"), formData, {
+            transformRequest: [(data) => data],
+            headers: {}
+        }).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            if(code === 1){ //成功
+                const pic = window.baseUrl +  data.data;
+                
+                self.setState({
+                    profile_pic: pic
+                })
+            } else {
+                self.setState({
+                    warningDlgShow: true,
+                    warningText: data.msg
+                }, function(){
+                    self.hanleWarningDlgTimer();
+                })
+             }
+            self.setState({
+                code: code
+            })
+        })
+    }
     handleIptChange (e){
         this.setState({
             [e.type]: e.value
@@ -36,6 +70,7 @@ class PersonalItems extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){
+                        localStorage.setItem("head_pic", self.state.profile_pic);
                         window.history.back();
                     }
                 })
@@ -96,7 +131,6 @@ class PersonalItems extends Component {
         const self = this;
         const phone = this.state.phone;
         const countDown = this.state.countDown;
-        console.log(countDown, countDown < 60 && countDown > 0, '23')
         if(countDown < 60 && countDown > 0){  //正在倒计时就不要再让点击了
             return;
         }
@@ -142,7 +176,8 @@ class PersonalItems extends Component {
             zfb_num: state.zfb_num,
             wx_num: state.wx_num,
             bank_name: state.bank_name,
-            bank_num: state.bank_num
+            bank_num: state.bank_num,
+            pic: state.profile_pic  //头像
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -196,19 +231,24 @@ class PersonalItems extends Component {
         const bank_name = this.state.bank_name;
         const bank_num = this.state.bank_num;
         const countDown = this.state.countDown;
+        const profile_pic = this.state.profile_pic;
         return <div> 
             <Title title = "个人资料" code = {this.state.code} />
             <div className = "pb_100">
+                <div className="file"  >
+                    <form action="" id="form"> 
+                        <input type="file" name="photo" id="photo"
+                            onChange = {e => {this.uploadedFile({value: e.target.value, obj: e.target})}}
+                            />
+                            <img src={profile_pic} alt=""/>
+                    </form>
+                </div>  
                 <ul className = "f_flex personalUl">
                     <li>
                         <label>设置昵称：</label>
-                        <input type="tel" placeholder = "请输入昵称" value = {phone} onChange = {e => {
-                            this.handleIptChange({type: "name", value: e.target.value})
+                        <input type="tel" placeholder = "请输入昵称" value = {this.state.username} onChange = {e => {
+                            this.handleIptChange({type: "username", value: e.target.value})
                         }}/>
-                    </li>
-                    <li>
-                        <label>会员等级：</label>
-                        <span>BTA矿工</span>
                     </li>
                     <li>
                         <label>手机号码：</label> 

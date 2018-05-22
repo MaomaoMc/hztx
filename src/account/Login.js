@@ -50,6 +50,7 @@ class Login extends Component {
             const code = data.code;
             if(code === 1){
                 localStorage.setItem("token", data.data.token);
+                localStorage.setItem("head_pic", data.data.pic);
             }
             self.setState({
                 warningShow: true,
