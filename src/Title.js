@@ -9,15 +9,7 @@ class Title extends Component {
         }
     }
     componentDidMount (){
-        const self = this;
-        document.onclick = function(e){ 
-            e.preventDefault();
-            if(e.target !== document.getElementsByClassName("icon_menu")[0]){
-                self.setState({
-                    menuShow: false
-                })
-            }
-        }
+        
     }
     render(){
         if(this.props.code > 10000){  //token过期 回登陆页面去

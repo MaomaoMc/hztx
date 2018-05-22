@@ -108,10 +108,7 @@
   padding: .4rem .3rem .4rem 0;
   position: relative; }
   .personal_overview .exitApp {
-    font-size: .24rem;
-    position: absolute;
-    top: .4rem;
-    left: .3rem; }
+    font-size: .24rem; }
   .personal_overview .head_pic {
     width: 1.5rem;
     height: 1.5rem;

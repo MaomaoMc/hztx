@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
-import axios from 'axios';
-import qs from 'qs';
 import Market from "./Market";
 import Nav from "./../Nav";
 import MinerEarnings from './MinerEarnings';

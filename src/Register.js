@@ -26,7 +26,7 @@ class Register extends Component {
             countDown: 60,
             warningShow: false,
             warningText: "",
-            code: "",
+            data_code: "",
             registered: false
         }
     }
@@ -154,8 +154,8 @@ class Register extends Component {
             tui_id: state.tui_id
         })).then(function(res){
             const data = res.data;
-            const code = data.code;
-            if(code === 1){
+            const data_code = data.code;
+            if(data_code === 1){
                 self.setState({
                     registered: true
                 })
@@ -163,14 +163,17 @@ class Register extends Component {
             self.setState({
                 warningShow: true, 
                 warningText: data.msg,
-                code: code
+                data_code: data_code
             }, function(){
-                self.hanleWarningDlgTimer({code: code})
+                self.hanleWarningDlgTimer({code: data_code})
             })
         })
     }
     render(){
         const countDown = this.state.countDown;
+        if(this.state.registered){
+            return <Redirect to = "/"/>
+        }
         return <div> 
            <Title title = "注册" code = {this.state.code}/>
            <div className = "pb_100" style = {{marginTop: ".2rem", padding: "0 .3rem"}}>

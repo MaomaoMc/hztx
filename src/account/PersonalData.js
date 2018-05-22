@@ -44,7 +44,7 @@ class PersonalData extends Component {
             const code = data.code;
             if(code === 1){
                 self.setState({
-                    data: data.data[0]
+                    data: data.data[0],
                 })
             }else{
                 self.setState({
@@ -90,13 +90,14 @@ class PersonalData extends Component {
             )
         }
         const data = this.state.data;
-        const sign_status = data.sign_status;
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
-                {/* <a className = "exitApp" onClick = {e => {
+                {/* <div>
+                <a className = "exitApp" onClick = {e => {
                     this.exitApp()
-                }}>安全退出</a> */}
+                }}>安全退出</a>
+                </div> */}
                 <div className = "head_pic" style = {{backgroundImage: "url(" + localStorage.getItem("head_pic") + ")"}}>
                     {/* <img src={localStorage.getItem("head_pic")} alt=""/> */}
                 </div>

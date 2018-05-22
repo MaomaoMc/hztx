@@ -5,21 +5,12 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
-const dealNav = [
-    {
-        text: "我的买单"
-    },
-    {
-        text: "我的卖单"
-    }
-];
 class MyDeal extends Component {
     constructor (props){
         super(props);
         this.state = {
             data: [],
             hash: window.location.hash,
-            tabIndex: 0,
             warningShow: false,
             warningText: "",
             code: ""
@@ -45,7 +36,6 @@ class MyDeal extends Component {
     }
     ajax (){
         const self = this;
-        const tabIndex = this.state.tabIndex;
         const hash = this.state.hash;
         let paramStr = "";
         if(hash.indexOf("buylist") !== -1){
@@ -89,24 +79,12 @@ class MyDeal extends Component {
         }
     }
     render(){
-        const self = this;
+        // const self = this;
         const data = this.state.data;
         const hash = this.state.hash;
         return <div> 
             <Title title = "我的交易" code = {this.state.code}/>
             <div className = "pb_100">
-                {/* <ul className = "dealNav f_flex" style = {{marginTop: ".3rem"}}>
-                    {
-                        dealNav.map(function(item, i){
-                            return <li key = {i} className = {self.state.tabIndex === i ? "active" : ""}
-                            onClick = {e => {
-                                self.dealNavClick({index: i})
-                            }}>
-                                <a>{item.text}</a>
-                            </li>
-                        })
-                    }
-                </ul> */}
                 <ul className = "f_flex dealLists">
                     {
                         data.length === 0 ? <li>暂无数据可显示</li> :

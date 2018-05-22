@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Slider from 'react-slick';
 
-const main_kfIcon = require("./../img/main_kf.png");
+// const main_kfIcon = require("./../img/main_kf.png");
 class Main extends Component {
     constructor(props){
         super(props);

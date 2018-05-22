@@ -1,8 +1,7 @@
-// PublishTask
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
+import QRCode from 'qrcode.react';
 import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
@@ -19,6 +18,8 @@ class PublishTask extends Component {
             pic : "",
             typeid : "",
             num : "",
+            url: "", //任务链接
+            qr_code: "", //任务二维码
             pic_arr: [],
             warningShow: false,
             warningText: "",
@@ -82,9 +83,10 @@ class PublishTask extends Component {
             content : state.content,
             money : state.money,
             time : state.time,
-            pic : state.pic,
+            pic : state.pic_arr.join(","),
             typeid : state.typeid,
             num : state.num,
+            url : state.url
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -129,7 +131,6 @@ class PublishTask extends Component {
         this.ajax();
     }
     render(){
-        const self = this;
         const type_arr = this.state.type_arr;
         const pic_arr = this.state.pic_arr;
         return <div> 
@@ -172,7 +173,7 @@ class PublishTask extends Component {
                     }}/>
                 </li>
                 <li style = {{height: "auto"}}>
-                    <label>图片路径：</label> 
+                    <label>任务截图：</label> 
                     {
                         pic_arr.length > 0 && pic_arr.map(function(pic, i){
                             return <i key = {i} style = {{display: "block", width: "1.5rem", height: "1.5rem",
@@ -181,12 +182,24 @@ class PublishTask extends Component {
                     }
                     <form action="" id="form" style = {{display: "inline"}}> 
                         <span className = "upload_wrap">
-                            <span className = "btn btn_primary upload">上传图片</span>
+                        <span className = "btn btn_primary upload">上传图片</span>
                             <input type="file" name="photo" id="photo" style = {{width: "1.55rem"}}
                                     onChange = {e => {this.handleUploadPic({value: e.target.value, obj: e.target})}}
                                     />
+                            
+                           
                         </span>
                     </form>
+                </li>
+                <li>
+                    <label>任务链接：</label>
+                    <input type="text" placeholder = "请输入任务链接" value = {this.state.url} onChange = {e => {
+                        this.handleIptChange({type: "url", value: e.target.value})
+                    }}/>
+                </li>
+                <li>
+                    <label style = {{verticalAlign: "top"}}>任务二维码：</label>
+                    <QRCode value = {this.state.url}/>
                 </li>
                 <li>
                     <label>任务数量：</label> 
@@ -195,7 +208,7 @@ class PublishTask extends Component {
                     }}/>
                 </li>
                 <li>
-                    <span className = "btn btn_primary" style = {{width: "100%", height: ".6rem", lineHeight: ".6rem"}}
+                    <span className = "btn btn_primary" style = {{width: "95%", height: ".6rem", lineHeight: ".6rem"}}
                     onClick = {e => {
                         this.handlePublish()
                     }}>发布</span>

@@ -64,7 +64,6 @@ class Spead extends Component {
         this.ajax();
     }
     render (){
-        const self = this;
         return <div>
             <Title title="推广" code = {this.state.code}/>
             <div className = "text_center">

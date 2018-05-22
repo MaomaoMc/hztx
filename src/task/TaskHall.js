@@ -143,10 +143,9 @@ class TaskHall extends Component {
     }
     render() {
         const self = this;
-        const type_arr = this.state.type_arr;
         const taskLists = this.state.taskLists;
         return <div>
-            <Title title="任务中心" />
+            <Title title="任务中心" code = {this.state.code}/>
             <div className="pb_100">
                 <div className="weui_grids">
                     {
@@ -171,7 +170,7 @@ class TaskHall extends Component {
                 <ul className="taskNav f_flex">
                     {
                         taskNav.map(function (item, i) {
-                            return <li key={i} className={self.state.taskIndex == i ? "active" : ""}
+                            return <li key={i} className={self.state.taskIndex === i ? "active" : ""}
                                 onClick={e => {
                                     self.handleTabIndex({ index: i, order: item.value })
                                 }}>
@@ -189,7 +188,7 @@ class TaskHall extends Component {
                                     <img className="f_lt" src={list.pic} alt="" />
                                         <div className="f_lt">
                                             <h4>{list.title}</h4>
-                                            <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>总数{list.num} 已接取数{list.ynum}</p>
+                                            <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赚{list.count} 接{list.ynum} 剩{list.leftover}</p>
                                         </div>
                                         <div className="f_rt">
                                             <p className="fc_red"><span className="icon">赏</span><span>{list.money}元</span></p>
