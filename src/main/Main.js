@@ -15,6 +15,7 @@ class Main extends Component {
     constructor(props){
         super(props);
         this.state = {
+            company_data: [],
             noticeData: [],
             advData: [],
             warningShow: false,
@@ -75,9 +76,32 @@ class Main extends Component {
             }
         })
     }
+    companyAjax (){
+        const self = this;
+        axios.post(window.baseUrl + "/home/Company/index", qs.stringify({
+            token: localStorage.getItem("token")
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            if(code === 1){
+                self.setState({
+                    company_data: data.data[0]
+                })
+            }else{
+                self.setState({
+                    warningShow: true, 
+                    warningText: data.msg, 
+                    code: code
+                }, function(){
+                    self.hanleWarningDlgTimer()
+                })
+            }
+        })
+    }
     componentDidMount(){
         this.advAjax();
         this.noticeAjax();
+        this.companyAjax();
     }
     render(){
         let settings ={
@@ -89,6 +113,7 @@ class Main extends Component {
         }
         const advData = this.state.advData;
         const noticeData = this.state.noticeData;
+        const company_data = this.state.company_data;
         return <div> 
             <Title title = "主页" code = {this.state.code}/>
             <div className = "pb_100">
@@ -106,12 +131,20 @@ class Main extends Component {
                    })
                }
                </Slider>
-               <Link to = "/main/introduce"
-                style = {{display: "block", width: "100%", height: "1.75rem",
-                 margin: ".5rem 0 .2rem", backgroundImage: "url(" + main_kfIcon + ")",
-                  backgroundRepeat: "no-repeat", backgroundSize: "100% 100%"}}>
-               </Link>
-               <div>
+                <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0", marginTop: ".6rem"}}>
+                    <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>公司简介</h3>
+                </div>
+                <div style = {{backgroundColor: "white"}}>
+                    <h3 className = "text-center" style = {{paddingTop: ".2rem"}}>{company_data.title}</h3>
+                    <div style = {{padding: ".2rem .3rem"}}>
+                        <p>{company_data.content}</p>
+                        <p>QQ1: {company_data.qq1}</p>
+                        <p>QQ2: {company_data.qq2}</p>
+                        <p>QQ3: {company_data.qq3}</p>
+                        <p>QQ4: {company_data.qq4}</p>
+                    </div>
+                </div>
+                <div>
                    <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>
                     <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>最新公告</h3>
                    </div>
@@ -139,7 +172,6 @@ class Main extends Component {
                </div>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
-            <Footer />
             <Footer />
         </div>
     }
