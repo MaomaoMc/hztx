@@ -84,7 +84,7 @@ header{
     left: 0;
     z-index: 1;
     span{
-        margin-top: .2rem;
+        margin-top: .15rem;
         i{
             display: block;
             line-height: .8rem;
@@ -98,11 +98,36 @@ header{
         i.arrow_l::before{
             content: "\f053";
         }
-        i.icon_user{
-            margin-right: .2rem;
+        i.icon_menu{
+            display: block;
+            width: .2rem;
+            height: .43rem;
+            background-image: url(../img/icon_menu.png);
+            background-repeat: no-repeat;
+            margin-top: .1rem;
+            margin-right: .25rem;
         }
-        i.icon_user::before{
-            content: "\f007";
+        // i.icon_user::before{
+        //     content: "\f007";
+        // }
+    }
+}
+.head_menu{
+    flex-direction: column;
+    background-color: white;
+    border: .01rem solid #ddd;
+    position: fixed;
+    top: 1rem;
+    right: .2rem;
+    z-index: 10;
+    li{
+        flex-grow: 1;
+        height: .6rem;
+        line-height: .6rem;
+        border-bottom: .01rem solid #ddd;
+        padding: .1rem .4rem;
+        a{
+            color: #333;
         }
     }
 }

@@ -84,7 +84,7 @@ header {
   left: 0;
   z-index: 1; }
   header span {
-    margin-top: .2rem; }
+    margin-top: .15rem; }
     header span i {
       display: block;
       line-height: .8rem;
@@ -95,10 +95,31 @@ header {
       margin-left: .2rem; }
     header span i.arrow_l::before {
       content: "\f053"; }
-    header span i.icon_user {
-      margin-right: .2rem; }
-    header span i.icon_user::before {
-      content: "\f007"; }
+    header span i.icon_menu {
+      display: block;
+      width: .2rem;
+      height: .43rem;
+      background-image: url(../img/icon_menu.png);
+      background-repeat: no-repeat;
+      margin-top: .1rem;
+      margin-right: .25rem; }
+
+.head_menu {
+  flex-direction: column;
+  background-color: white;
+  border: .01rem solid #ddd;
+  position: fixed;
+  top: 1rem;
+  right: .2rem;
+  z-index: 10; }
+  .head_menu li {
+    flex-grow: 1;
+    height: .6rem;
+    line-height: .6rem;
+    border-bottom: .01rem solid #ddd;
+    padding: .1rem .4rem; }
+    .head_menu li a {
+      color: #333; }
 
 .footer {
   width: 100%;

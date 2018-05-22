@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import './css/common.css';
 import {Link, Redirect} from 'react-router-dom';
 
 class Title extends Component {
@@ -10,16 +9,25 @@ class Title extends Component {
         }
         return <div> 
            <header>
-               <span className = "f_lt">
-                   <a onClick = {e => {
-                       window.history.go(-1)
-                   }}><i className = "arrow_l"></i></a>
+               <span className = "f_lt" style = {{marginLeft: ".15rem"}}>
+                <Link to = "/account/personalData" style = {{display: "block", width: ".75rem", height: ".75rem"}}>
+                    <img src={localStorage.getItem("head_pic")} alt="" style = {{width: "100%", height: "100%"}}/>
+                </Link>
                </span>
                <span>{this.props.title}</span>
                <span className = "f_rt">
-                   <Link to = "/account/personalData"><i className = "icon_user"></i></Link>
+                   <i className = "icon_menu" onClick = {{
+ 
+                   }}></i>
                </span>
            </header>
+           <ul className = "head_menu f_flex hide">
+                <li><Link to = "/main">我的主页</Link></li>
+                <li><Link to = "/task">我的任务</Link></li>
+                <li><Link to = "/kjMarket">我的金豆树</Link></li>
+                <li><Link to = "/deal">我的交易</Link></li>
+                <li><Link to = "/account/personalData">个人中心</Link></li>
+            </ul>
         </div>
     }
 }
