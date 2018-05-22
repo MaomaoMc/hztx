@@ -64,22 +64,22 @@ class PersonalData extends Component {
             exitApp: true
         })
     }
-    handleSign (){  //签到
-        const self = this;
-        axios.post(window.baseUrl + "/home/Member/sign_in", qs.stringify({
-            token: localStorage.getItem("token")
-        })).then(function(res){
-            const data = res.data;
-            const code = data.code;
-            self.setState({
-                warningShow: true,
-                warningText: data.msg,
-                code: code
-            }, function(){
-                self.hanleWarningDlgTimer({code: code})
-            })
-        })
-    }
+    // handleSign (){  //签到
+    //     const self = this;
+    //     axios.post(window.baseUrl + "/home/Member/sign_in", qs.stringify({
+    //         token: localStorage.getItem("token")
+    //     })).then(function(res){
+    //         const data = res.data;
+    //         const code = data.code;
+    //         self.setState({
+    //             warningShow: true,
+    //             warningText: data.msg,
+    //             code: code
+    //         }, function(){
+    //             self.hanleWarningDlgTimer({code: code})
+    //         })
+    //     })
+    // }
     componentDidMount (){
         this.ajax();
     }
@@ -94,16 +94,22 @@ class PersonalData extends Component {
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
-                <a className = "exitApp" onClick = {e => {
+                {/* <a className = "exitApp" onClick = {e => {
                     this.exitApp()
-                }}>安全退出</a>
+                }}>安全退出</a> */}
+                <div className = "head_pic" style = {{backgroundImage: "url(" + localStorage.getItem("head_pic") + ")"}}>
+                    {/* <img src={localStorage.getItem("head_pic")} alt=""/> */}
+                </div>
                 <div>
-                    <p className = "text-right" style = {{fontSize: ".24rem"}}>可用JD:&nbsp;{data.jd_num}</p>
-                    <p className = "text-right fz_30" style = {{marginTop: ".2rem"}}>{data.money}</p>
-                    <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}>
-                        {sign_status != "1" ? <span className = "f_lt sign_btn" onClick = {e => {
+                    <p className = "text-right" style = {{fontSize: ".24rem"}}>昵称:&nbsp;{data.name}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem"}}>ID:&nbsp;{data.id_num}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem"}}>信用值:&nbsp;{data.credit}</p>
+                    {/* <p className = "text-right fz_30" style = {{marginTop: ".2rem"}}>{data.money}</p> */}
+                    {/* <p className = "text-right" style = {{fontSize: ".24rem", marginTop: ".2rem"}}> */}
+                        {/* {sign_status != "1" ? <span className = "f_lt sign_btn" onClick = {e => {
                             this.handleSign()
-                        }}>签到</span> : <span className = "f_lt" style = {{marginLeft: ".3rem"}}>已签到</span>}冻结金额:&nbsp;{data.dmoney}</p>
+                        }}>签到</span> : <span className = "f_lt" style = {{marginLeft: ".3rem"}}>已签到</span>} */}
+                        {/* 冻结金额:&nbsp;{data.dmoney}</p> */}
                 </div>
             </div>
             <div className="weui_grids">

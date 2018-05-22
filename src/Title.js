@@ -2,6 +2,23 @@ import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 
 class Title extends Component {
+    constructor (props){
+        super(props);
+        this.state = {
+            menuShow: false
+        }
+    }
+    componentDidMount (){
+        const self = this;
+        document.onclick = function(e){ 
+            e.preventDefault();
+            if(e.target !== document.getElementsByClassName("icon_menu")[0]){
+                self.setState({
+                    menuShow: false
+                })
+            }
+        }
+    }
     render(){
         if(this.props.code > 10000){  //token过期 回登陆页面去
             window.removeLocalItemsFun()
@@ -16,12 +33,14 @@ class Title extends Component {
                </span>
                <span>{this.props.title}</span>
                <span className = "f_rt">
-                   <i className = "icon_menu" onClick = {{
- 
+                   <i className = "icon_menu" onClick = {e => {
+                       this.setState({
+                           menuShow: !this.state.menuShow
+                       })
                    }}></i>
                </span>
            </header>
-           <ul className = "head_menu f_flex hide">
+           <ul className = {this.state.menuShow ? "head_menu f_flex" : "head_menu f_flex hide"}>
                 <li><Link to = "/main">我的主页</Link></li>
                 <li><Link to = "/task">我的任务</Link></li>
                 <li><Link to = "/kjMarket">我的金豆树</Link></li>
