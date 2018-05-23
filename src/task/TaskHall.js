@@ -184,7 +184,7 @@ class TaskHall extends Component {
                         taskLists.length === 0 ? <li>暂时没有数据可显示...</li> :
                             taskLists.length > 0 && taskLists.map(function (list, i) {
                                 return <li key={i}>
-                                    <Link to = {"/taskDetail/" + list.id}>
+                                    <Link to = {"/task/taskDetail/" + list.id}>
                                     <img className="f_lt" src={list.pic} alt="" />
                                         <div className="f_lt">
                                             <h4>{list.title}</h4>

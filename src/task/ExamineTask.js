@@ -11,7 +11,13 @@ class ExamineTask extends Component {
         super(props);
         this.state = {
             data: [],
-            task: [], //任务详情
+            task: {
+                title: "",
+                id: "",
+                content: "",
+                leftover: "",
+                ynum: ""
+            }, //任务详情
             warningShow: false,
             warningText: "",
             code: ""
@@ -82,12 +88,12 @@ class ExamineTask extends Component {
         return <div> 
             <Title title = "审核任务" code = {this.state.code}/>
             <div className = "pb_100">
-                {task.length > 0 ? <div style = {{overflow: "hidden", padding: ".2rem"}}>
-                    <img src={task[0].pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/>
-                    <h4>{task[0].title}</h4>
-                    <p style = {{fontSize: ".24rem"}}>总数{task[0].num} 已接取数{task[0].ynum}</p>
-                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{task[0].content}</p>
-                </div> : null}
+                <div style = {{overflow: "hidden", backgroundColor: "#eaf7ff", padding: ".2rem"}}>
+                    {/* <img src={task.pic} alt="" className = "f_lt" style = {{width: "1rem", height: "1rem", marginRight: ".2rem"}}/> */}
+                    <h4>{task.title}</h4>
+                    <p style = {{fontSize: ".24rem"}}>赚{task.count} 接{task.ynum} 剩{task.leftover}</p>
+                    <p style = {{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>{task.content}</p>
+                </div>
                 <ul className="taskLists f_flex">
                     {
                         data.length === 0 ? <li>暂时没有接收人数据可显示...</li> :

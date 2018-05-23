@@ -67,22 +67,15 @@ class MyPedTasks extends Component {
                             data.length > 0 && data.map(function (list, i) {
                                 const status = list.status;
                                 return <li key={i}>
-                                    <Link to = {"/account/examineTask/" + list.id}>
+                                    <Link to = {"/task/taskDetail/" + list.id + "/nonebtn"}>
                                     <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">
                                         <h4>{list.title}</h4>
-                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{list.money}</p>
+                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赚{list.count} 接{list.ynum} 剩{list.leftover}</p>
                                     </div>
-                                    <div className="f_rt">
-                                        {status === "正进行" ? <p>
-                                            <span className = "btn btn_orange" style = {{marginRight: ".2rem"}}
-                                            onClick = {e =>{
-                                                self.handleTask({type: "abandon", id: list.id})
-                                            }}>放弃</span>
-                                            <span className = "btn btn_orange"
-                                             onClick = {e =>{
-                                                self.handleTask({type: "submit", id: list.id})
-                                            }}>提交</span>
+                                    <div className="f_rt">  
+                                        {status === "进行中" ? <p>
+                                            <Link to = {"/task/examineTask/" + list.id}><span className = "btn btn_orange">审核</span></Link>
                                             </p>:
                                              <p>{status}</p>}
                                         <p style = {{fontSize: ".12rem", textAlign: "right", marginTop: ".2rem"}}>{list.add_time}</p>

@@ -83,6 +83,7 @@ class TaskDetail extends Component {
     }
     render(){
         const data = this.state.data;
+        const hash = window.location.hash;
         console.log(data, '2')
         return <div> 
             <Title title = "任务详情" code = {this.state.code}/>
@@ -106,10 +107,10 @@ class TaskDetail extends Component {
                             })
                         }
                     </p>
-                    <p className = "text-center"><span className = "btn"
+                    {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
                     onClick = {e => {
                         this.handleAcceptTask()
-                    }}>接受任务</span></p>
+                    }}>接受任务</span></p> : null}
                 </div>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}

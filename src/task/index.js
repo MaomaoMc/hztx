@@ -6,6 +6,9 @@ import TaskHall from './TaskHall';
 import PublishTask from './PublishTask';
 import MyPedTasks from './MyPedTasks';
 import MyAcceptTasks from './MyAcceptTasks';
+import SubmitTask from './SubmitTask';
+import ExamineTask from './ExamineTask';
+import TaskDetail from './TaskDetail';
 
 const task_nav = [
     {
@@ -27,12 +30,16 @@ const task_nav = [
 ]
 class Task extends Component {
     render(){
-        return <div> 
-            <Nav nav = {JSON.stringify(task_nav)}/>
+        const hash = window.location.hash;
+        return <div>  
+            {hash.indexOf("submitTask") === -1 && hash.indexOf("taskDetail") === -1 && hash.indexOf("examineTask") === -1 ? <Nav nav = {JSON.stringify(task_nav)}/> : null}
             <Switch>
                 <Route path="/task/publishTask" component = {PublishTask} />
+                <Route path="/task/taskDetail/:id" component = {TaskDetail} />
                 <Route path="/task/myPedTasks" component = {MyPedTasks} />
                 <Route path="/task/myAcceptTasks" component = {MyAcceptTasks} />
+                <Route path="/task/examineTask/:id" component = {ExamineTask} />
+                <Route path="/task/submitTask" component = {SubmitTask} />
                 <Route path="/task" component = {TaskHall} />
             </Switch>
         </div>

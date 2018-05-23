@@ -18,7 +18,7 @@ import ContactUs from './ContactUs';
 // import PublishTask from './PublishTask';
 // import MyPedTasks from './MyPedTasks';
 // import MyAcceptTasks from './MyAcceptTasks';
-import ExamineTask from './ExamineTask';
+// import ExamineTask from './ExamineTask';
 import Spead from './Spread';
 import ReCharge from './ReCharge';
 import FeedBack from './FeedBack';
@@ -35,7 +35,7 @@ class Account extends Component {
                 {/* <Route path="/account/publishTask" component = {PublishTask} />
                 <Route path="/account/myPedTasks" component = {MyPedTasks} />
                 <Route path="/account/myAcceptTasks" component = {MyAcceptTasks} /> */}
-                <Route path="/account/examineTask/:id" component = {ExamineTask} />
+                {/* <Route path="/account/examineTask/:id" component = {ExamineTask} /> */}
                 <Route path="/account/recharge" component = {ReCharge} />
                 <Route path="/account/MyWallet" component = {MyWallet} />
                 <Route path="/account/ssDeal" component = {SsDeal} />

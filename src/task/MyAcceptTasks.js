@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import Title from "./../Title";
@@ -52,9 +53,9 @@ class MyAcceptTasks extends Component {
     }
     handleTask (e){ //放弃任务 提交任务
         const self = this;
-        const type = e.type;
-        let paramsStr = type === "abandon" ? "/home/Member/unTask" : "/home/Member/commitTask"; 
-        axios.post(window.baseUrl + paramsStr, qs.stringify({
+        // const type = e.type;
+        // let paramsStr = type === "abandon" ? "/home/Member/unTask" : "/home/Member/commitTask"; 
+        axios.post(window.baseUrl + "/home/Member/unTask", qs.stringify({
             token: localStorage.getItem("token"),
             id: e.id
         })).then(function(res){
@@ -85,7 +86,7 @@ class MyAcceptTasks extends Component {
                                 const task = list.task;
                                 const status = list.status;
                                 return <li key={i}>
-                                    <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
+                                    <Link to = {"/task/taskDetail/" + list.id+ "/nonebtn"}><img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">
                                         <h4>{task.title}</h4>
                                         <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{task.money}</p>
@@ -96,14 +97,13 @@ class MyAcceptTasks extends Component {
                                             onClick = {e =>{
                                                 self.handleTask({type: "abandon", id: list.id})
                                             }}>放弃</span>
-                                            <span className = "btn btn_orange"
-                                             onClick = {e =>{
-                                                self.handleTask({type: "submit", id: list.id})
-                                            }}>提交</span>
+                                            <span className = "btn btn_orange" style = {{verticalAlign: "bottom"}}>
+                                                <Link to = {"/task/submitTask/" + list.id} style = {{color: "white"}}>提交</Link>
+                                            </span>
                                             </p>:
                                              <p>{status}</p>}
                                         <p style = {{fontSize: ".12rem", textAlign: "right", marginTop: ".2rem"}}>{list.add_time}</p>
-                                    </div>
+                                    </div></Link>
                                 </li>
                             })
                     }
