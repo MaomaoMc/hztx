@@ -77,6 +77,7 @@ class PublishTask extends Component {
     handlePublish (){  //发布任务
         const self = this;
         const state = this.state;
+        console.log(document.getElementById("output").childNodes[0].toDataURL("image/png"), 'sdad')
         axios.post(window.baseUrl + "/home/Member/setTask", qs.stringify({
             token: localStorage.getItem("token"),
             title : state.title,
@@ -86,7 +87,8 @@ class PublishTask extends Component {
             pic : state.pic_arr.join(","),
             typeid : state.typeid,
             num : state.num,
-            url : state.url
+            url : state.url,
+            qr_code: document.getElementById("output").childNodes[0].toDataURL("image/png")
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -129,6 +131,7 @@ class PublishTask extends Component {
     }
     componentDidMount (){
         this.ajax();
+        console.log()
     }
     render(){
         const type_arr = this.state.type_arr;
@@ -185,9 +188,7 @@ class PublishTask extends Component {
                         <span className = "btn btn_primary upload">上传图片</span>
                             <input type="file" name="photo" id="photo" style = {{width: "1.55rem"}}
                                     onChange = {e => {this.handleUploadPic({value: e.target.value, obj: e.target})}}
-                                    />
-                            
-                           
+                                    />   
                         </span>
                     </form>
                 </li>
@@ -199,7 +200,7 @@ class PublishTask extends Component {
                 </li>
                 <li>
                     <label style = {{verticalAlign: "top"}}>任务二维码：</label>
-                    <QRCode value = {this.state.url}/>
+                    <div id = "output" className = "text-center"><QRCode value = {this.state.url}/></div>
                 </li>
                 <li>
                     <label>任务数量：</label> 

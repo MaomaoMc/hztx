@@ -91,8 +91,7 @@ class TaskDetail extends Component {
                 <h3 className = "text-center">{data.title}</h3>
                 <div style = {{lineHeight: ".6rem", padding: ".2rem .3rem"}}>
                     <p>
-                        
-                        <img src={data.member_pic} alt = "" style = {{width: ".8rem", height: ".8rem"}}/>
+                        <span className = "f_lt" style = {{marginRight: ".2rem"}}>发布人头像：</span><img src={data.member_pic} alt = "" style = {{width: ".8rem", height: ".8rem"}}/>
                     </p>
                     <p><span className = "f_lt">发布人ID：{data.id_num}</span>
                         <span className = "f_rt fc_red"><span className = "icon">赏</span>{data.money}元</span>

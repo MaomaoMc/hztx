@@ -156,11 +156,11 @@ header{
             }
             i{
                 display: block;
-                width: .45rem;
-                height: .45rem;
+                width: .36rem;
+                height: .36rem;
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
-                margin: .1rem auto 0;
+                margin: .15rem auto 0;
             }
             i.icon_main {
                 background-image: url(../img/icon_main.png)
@@ -179,6 +179,9 @@ header{
             }
         }
         li.active{
+            a{
+                color: #0093fb;
+            }
             i.icon_main {
                 background-image: url(../img/icon_main_hot.png)
             }

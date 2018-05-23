@@ -10,7 +10,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Slider from 'react-slick';
 
-// const main_kfIcon = require("./../img/main_kf.png");
 class Main extends Component {
     constructor(props){
         super(props);
@@ -138,10 +137,6 @@ class Main extends Component {
                     <h3 className = "text-center" style = {{paddingTop: ".2rem"}}>{company_data.title}</h3>
                     <div style = {{padding: ".2rem .3rem"}}>
                         <p>{company_data.content}</p>
-                        <p>QQ1: {company_data.qq1}</p>
-                        <p>QQ2: {company_data.qq2}</p>
-                        <p>QQ3: {company_data.qq3}</p>
-                        <p>QQ4: {company_data.qq4}</p>
                     </div>
                 </div>
                 <div>

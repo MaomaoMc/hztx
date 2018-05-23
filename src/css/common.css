@@ -144,11 +144,11 @@ header {
         color: #767676; }
       .footer ul li i {
         display: block;
-        width: .45rem;
-        height: .45rem;
+        width: .36rem;
+        height: .36rem;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        margin: .1rem auto 0; }
+        margin: .15rem auto 0; }
       .footer ul li i.icon_main {
         background-image: url(../img/icon_main.png); }
       .footer ul li i.icon_task {
@@ -159,6 +159,8 @@ header {
         background-image: url(../img/icon_kj.png); }
       .footer ul li i.icon_account {
         background-image: url(../img/icon_account.png); }
+    .footer ul li.active a {
+      color: #0093fb; }
     .footer ul li.active i.icon_main {
       background-image: url(../img/icon_main_hot.png); }
     .footer ul li.active i.icon_task {

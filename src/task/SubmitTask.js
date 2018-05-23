@@ -72,7 +72,7 @@ class SubmitTask extends Component {
         axios.post(window.baseUrl + "/home/Member/commitTask", qs.stringify({
             token: localStorage.getItem("token"),
             pic : state.pic_arr.join(","),
-            id: state.id,
+            id: this.props.match.params.id,
             note: state.note
         })).then(function(res){
             const data = res.data;
@@ -112,7 +112,11 @@ class SubmitTask extends Component {
                 </li>
                 <li>
                     <label style = {{verticalAlign: "top"}}>备注：</label>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" onChange = {e => {
+                        this.setState({
+                            note: e.target.value
+                        })
+                    }}></textarea>
                 </li>
                 <li>
                     <span className = "btn btn_primary" style = {{width: "95%", height: ".6rem", lineHeight: ".6rem"}}
