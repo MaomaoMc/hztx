@@ -92,7 +92,7 @@ class MyMiner extends Component {
                                     <p><span></span>总产量{mill.earning}</p>
                                 </div>
                                 <div style = {{flexGrow: "1", textAlign: "right", marginRight: ".2rem"}}>
-                                    <p>算力{mill.force}G</p>
+                                    <p>产力{mill.force}</p>
                                     {status === "未使用" ? <span className = "btn"
                                     onClick = {e => {
                                         self.useMill({id: item.id})

@@ -1,5 +1,6 @@
 // 
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import Title from "./../Title";
@@ -61,23 +62,6 @@ class ExamineTask extends Component {
             }
         })
     }
-    handleFinishTask (e){
-        const self = this;
-        axios.post(window.baseUrl + "/home/Member/completeTask  ", qs.stringify({
-            token: localStorage.getItem("token"),
-            id: e.id
-        })).then(function(res){
-            const data = res.data;
-            const code = data.code;
-            self.setState({
-                warningShow: true,
-                warningText: data.msg,
-                code: code
-            }, function(){
-                self.hanleWarningDlgTimer({code: code})
-            })
-        })
-    }
     componentDidMount (){
         this.ajax();
     }
@@ -99,16 +83,16 @@ class ExamineTask extends Component {
                         data.length === 0 ? <li>暂时没有接收人数据可显示...</li> :
                         data.length > 0  && data.map(function (list, i) {
                                 const status = list.status;
-                                const member = list.member[0];
+                                const member = list.member;
                                 return <li key={i}>
+                                    <img className = "f_lt" src={member.pic} alt=""/>
                                     <div className = "f_lt">
                                         <p style={{ fontSize: ".24rem"}}>接收人姓名：{member.name}</p>
                                         <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>接收人ID：{member.id_num}</p>
                                     </div>
                                     <div className="f_rt"  style={{textAlign: "right"}}>
-                                        {status === "已提交" ? <span className = "btn btn_orange" onClick = {e => {
-                                            self.handleFinishTask({id: list.id})
-                                        }}>完成</span> : <span>{status}</span>}
+                                        {status === "已提交" ? <Link to = {"/task/shenheTask/" + list.id}><span className = "btn btn_orange">审核</span></Link>
+                                         : <span>{status}</span>}
                                         <p style={{ fontSize: ".24rem", marginTop: ".1rem"}}>{new Date(list.add_time * 1000).format("yyyy-MM-dd")}</p>
                                     </div>
                                 </li>

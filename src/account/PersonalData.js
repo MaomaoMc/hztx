@@ -93,16 +93,14 @@ class PersonalData extends Component {
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
-                {/* <div>
-                <a className = "exitApp" onClick = {e => {
-                    this.exitApp()
-                }}>安全退出</a>
-                </div> */}
-                <div className = "head_pic" style = {{backgroundImage: "url(" + localStorage.getItem("head_pic") + ")"}}>
-                    {/* <img src={localStorage.getItem("head_pic")} alt=""/> */}
+                
+                {/* <div> */}
+                <div className = "head_pic" style = {{backgroundImage: "url(" + window.baseUrl + localStorage.getItem("head_pic") + ")"}}>
                 </div>
-                <div>
-                    <p className = "text-right" style = {{fontSize: ".24rem"}}>昵称:&nbsp;{data.name}</p>
+                    <p className = "text-right" style = {{fontSize: ".24rem"}}>
+                    <a className = "exitApp f_lt" onClick = {e => {
+                        this.exitApp()
+                    }}>安全退出</a>昵称:&nbsp;{data.name}</p>
                     <p className = "text-right" style = {{fontSize: ".24rem"}}>ID:&nbsp;{data.id_num}</p>
                     <p className = "text-right" style = {{fontSize: ".24rem"}}>信用值:&nbsp;{data.credit}</p>
                     {/* <p className = "text-right fz_30" style = {{marginTop: ".2rem"}}>{data.money}</p> */}
@@ -111,7 +109,7 @@ class PersonalData extends Component {
                             this.handleSign()
                         }}>签到</span> : <span className = "f_lt" style = {{marginLeft: ".3rem"}}>已签到</span>} */}
                         {/* 冻结金额:&nbsp;{data.dmoney}</p> */}
-                </div>
+                {/* </div> */}
             </div>
             <div className="weui_grids">
                 <Link to = "/account/myWallet" className="weui_grid js_grid" data-id="toast">

@@ -108,14 +108,15 @@
   padding: .4rem .3rem .4rem 0;
   position: relative; }
   .personal_overview .exitApp {
-    font-size: .24rem; }
+    font-size: .24rem;
+    margin-left: .3rem; }
   .personal_overview .head_pic {
     width: 1.5rem;
     height: 1.5rem;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    top: .4rem;
+    top: .85rem;
     left: .3rem; }
   .personal_overview p {
     line-height: .6rem; }
@@ -490,9 +491,10 @@
   margin-top: .1rem; }
   .taskLists li {
     flex-grow: 1;
-    padding: .2rem .3rem;
+    padding: .2rem .2rem;
     border-bottom: .01rem solid #ddd;
-    background-color: #fff; }
+    background-color: #fff;
+    position: relative; }
     .taskLists li a {
       display: block;
       width: 100%;
@@ -623,7 +625,7 @@
     background-color: red;
     color: white;
     border-radius: .1rem;
-    padding: .02rem .05rem;
+    padding: 0rem .05rem;
     margin-right: .1rem; }
   .taskDetail span.btn {
     width: 90%;

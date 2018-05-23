@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import Title from "./../Title";
@@ -67,7 +67,10 @@ class MyPedTasks extends Component {
                             data.length > 0 && data.map(function (list, i) {
                                 const status = list.status;
                                 return <li key={i}>
-                                    <Link to = {"/task/taskDetail/" + list.id + "/nonebtn"}>
+                                        <a style = {{display: "block", width: "100%", height: "100%", 
+                                    position: "absolute", left: "0", top: "0", zIndex: "1"}} onClick = {e => {
+                                            self.props.history.push("/task/taskDetail/" + list.id + "/nonebtn")
+                                        }}></a>
                                     <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">
                                         <h4>{list.title}</h4>
@@ -75,14 +78,13 @@ class MyPedTasks extends Component {
                                     </div>
                                     <div className="f_rt">  
                                         {status === "进行中" ? <p>
-                                            <Link to = {"/task/examineTask/" + list.id}><span className = "btn btn_orange">审核</span></Link>
+                                            <span className = "btn btn_orange" style = {{position: "relative",zIndex: 2}} onClick = {e => {
+                                                self.props.history.push("/task/examineTask/" + list.id)
+                                            }}>审核</span>
                                             </p>:
                                              <p>{status}</p>}
                                         <p style = {{fontSize: ".12rem", textAlign: "right", marginTop: ".2rem"}}>{list.add_time}</p>
-                                        {/* <p className="fc_red"><span className="icon">赏</span><span>{task.money}</span></p>
-                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>{task.add_time}</p> */}
                                     </div>
-                                    </Link>
                                 </li>
                             })
                     }
@@ -94,4 +96,4 @@ class MyPedTasks extends Component {
     }
 }
 
-export default MyPedTasks;
+export default withRouter(MyPedTasks);

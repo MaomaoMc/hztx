@@ -14,6 +14,8 @@ class MyWallet extends Component {
             type: "1",
             money: "",
             note: "",
+            form_show: false,
+            opt_type: "tx",
             warningShow: false,
             warningText: "",
             code: ""
@@ -38,10 +40,18 @@ class MyWallet extends Component {
             [e.type]: e.value
         })
     }
+    handleOpt (e) {//提现
+        this.setState({
+            form_show: true,
+            opt_type: e.type
+        })
+    }
     handleSubmit (){ //提现
         const self = this;
         const state = this.state;
-        axios.post(window.baseUrl + "/home/Member/withDraw", qs.stringify({
+        const opt_type = state.opt_type;
+        const paramsStr = opt_type === "tx" ? "/home/Member/withDraw" : "/home/Member/topUp";
+        axios.post(window.baseUrl + paramsStr, qs.stringify({
             token: localStorage.getItem("token"),
             name: state.name,
             num: state.num,
@@ -61,19 +71,31 @@ class MyWallet extends Component {
         })
     }
     render(){
+        const opt_type = this.state.opt_type;
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
-            <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
+                <p>现金：2.32元</p>
+                <p style = {{marginTop: ".3rem"}}>金豆：213.2JD <span style = {{marginLeft: ".3rem"}}>冻结数量：2.32JD</span></p>
+                <p style = {{overflow: "hidden", marginTop: ".3rem"}}>
+                    <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
+                        this.handleOpt({type: "tx"})
+                    }}>提现</span>
+                    <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
+                        this.handleOpt({type: "cz"})
+                    }}>充值</span>
+                </p>
+                <p className = "text-center fc_red" style = {{fontSize: ".12rem", marginTop: ".01rem"}}>注！提现需扣除一定的手续费(和金豆交易时按手续费比例计算的手续费)</p>
+                {this.state.form_show ? <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
                    <li>
                        <label>名称:</label>
-                       <input type="text" placeholder = "请输入账号名称" value = {this.state.name} onChange = {e => {
+                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号名称" : "请输入充值账号名称"} value = {this.state.name} onChange = {e => {
                            this.handleIptChange({type: "name", value: e.target.value})
                        }}/>
                    </li>
                    <li>
                        <label>账号:</label>
-                       <input type="text" placeholder = "请输入账号" value = {this.state.num} onChange = {e => {
+                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号" : "请输入充值账号"} value = {this.state.num} onChange = {e => {
                            this.handleIptChange({type: "num", value: e.target.value})
                        }}/>
                    </li>
@@ -89,7 +111,7 @@ class MyWallet extends Component {
                    </li>
                    <li>
                        <label>金额:</label>
-                       <input type="text" placeholder = "请输入金额" value = {this.state.money} onChange = {e => {
+                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现金额" : "请输入充值金额"} value = {this.state.money} onChange = {e => {
                            this.handleIptChange({type: "money", value: e.target.value})
                        }}/>
                    </li>
@@ -102,18 +124,17 @@ class MyWallet extends Component {
                        }}></textarea>
                    </li>
                    <li className = "over_hidden" style = {{marginTop: ".3rem"}}>
-                       <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
+                       <span className = "btn btn_primary f_lt" style = {{width : "95%"}} onClick = {e => {
                             this.handleSubmit()
-                        }}>提现</span>
-                        <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
+                        }}>提交</span>
+                        {/* <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
                             this.handleSubmit()
-                        }}>充值</span>
-                       
+                        }}>充值</span> */}
                    </li>
                    <li>
-                    <p className = "text-center fc_red" style = {{fontSize: ".12rem"}}>可提现时间段：9:00-17:00</p>
+                    <p className = "text-center fc_red" style = {{fontSize: ".12rem"}}>可提现/充值时间段：9:00-17:00</p>
                    </li>
-                </ul>
+                </ul> : null }
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null}
             <Footer />
@@ -122,3 +143,11 @@ class MyWallet extends Component {
 }
 
 export default MyWallet;
+{/* <li className = "over_hidden" style = {{marginTop: ".3rem"}}>
+                       <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
+                            this.handleSubmit()
+                        }}>提现</span>
+                        <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
+                            this.handleSubmit()
+                        }}>充值</span>
+                   </li> */}

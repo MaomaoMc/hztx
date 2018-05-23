@@ -86,7 +86,11 @@ class MyAcceptTasks extends Component {
                                 const task = list.task;
                                 const status = list.status;
                                 return <li key={i}>
-                                    <Link to = {"/task/taskDetail/" + list.id+ "/nonebtn"}><img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
+                                    <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
+                                    <a style = {{display: "block", width: "100%", height: "100%", 
+                                        position: "absolute", left: "0", top: "0", zIndex: "1"}} onClick = {e => {
+                                            self.props.history.push("/task/taskDetail/" + list.id + "/nonebtn")
+                                        }}></a>
                                     <div className="f_lt">
                                         <h4>{task.title}</h4>
                                         <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{task.money}</p>
@@ -97,13 +101,13 @@ class MyAcceptTasks extends Component {
                                             onClick = {e =>{
                                                 self.handleTask({type: "abandon", id: list.id})
                                             }}>放弃</span>
-                                            <span className = "btn btn_orange" style = {{verticalAlign: "bottom"}}>
-                                                <Link to = {"/task/submitTask/" + list.id} style = {{color: "white"}}>提交</Link>
-                                            </span>
+                                            <span className = "btn btn_orange" style = {{verticalAlign: "bottom", position: "relative",zIndex: 2}} onClick = {e => {
+                                                self.props.history.push("/task/submitTask/" + list.id)
+                                            }}>提交</span>
                                             </p>:
                                              <p>{status}</p>}
                                         <p style = {{fontSize: ".12rem", textAlign: "right", marginTop: ".2rem"}}>{list.add_time}</p>
-                                    </div></Link>
+                                    </div>
                                 </li>
                             })
                     }
