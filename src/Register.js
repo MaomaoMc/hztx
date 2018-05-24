@@ -20,8 +20,6 @@ class Register extends Component {
             code: "",
             l_pass: "",
             rl_pass: "",
-            t_pass: "",
-            rt_pass: "",
             tui_id: tui_id,
             countDown: 60,
             warningShow: false,
@@ -149,8 +147,6 @@ class Register extends Component {
             code: state.phone,
             l_pass: state.l_pass,
             rl_pass: state.rl_pass,
-            t_pass: state.t_pass,
-            rt_pass: state.rt_pass,
             tui_id: state.tui_id
         })).then(function(res){
             const data = res.data;
@@ -204,18 +200,6 @@ class Register extends Component {
                        <label>确认登录密码:</label>
                        <input type="password" placeholder = "请确认登录密码" value = {this.state.rl_pass} onChange = {e => {
                            this.handleIptChange({type: "rl_pass", value: e.target.value})
-                       }}/>
-                   </li>
-                   <li>
-                       <label>二级密码:</label>
-                       <input type="password" placeholder = "请设置二级密码" value = {this.state.t_pass} onChange = {e => {
-                           this.handleIptChange({type: "t_pass", value: e.target.value})
-                       }}/>
-                   </li>
-                   <li>
-                       <label>确认二级密码:</label>
-                       <input type="password" placeholder = "请确认二级密码" value = {this.state.rt_pass} onChange = {e => {
-                           this.handleIptChange({type: "rt_pass", value: e.target.value})
                        }}/>
                    </li>
                    <li>

@@ -166,7 +166,7 @@ class PersonalData extends Component {
                     </div>
                     <p className="weui_grid_label" style={{marginTop: ".24rem"}}>建议与反馈</p>
                 </Link>
-                <Link to = "/account/pwdControl" className="weui_grid js_grid" data-id="toast">
+                {/* <Link to = "/account/pwdControl" className="weui_grid js_grid" data-id="toast">
                     <div className="weui_grid_icon">
                         <i className="iconfont">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024" aria-labelledby="title">
@@ -177,7 +177,7 @@ class PersonalData extends Component {
                         </i>
                     </div>
                     <p className="weui_grid_label" style={{marginTop: ".24rem"}}>密码管理</p>
-                </Link>
+                </Link> */}
                 <Link to = "/account/appdown" className="weui_grid js_grid" data-id="toast">
                     <div className="weui_grid_icon">
                         <i className="iconfont">
