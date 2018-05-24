@@ -34,8 +34,10 @@ class Task extends Component {
         const hash = window.location.hash;
         return <div>  
             {hash.indexOf("submitTask") === -1 && hash.indexOf("taskDetail") === -1 &&
-             hash.indexOf("examineTask") === -1 && hash.indexOf("shenheTask") === -1 ? <Nav nav = {JSON.stringify(task_nav)}/> : null}
+             hash.indexOf("examineTask") === -1 && hash.indexOf("shenheTask") === -1 && hash.indexOf("jdTask") === -1  ?
+             <Nav nav = {JSON.stringify(task_nav)}/> : null}
             <Switch>
+                
                 <Route path="/task/publishTask" component = {PublishTask} />
                 <Route path="/task/taskDetail/:id" component = {TaskDetail} />
                 <Route path="/task/myPedTasks" component = {MyPedTasks} />

@@ -22,6 +22,15 @@ import ContactUs from './ContactUs';
 import Spead from './Spread';
 import ReCharge from './ReCharge';
 import FeedBack from './FeedBack';
+import AppDown from './AppDown';
+import JDMarket from './JDMarket';
+import JDAuction from './JDAuction';
+import JDGame from './JDGame';
+import BusinessCoop from './BusinessCoop';
+import JDTask from './JDTask';
+import JDtaskDetail from './JDtaskDetail';
+import JDmyAcceptTask from './JDmyAcceptTask';
+import JDSubmitTask from './JDSubmitTask';
 
 class Account extends Component {
     render(){
@@ -47,6 +56,15 @@ class Account extends Component {
                 <Route path="/account/minerUnion" component = {MinerUnion} />
                 <Route path="/account/myUnion" component = {MyUnion} />
                 <Route path="/account/minerNetWork" component = {MinerNetWork} />
+                <Route path="/account/jdtaskDetail/:id" component = {JDtaskDetail} />
+                <Route path="/account/jdmyAcceptTask" component = {JDmyAcceptTask} />
+                <Route path="/account/jdsubmitTask/:id" component = {JDSubmitTask} />
+                <Route path="/account/jdTask" component = {JDTask} />
+                <Route path="/account/appdown" component = {AppDown} />
+                <Route path="/account/jdMarket" component = {JDMarket} />
+                <Route path="/account/jdAuction" component = {JDAuction} />
+                <Route path="/account/jdGame" component = {JDGame} />
+                <Route path="/account/businessCoop" component = {BusinessCoop} />
                 
                 <Route path="/" component = {Login} />
             </Switch>

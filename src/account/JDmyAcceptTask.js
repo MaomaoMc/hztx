@@ -6,7 +6,7 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
-class MyAcceptTasks extends Component {
+class JDmyAcceptTask extends Component {
     constructor (props){
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class MyAcceptTasks extends Component {
     }
     ajax (){
         const self = this;
-        axios.post(window.baseUrl + "/home/Member/myGetTask", qs.stringify({
+        axios.post(window.baseUrl + "/home/Jdtask/myGetJdtask", qs.stringify({
             token: localStorage.getItem("token")
         })).then(function(res){
             const data = res.data;
@@ -53,8 +53,6 @@ class MyAcceptTasks extends Component {
     }
     handleTask (e){ //放弃任务 提交任务
         const self = this;
-        // const type = e.type;
-        // let paramsStr = type === "abandon" ? "/home/Member/unTask" : "/home/Member/commitTask"; 
         axios.post(window.baseUrl + "/home/Member/unTask", qs.stringify({
             token: localStorage.getItem("token"),
             id: e.id
@@ -89,11 +87,11 @@ class MyAcceptTasks extends Component {
                                     <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <a style = {{display: "block", width: "100%", height: "100%", 
                                         position: "absolute", left: "0", top: "0", zIndex: "1"}} onClick = {e => {
-                                            self.props.history.push("/task/taskDetail/" + list.task_id + "/nonebtn")
+                                            self.props.history.push("/account/jdtaskDetail/" + list.task_id + "/nonebtn")
                                         }}></a>
                                     <div className="f_lt">
                                         <h4>{task.title}</h4>
-                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金：{task.money}</p>
+                                        <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赏金豆：{task.jd}</p>
                                     </div>
                                     <div className="f_rt">
                                         {status === "正进行" ? <p>
@@ -102,7 +100,7 @@ class MyAcceptTasks extends Component {
                                                 self.handleTask({type: "abandon", id: list.task_id})
                                             }}>放弃</span>
                                             <span className = "btn btn_orange" style = {{verticalAlign: "bottom", position: "relative",zIndex: 2}} onClick = {e => {
-                                                self.props.history.push("/task/submitTask/" + list.task_id)
+                                                self.props.history.push("/account/jdsubmitTask/" + list.task_id)
                                             }}>提交</span>
                                             </p>:
                                              <p>{status}</p>}
@@ -119,4 +117,4 @@ class MyAcceptTasks extends Component {
     }
 }
 
-export default MyAcceptTasks;
+export default JDmyAcceptTask;
