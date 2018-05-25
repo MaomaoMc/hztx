@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import echarts from 'echarts';
@@ -154,7 +155,17 @@ class DealCenter extends Component {
                 warningText: data.msg,
                 code: code
             }, function(){
-                self.hanleWarningDlgTimer({code: code});
+                setTimeout(
+                    function(){
+                        self.setState({
+                            warningShow: false
+                        }, function(){
+                            if(code === 1){
+                                self.props.history.push("/deal/mydeal/selllist")
+                            }
+                        })
+                    }
+                , 1000)
             })
         })
     }
@@ -301,10 +312,13 @@ class DealCenter extends Component {
             <Title title = "交易中心" code = {this.state.code}/>
             <div className = "deal_head">
                 <div>
-                    <p>最高：{tradeMsg_data.topPrice}</p>
-                    <p>最低：{tradeMsg_data.bottomPrice}</p>
+                    <p>今日成交量：{tradeMsg_data.todaynum}</p>
+                    <p>今日成交额：{tradeMsg_data.todayprice}</p>
                 </div>
-                <div>{tradeMsg_data.newPrice}</div>
+                <div>
+                    <p>昨日均价：{tradeMsg_data.average}</p>
+                    <p>现价：{tradeMsg_data.nowprice}</p>
+                </div>
             </div>
             <div id = "chart"></div>
             <div className = "dealWrap">
@@ -340,9 +354,11 @@ class DealCenter extends Component {
                                         }
                                         if(value === "opt"){
                                             return <td key = {i}>
-                                            <span className="btn btn_primary" style = {{height: ".6rem", lineHeight: ".6rem"}} onClick = { e => {
-                                                self.handleSellEvent({trade_id: item.trade_id})
-                                            }}>卖给他</span>
+                                            <span className="btn btn_primary" style = {{height: ".6rem", lineHeight: ".6rem"}} 
+                                                onClick = { e => {
+                                                    self.handleSellEvent({trade_id: item.trade_id})
+                                                }}
+                                            >卖给他</span>
                                             </td>
                                         }
                                         return <td key = {i}>{item[head.value]}</td>
@@ -352,26 +368,6 @@ class DealCenter extends Component {
                         }
                     </tbody>
                 </table>
-                {/* <ul className="dealLists f_flex">
-                    {
-                        lists_data.length > 0 && lists_data.map(function (item, i) {
-                            const num = item.num;
-                            const price = item.price;
-                            return <li key={i} className="fz_22">
-                                <p>
-                                    <span className="fc_blue">单号：{item.trade_num}</span>
-                                    <span className="f_rt">买家ID：{item.buy_id}</span>
-                                </p>
-                                <p className = "text_center" style={{lineHeight: ".5rem"}}>挂卖{num}MAC，单价{price}元，总价{Math.round(parseFloat(num * price)*100)/100}</p>
-                                <p className="text-center" style = {{marginTop: ".2rem"}}>
-                                    <span className="btn btn_primary" style = {{width: "2.5rem", height: ".6rem", lineHeight: ".6rem"}} onClick = { e => {
-                                        self.handleSellEvent({trade_id: item.trade_id})
-                                    }}>卖给他</span>
-                                </p>
-                            </li>
-                        })
-                    }
-                </ul> */}
             </div>
             <Footer />
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null}
@@ -382,4 +378,4 @@ class DealCenter extends Component {
     }
 }
 
-export default DealCenter;
+export default withRouter(DealCenter);

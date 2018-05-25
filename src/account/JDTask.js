@@ -66,7 +66,6 @@ class JDTask extends Component {
         this.ajax();
     }
     render(){
-        const self = this;
         const data = this.state.data;
         const hash = window.location.hash.substring(1);
         return <div> 
@@ -85,7 +84,6 @@ class JDTask extends Component {
                     {
                         data.length === 0 ? <li>暂时没有数据可显示...</li> :
                             data.length > 0 && data.map(function (list, i) {
-                                const status = list.status;
                                 return <li key={i}>
                                     <Link to = {"/account/jdtaskDetail/" + list.id}>
                                         <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>

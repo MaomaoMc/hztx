@@ -12,6 +12,7 @@ class Spead extends Component {
     constructor (props){
         super(props);
         this.state = {
+            data: [],
             id_num: "",
             code: "",
             path: "", // 保存二维码SVG的path
@@ -60,21 +61,38 @@ class Spead extends Component {
             })
         })
     }
+    speadAjax (){
+        const self = this;
+        axios.post(window.baseUrl + "/home/Member/subordinate", qs.stringify({
+            token: localStorage.getItem("token")
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            if(code === 1){
+                self.setState({
+                    data: data.data
+                })
+            }else{  //失败
+                self.setState({
+                    warningShow: true,
+                    warningText: data.msg
+                }, function(){
+                    self.hanleWarningDlgTimer();
+                })
+            }
+            self.setState({
+                code: code
+            })
+        })
+    }
     componentDidMount (){
         this.ajax();
+        this.speadAjax();
     }
     render (){
         return <div>
             <Title title="推广" code = {this.state.code}/>
-            <div className = "text_center">
-                {/* <img className = "mt_40" src={inviteImg} alt="" style = {{width :"2.525rem", height : "2.8rem"}}/> */}
-            </div>
             <div className = "inviteOpt f_flex" style = {{padding: ".2rem .3rem"}}>
-                    {/* <p className = "fz_20 fc_gray">我的推荐ID</p>
-                    <p className= "mt_10 mb_20">
-                        <span className="inviteId">{this.state.id_num}</span>
-                        <span className = "btn btn_primary" onClick = {e => {this.copy({text: this.state.id_num})}}>复制</span>
-                    </p> */}
                     <p className = "">我的推荐链接</p>
                     <p style = {{margin: ".2rem 0"}}>
                         <span className="inviteLink">{this.state.path} </span>
@@ -88,6 +106,28 @@ class Spead extends Component {
             <div className="text-center mt_40">
                 {this.state.path !== "" ? <QRCode value = {this.state.path}/> : null}
             </div>
+            <table className = "normal_table" style = {{backgroundColor: "white", marginTop: ".3rem"}}>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>微信号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.data.map(function(item, i){
+                            return <tr key = {i}>
+                                <td>{item.member_id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.wx_num}</td>
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>

@@ -66,7 +66,6 @@ class ExamineTask extends Component {
         this.ajax();
     }
     render(){
-        const self = this;
         const data = this.state.data;
         const task = this.state.task;
         return <div> 

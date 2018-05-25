@@ -24,7 +24,6 @@ const taskNav = [
         value: "vip"
     }
 ]
-const linkImg = require("../img/link.jpg");
 class TaskHall extends Component {
     constructor(props) {
         super(props);
@@ -153,7 +152,7 @@ class TaskHall extends Component {
                             return <a className="weui_grid js_grid" key={i} onClick={e => {
                                 self.handleChangeType({ id: item.id })
                             }}>
-                                <div className="weui_grid_icon" style={{ backgroundImage: "url(" + linkImg + ")", backgroundSize: "100% 100%" }}></div>
+                                <div className="weui_grid_icon" style={{ backgroundImage: "url(" + window.baseUrl + item.pic + ")", backgroundSize: "100% 100%" }}></div>
                                 <p className="weui_grid_label" style={{ marginTop: ".24rem" }}>{item.name}</p>
                             </a>
                         })

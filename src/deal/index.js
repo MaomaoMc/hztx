@@ -4,6 +4,8 @@ import {Route, Switch} from 'react-router-dom';
 import Nav from './../Nav';
 import DealCenter from './DealCenter';
 import MyDeal from './MyDeal';
+import ItemsDetails from './ItemsDetails';
+import GatherHall from './GatherHall';
 
 const deal_nav = [
     {
@@ -12,7 +14,7 @@ const deal_nav = [
     },
     {
         text: "交割大厅",
-        link: "/deal/publishTask"
+        link: "/deal/gatherHall"
     },
     {
         text: "我的买单",
@@ -23,13 +25,15 @@ const deal_nav = [
         link: "/deal/mydeal/selllist"
     }
 ]
-class Deal extends Component {
+class Deal extends Component {  
     render(){
+        const hash = window.location.hash;
         return <div> 
-            <Nav  nav = {JSON.stringify(deal_nav)} />
+            {hash.indexOf("itemsDetails") === -1 ? <Nav  nav = {JSON.stringify(deal_nav)} /> : null}
             <Switch>
-                {/* <Route path="/account/myMiner" component = {MyMiner} /> */}
+                <Route path="/deal/itemsDetails/:id" component = {ItemsDetails} />
                 <Route path="/deal/mydeal" component = {MyDeal} />
+                <Route path="/deal/gatherHall" component = {GatherHall} />
                 <Route path="/deal" component = {DealCenter} />
             </Switch>
         </div>
