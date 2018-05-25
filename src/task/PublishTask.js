@@ -158,22 +158,43 @@ class PublishTask extends Component {
                     </select>
                 </li>
                 <li>
+                    <label>任务单价：</label> 
+                    <input type="text" placeholder = "请输入任务金额" value = {this.state.money} onChange = {e => {
+                        this.handleIptChange({type: "money", value: e.target.value})
+                    }}/>
+                </li>
+                <li>
+                    <label>任务数量：</label> 
+                    <input type="text" placeholder = "请输入任务数量" value = {this.state.num} onChange = {e => {
+                        this.handleIptChange({type: "num", value: e.target.value})
+                    }}/>
+                </li>
+                <li>
+                    <label>任务总价：</label> 
+                    <span>{(this.state.money * this.state.num * 1).toFixed(2)}</span>
+                </li>
+                
+                <li>
+                    <label>任务时限：</label> 
+                    <input type="text" placeholder = "请输入任务时限" value = {this.state.time} onChange = {e => {
+                        this.handleIptChange({type: "time", value: e.target.value})
+                    }}/>
+                </li>
+                <li>
                     <label style = {{verticalAlign: "top"}}>任务内容：</label>
                     <textarea name="" id="" cols="30" rows="10" placeholder = "请输入任务内容" onChange = {e => {
                         this.handleIptChange({type: "content", value: e.target.value})
                     }}></textarea>
                 </li>
                 <li>
-                    <label>任务金额：</label> 
-                    <input type="text" placeholder = "请输入任务金额" value = {this.state.money} onChange = {e => {
-                        this.handleIptChange({type: "money", value: e.target.value})
+                    <label>任务链接：</label>
+                    <input type="text" placeholder = "请输入任务链接" value = {this.state.url} onChange = {e => {
+                        this.handleIptChange({type: "url", value: e.target.value})
                     }}/>
                 </li>
                 <li>
-                    <label>任务时间：</label> 
-                    <input type="text" placeholder = "请输入任务时间" value = {this.state.time} onChange = {e => {
-                        this.handleIptChange({type: "time", value: e.target.value})
-                    }}/>
+                    <label style = {{verticalAlign: "top"}}>任务二维码：</label>
+                    <div id = "output" className = "text-center"><QRCode value = {this.state.url}/></div>
                 </li>
                 <li style = {{height: "auto"}}>
                     <label>任务截图：</label> 
@@ -191,22 +212,6 @@ class PublishTask extends Component {
                                     />   
                         </span>
                     </form>
-                </li>
-                <li>
-                    <label>任务链接：</label>
-                    <input type="text" placeholder = "请输入任务链接" value = {this.state.url} onChange = {e => {
-                        this.handleIptChange({type: "url", value: e.target.value})
-                    }}/>
-                </li>
-                <li>
-                    <label style = {{verticalAlign: "top"}}>任务二维码：</label>
-                    <div id = "output" className = "text-center"><QRCode value = {this.state.url}/></div>
-                </li>
-                <li>
-                    <label>任务数量：</label> 
-                    <input type="text" placeholder = "请输入任务数量" value = {this.state.num} onChange = {e => {
-                        this.handleIptChange({type: "num", value: e.target.value})
-                    }}/>
                 </li>
                 <li>
                     <span className = "btn btn_primary" style = {{width: "95%", height: ".6rem", lineHeight: ".6rem"}}
