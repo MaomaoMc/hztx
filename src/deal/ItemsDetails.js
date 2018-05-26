@@ -70,7 +70,7 @@ class ItemsDetails extends Component {
     }
     handlePayMoney (){ //确认打款
         const self = this;
-        axios.post(window.baseUrl + "/home/Trade/shouMoney", qs.stringify({
+        axios.post(window.baseUrl + "/home/Trade/remitMoney", qs.stringify({
             token: localStorage.getItem("token"),
             trade_id: self.state.trade_id,
             pic: self.state.pic
@@ -141,8 +141,8 @@ class ItemsDetails extends Component {
             <Title title = {title} code = {this.state.code}/>
             <div className = "pb_100" style = {{backgroundColor: "white", paddingTop: ".2rem", paddingLeft: ".3rem", paddingRight: ".3rem"}}>
                 {data.hasOwnProperty("trade") ? <div>
-                    
                     单号：{data.trade.trade_num}&nbsp;&nbsp;&nbsp;单价：{data.trade.price}
+                    <p>数量：{data.trade.num}&nbsp;&nbsp;&nbsp;总价：{data.trade.zongprice}</p>
                 </div> : null}
                 { page_type === "buyPay" ? <div style = {{lineHeight: ".6rem", marginTop: ".3rem"}}>  {/*卖家信息 上传打款凭证 确认付款*/}
                     {data.hasOwnProperty("sell_member") ? <div>
@@ -150,6 +150,8 @@ class ItemsDetails extends Component {
                         <p>ID：{data.sell_member.id_num}</p>
                         <p>账号：{data.sell_member.name}</p>
                         <p>手机号：{data.sell_member.phone}</p>
+                        <p>微信：{data.sell_member.wx_num}</p>
+                        <p>支付宝：{data.sell_member.zfb_num}</p>
                         <form action="" id="form" style = {{display: "inline"}}> 
                             <span className = "upload_wrap">
                             <span className = "btn btn_primary upload">上传打款凭证</span>

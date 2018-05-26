@@ -9,6 +9,11 @@ class MyWallet extends Component {
     constructor (props){
         super(props);
         this.state = {
+            data: {
+                "jd_num": "0", //金豆
+                "money": "0", //现金
+                "dmoney": "0",  //冻结金豆
+            } , //个人信息数据
             name: "",
             num: "",
             type: "1",
@@ -70,13 +75,39 @@ class MyWallet extends Component {
             })
         })
     }
+    ajax (){
+        const self = this;
+        axios.post(window.baseUrl + "/home/Member/member", qs.stringify({
+            token: localStorage.getItem("token"),
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            if(code === 1){
+                self.setState({
+                    data: data.data[0]
+                })
+            }else{
+                self.setState({
+                    warningShow: true, 
+                    warningText: data.msg,
+                    code: code
+                }, function(){
+                    self.hanleWarningDlgTimer()
+                })
+            }
+        })
+    }
+    componentDidMount (){
+        this.ajax();
+    }
     render(){
         const opt_type = this.state.opt_type;
+        const data = this.state.data;
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
-                <p>现金：2.32元</p>
-                <p style = {{marginTop: ".3rem"}}>金豆：213.2JD <span style = {{marginLeft: ".3rem"}}>冻结数量：2.32JD</span></p>
+                <p>现金：{(data.money * 1).toFixed(2)}元</p>
+                <p style = {{marginTop: ".3rem"}}>金豆：{data.jd_num}JD <span style = {{marginLeft: ".3rem"}}>冻结数量：{(data.dmoney * 1).toFixed(2)}JD</span></p>
                 <p style = {{overflow: "hidden", marginTop: ".3rem"}}>
                     <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
                         this.handleOpt({type: "tx"})

@@ -90,7 +90,7 @@ class Login extends Component {
                             this.login()
                         }}>登录</button>
                         <p style = {{textAlign: "right"}}><Link to = "/forgetPwd/loginPwd" style = {{color: "#f04447"}}>忘记密码</Link></p>
-                        <p className = "text-center"><Link to = "/register">注册</Link></p>
+                        {/* <p className = "text-center"><Link to = "/register">注册</Link></p> */}
                     </div>
                 </form>
             </div>

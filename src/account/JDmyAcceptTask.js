@@ -6,6 +6,16 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
+const nav = [
+    {
+        text: "任务列表",
+        link: "/account/jdTask"
+    },
+    {
+        text: "我接受的任务",
+        link: "/account/jdmyAcceptTask"
+    }
+]
 class JDmyAcceptTask extends Component {
     constructor (props){
         super(props);
@@ -74,9 +84,19 @@ class JDmyAcceptTask extends Component {
     render(){
         const self = this;
         const data = this.state.data;
+        const hash = window.location.hash.substring(1);
         return <div> 
-            <Title title = "接受的任务" code = {this.state.code}/>
+            <Title title = "接受的金豆任务" code = {this.state.code}/>
             <div className = "pb_100">
+                <ul className = "head_nav f_flex">
+                    {
+                        nav.map(function(item, i){
+                            return <li key = {i} className = {hash === item.link? "active" : ""}>
+                                <Link to = {item.link}>{item.text}</Link>
+                            </li>
+                        })
+                    }
+                </ul>
                 <ul className="taskLists f_flex">
                     {
                         data.length === 0 ? <li>暂时没有数据可显示...</li> :

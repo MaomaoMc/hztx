@@ -83,6 +83,7 @@ class Main extends Component {
             const data = res.data;
             const code = data.code;
             if(code === 1){
+                localStorage.setItem("company_data", JSON.stringify(data.data[0]))
                 self.setState({
                     company_data: data.data[0]
                 })
