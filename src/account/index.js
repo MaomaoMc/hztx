@@ -31,6 +31,7 @@ import JDTask from './JDTask';
 import JDtaskDetail from './JDtaskDetail';
 import JDmyAcceptTask from './JDmyAcceptTask';
 import JDSubmitTask from './JDSubmitTask';
+import Speads from './Speads';
 
 class Account extends Component {
     render(){
@@ -48,6 +49,7 @@ class Account extends Component {
                 <Route path="/account/recharge" component = {ReCharge} />
                 <Route path="/account/MyWallet" component = {MyWallet} />
                 <Route path="/account/ssDeal" component = {SsDeal} />
+                <Route path="/account/speads/:id" component = {Speads} />
                 <Route path="/account/spead" component = {Spead} />
                 <Route path="/account/help" component = {Help} />
                 <Route path="/account/pwdControl" component = {PwdControl} />

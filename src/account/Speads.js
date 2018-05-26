@@ -2,30 +2,19 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
-import QRCode from 'qrcode.react';
-//引入
-import copy from 'copy-to-clipboard';
 import Title from './../Title';
 import Footer from './../Footer';
 import WarningDlg from './../WarningDlg';
 
-class Spead extends Component {
+class Speads extends Component {
     constructor (props){
         super(props);
         this.state = {
             data: [],  //推广列表
-            my_data: [],  //下级推广
-            id_num: "",
-            code: "",
-            path: "", // 保存二维码SVG的path
+            hash: window.location.hash,
             warningShow: false,
             warningText: ""
         };
-    }
-    copy (e){
-        //使用方法
-        copy(e.text);
-        alert("复制成功");
     }
     hanleWarningDlgTimer (){  //定时关闭 警告弹窗
         const self = this;
@@ -39,34 +28,9 @@ class Spead extends Component {
     }
     ajax (){
         const self = this;
-        axios.post(window.baseUrl + "/home/Member/spread", qs.stringify({
-            token: localStorage.getItem("token")
-        })).then(function(res){
-            const data = res.data;
-            const code = data.code;
-            if(code === 1){
-                const id_num = data.data[0].id_num;
-                self.setState({
-                    id_num: id_num,
-                    path: window.baseUrl + "/build/index.html?#/register?tui_id=" + id_num
-                })
-            }else{  //失败
-                self.setState({
-                    warningShow: true,
-                    warningText: data.msg
-                }, function(){
-                    self.hanleWarningDlgTimer();
-                })
-            }
-            self.setState({
-                code: code
-            })
-        })
-    }
-    speadAjax (){  //推广列表ajax
-        const self = this;
         axios.post(window.baseUrl + "/home/Member/subordinate", qs.stringify({
-            token: localStorage.getItem("token")
+            token: localStorage.getItem("token"),
+            member_id: self.props.match.params.id
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -77,37 +41,29 @@ class Spead extends Component {
             }else{  //失败
                 self.setState({
                     warningShow: true,
-                    warningText: data.msg
+                    warningText: data.msg,
+                    code: code
                 }, function(){
                     self.hanleWarningDlgTimer();
                 })
             }
-            self.setState({
-                code: code
-            })
         })
     }
     componentDidMount (){
         this.ajax();
-        this.speadAjax();
+    }
+    componentDidUpdate (){
+        if(window.location.hash !== this.state.hash){
+            this.setState({
+                hash: window.location.hash
+            }, function(){
+                this.ajax();
+            })
+        }
     }
     render (){
         return <div>
             <Title title="推广" code = {this.state.code}/>
-            <div className = "inviteOpt f_flex" style = {{padding: ".2rem .3rem"}}>
-                    <p className = "">我的推荐链接</p>
-                    <p style = {{margin: ".2rem 0"}}>
-                        <span className="inviteLink">{this.state.path} </span>
-                        <span className = "btn btn_primary"
-                        onClick = {e => {this.copy({text: this.state.path})}}
-                        >复制</span>
-                    </p>
-                <p><i className="f_lt inviteCode"></i>
-                    <span className="f_lt" style={{marginTop: ".2rem"}}>推荐二维码</span></p>
-            </div>
-            <div className="text-center mt_40">
-                {this.state.path !== "" ? <QRCode value = {this.state.path}/> : null}
-            </div>
             <table className = "normal_table" style = {{backgroundColor: "white", marginTop: ".3rem"}}>
                 <thead>
                     <tr>
@@ -118,9 +74,9 @@ class Spead extends Component {
                     </tr>
                 </thead>
                 <tbody>
+                    {this.state.data.length === 0 ? <tr><td colSpan = "4">暂无下级推广人</td></tr>: null}
                     {
-                        this.state.data.map(function(item, i){
-                           
+                        this.state.data.length > 0 && this.state.data.map(function(item, i){
                             return <tr key = {i}>
                                 <td>{item.member_id}</td>
                                 <td><Link to = {"/account/speads/" + item.member_id}>{item.name}</Link></td>
@@ -138,4 +94,4 @@ class Spead extends Component {
     }
 }
 
-export default Spead;
+export default Speads;

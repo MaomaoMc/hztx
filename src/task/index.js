@@ -10,6 +10,7 @@ import SubmitTask from './SubmitTask';
 import ExamineTask from './ExamineTask';
 import TaskDetail from './TaskDetail';
 import ShenheTask from './ShenheTask';
+import EditTask from './EditTask';
 
 const task_nav = [
     {
@@ -34,12 +35,15 @@ class Task extends Component {
         const hash = window.location.hash;
         return <div>  
             {hash.indexOf("submitTask") === -1 && hash.indexOf("taskDetail") === -1 &&
-             hash.indexOf("examineTask") === -1 && hash.indexOf("shenheTask") === -1 && hash.indexOf("jdTask") === -1  ?
+             hash.indexOf("examineTask") === -1 && hash.indexOf("shenheTask") === -1
+              && hash.indexOf("jdTask") === -1 && hash.indexOf("editTask") === -1  ?
              <Nav nav = {JSON.stringify(task_nav)}/> : null}
             <Switch>
                 
+                <Route path="/task/publishTask/:id" component = {PublishTask} />
                 <Route path="/task/publishTask" component = {PublishTask} />
                 <Route path="/task/taskDetail/:id" component = {TaskDetail} />
+                {/* <Route path="/task/editTask/:id" component = {EditTask} /> */}
                 <Route path="/task/myPedTasks" component = {MyPedTasks} />
                 <Route path="/task/myAcceptTasks" component = {MyAcceptTasks} />
                 <Route path="/task/examineTask/:id" component = {ExamineTask} />

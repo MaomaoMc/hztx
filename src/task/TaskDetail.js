@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import Title from "./../Title";
@@ -106,10 +107,17 @@ class TaskDetail extends Component {
                             })
                         }
                     </p>
-                    {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
-                    onClick = {e => {
-                        this.handleAcceptTask()
-                    }}>接受任务</span></p> : null}
+                    {hash.indexOf("nonebtn") === -1 ?
+                        <p className = "text-center">
+                            <span className = "btn"
+                                onClick = {e => {
+                                    this.handleAcceptTask()
+                            }}>接受任务</span>
+                        </p> : null}
+                    {hash.indexOf("myped") !== -1 ?  /*如果是我发布的任务 进来的任务详情的话  加一个修改按钮  跳到修改任务页面*/
+                        <p className = "text-center"><Link to = {"/task/publishTask/" + this.props.match.params.id + "/editTask"}>
+                            <span className = "btn">修改</span></Link>
+                        </p> : null}
                 </div>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}

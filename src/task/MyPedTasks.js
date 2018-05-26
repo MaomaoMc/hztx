@@ -69,7 +69,7 @@ class MyPedTasks extends Component {
                                 return <li key={i}>
                                         <a style = {{display: "block", width: "100%", height: "100%", 
                                     position: "absolute", left: "0", top: "0", zIndex: "1"}} onClick = {e => {
-                                            self.props.history.push("/task/taskDetail/" + list.id + "/nonebtn")
+                                            self.props.history.push("/task/taskDetail/" + list.id + "/nonebtn/myped")
                                         }}></a>
                                     <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>
                                     <div className="f_lt">

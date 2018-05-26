@@ -6,13 +6,10 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
-class PublishTask extends Component {
+class EditTask extends Component {
     constructor (props){
         super(props);
-        const hash = window.location.hash;
-        let page_type = hash.indexOf("editTask") !== -1 ? "edit_task" : "publish_task";
         this.state = {
-            page_type: page_type,
             type_arr: [],
             title : "",
             content : "",
@@ -77,19 +74,11 @@ class PublishTask extends Component {
              }
         })
     }
-    deletePic (e){  //删除图片
-      const index = e.index;
-      const pic_arr = this.state.pic_arr;
-      pic_arr.splice(index, 1);
-      this.setState({
-        pic_arr: pic_arr
-      })
-    }
     handlePublish (){  //发布任务
         const self = this;
         const state = this.state;
-        const page_type = state.page_type;
-        axios.post(window.baseUrl + "/home/Member/setTask" + (page_type === "edit_task" ? "?task_id=" + self.props.match.params.id : ""), qs.stringify({
+        console.log(document.getElementById("output").childNodes[0].toDataURL("image/png"), 'sdad')
+        axios.post(window.baseUrl + "/home/Member/setTask", qs.stringify({
             token: localStorage.getItem("token"),
             title : state.title,
             content : state.content,
@@ -127,7 +116,7 @@ class PublishTask extends Component {
             if(code === 1){
                 self.setState({
                     type_arr: data.data,
-                    typeid: data.data[0].id,
+                    typeid: data.data[0].id
                 })
             }else{
                 self.setState({
@@ -140,54 +129,40 @@ class PublishTask extends Component {
             }
         })
     }
-    getEditTaskAjax(){
+    editTask(){
         const self = this;
         axios.post(window.baseUrl + "/home/Member/editTask", qs.stringify({
             token: localStorage.getItem("token"),
-            task_id: self.props.match.params.id
+            task_id: self.props.match.prams.id
         })).then(function(res){
             const data = res.data;
             const code = data.code;
-            if(code === 1){
-                const task_data = data.data;
-                self.setState({
-                    data: task_data,
-                    typeid: task_data.taskclass_id,
-                    title : task_data.title || "",
-                    content : task_data.content || "",
-                    money : task_data.money || "",
-                    time : task_data.time || "",
-                    pic : task_data.pic || "",
-                    num : task_data.num || "",
-                    url: task_data.url || "", //任务链接
-                    // qr_code: task_data.qr_code, //任务二维码
-                    pic_arr: task_data.pic.split(","),
-                })
-            }else{
-                self.setState({
-                    warningShow: true,
-                    warningText: data.msg,
-                    code: code
-                }, function(){
-                    self.hanleWarningDlgTimer()
-                })
-            }
+            // if(code === 1){
+            //     self.setState({
+            //         type_arr: data.data,
+            //         typeid: data.data[0].id
+            //     })
+            // }else{
+            //     self.setState({
+            //         warningShow: true,
+            //         warningText: data.msg,
+            //         code: code
+            //     }, function(){
+            //         self.hanleWarningDlgTimer()
+            //     })
+            // }
         })
     }
     componentDidMount (){
         this.ajax();
-        const page_type = this.state.page_type;
-        if(page_type === "edit_task"){  //修改任务页面的话
-            this.getEditTaskAjax();
-        }
+        this.editTask();
+        // console.log()
     }
     render(){
         const type_arr = this.state.type_arr;
         const pic_arr = this.state.pic_arr;
-        const page_type = this.state.page_type;
-        const self = this;
         return <div> 
-            <Title title = {page_type === "edit_task" ? "修改任务" : "发布任务"} code = {this.state.code}/>
+            <Title title = "修改任务" code = {this.state.code}/>
             <ul className = "f_flex personalUl pb_100">
                 <li>
                     <label>任务名称：</label> 
@@ -232,7 +207,7 @@ class PublishTask extends Component {
                 </li>
                 <li>
                     <label style = {{verticalAlign: "top"}}>任务内容：</label>
-                    <textarea name="" id="" cols="30" rows="10" placeholder = "请输入任务内容" value = {this.state.content} onChange = {e => {
+                    <textarea name="" id="" cols="30" rows="10" placeholder = "请输入任务内容" onChange = {e => {
                         this.handleIptChange({type: "content", value: e.target.value})
                     }}></textarea>
                 </li>
@@ -250,13 +225,8 @@ class PublishTask extends Component {
                     <label>任务截图：</label> 
                     {
                         pic_arr.length > 0 && pic_arr.map(function(pic, i){
-                            return <p key = {i} style = {{overflow: "hidden"}}><i style = {{display: "block", float: "left", width: "1.5rem", height: "1.5rem",
-                             backgroundImage: "url(" + pic +")", backgroundRepeat: "no-repeat",
-                              backgroundSize: "100% 100%", marginLeft: "10%", marginBottom: ".2rem"}}></i>
-                             <span style = {{float: "left", fontSize: ".12rem", marginLeft: "1%", marginTop: "10%"}}
-                             onClick = {e => {
-                                 self.deletePic({index: i})
-                             }}>删除图片</span></p>
+                            return <i key = {i} style = {{display: "block", width: "1.5rem", height: "1.5rem",
+                             backgroundImage: "url(" + pic +")", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", marginLeft: "26%", marginBottom: ".2rem"}}></i>
                         })
                     }
                     <form action="" id="form" style = {{display: "inline"}}> 
@@ -272,7 +242,7 @@ class PublishTask extends Component {
                     <span className = "btn btn_primary" style = {{width: "95%", height: ".6rem", lineHeight: ".6rem"}}
                     onClick = {e => {
                         this.handlePublish()
-                    }}>{page_type === "edit_task" ? "修改" : "发布"}</span>
+                    }}>发布</span>
                 </li>
             </ul>
             {this.state.warningShow ? 
@@ -282,4 +252,4 @@ class PublishTask extends Component {
     }
 }
 
-export default PublishTask;
+export default EditTask;
