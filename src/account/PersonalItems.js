@@ -144,6 +144,7 @@ class PersonalItems extends Component {
         const state = this.state;
         axios.post(window.baseUrl + "/home/Member/realName", qs.stringify({
             token: localStorage.getItem("token"),
+            name: state.name,
             username: state.username,
             phone: state.phone,
             card_num: state.card_num,
@@ -178,6 +179,7 @@ class PersonalItems extends Component {
                 localStorage.setItem("head_pic", obj.pic)
                 self.setState({
                     profile_pic: obj.pic,
+                    name: obj.name,
                     username: obj.username,
                     phone: obj.phone,
                     card_num: obj.card_num,
@@ -220,8 +222,8 @@ class PersonalItems extends Component {
                 <ul className = "f_flex personalUl">
                     <li>
                         <label>昵称：</label>
-                        <input type="tel" placeholder = "请输入昵称" disabled = {!editing ? true : false} value = {state.username} onChange = {e => {
-                            this.handleIptChange({type: "username", value: e.target.value})
+                        <input type="tel" placeholder = "请输入昵称" disabled = {!editing ? true : false} value = {state.name} onChange = {e => {
+                            this.handleIptChange({type: "name", value: e.target.value})
                         }}/>
                     </li>
                     <li>
@@ -232,8 +234,8 @@ class PersonalItems extends Component {
                     </li>
                     <li>
                         <label>姓名：</label>
-                        <input type="tel" placeholder = "请输入姓名" disabled = {!editing ? true : false} value = {state.name} onChange = {e => {
-                            this.handleIptChange({type: "name", value: e.target.value})
+                        <input type="tel" placeholder = "请输入姓名" disabled = {!editing ? true : false} value = {state.username} onChange = {e => {
+                            this.handleIptChange({type: "username", value: e.target.value})
                         }}/>
                     </li>
                     <li>
