@@ -24,7 +24,6 @@ class PersonalItems extends Component {
             bank_num: "",
             t_pass: "",
             t_repass: "",
-            countDown: 60,
             warningShow: false,
             warningText: "",
             code: ""
@@ -115,24 +114,6 @@ class PersonalItems extends Component {
           return true;
         }
       }
-      resendCode (){  //60s倒计时 重新发送验证码
-        let countDown = this.state.countDown;
-        let timer;
-        const self = this;
-        if(countDown !== 0){  //倒计时没结束
-             timer = setInterval(
-                function () {
-                    countDown--;
-                    if(countDown === 0){
-                        clearInterval(timer);
-                    }
-                    self.setState({
-                        countDown: countDown
-                    })
-                }
-            , 1000)
-        }
-    }
     passValidate (e){
         const value = e.value;
         const page_type = this.state.page_type;
@@ -157,44 +138,6 @@ class PersonalItems extends Component {
             })
             return;
         }
-    }
-    sendCode (){  //获取验证码
-        const self = this;
-        const phone = this.state.phone;
-        const countDown = this.state.countDown;
-        if(countDown < 60 && countDown > 0){  //正在倒计时就不要再让点击了
-            return;
-        }
-        if(!this.checkMobile(phone)){
-            this.setState({
-                warningShow: true,
-                warningText: "请输入正确的手机号码",
-            }, function(){
-                self.hanleWarningDlgTimer()
-            });
-            return;
-          }
-        axios.post(window.baseUrl + "/home/Login/send", qs.stringify({
-            phone: phone
-        })).then(function(res){
-            const data = res.data;
-            const data_code = data.code;
-            if(data_code === 1){  //发送成功 开始倒计时
-                self.setState({
-                    countDown: 60
-                }, function(){
-                    self.resendCode();
-                })
-                
-            }
-           self.setState({
-               warningShow: true,
-               warningText: data.msg,
-             data_code: data_code
-           }, function(){
-               self.hanleWarningDlgTimer()
-           })
-        })
     }
     submit (){  //提交
         const self = this;
@@ -287,15 +230,6 @@ class PersonalItems extends Component {
                             this.handleIptChange({type: "phone", value: e.target.value})
                         }}/>
                     </li>
-                    {editing ? <li>
-                        <label>验证码：</label>
-                        <input type="text" placeholder = "请输入验证码" onChange = {e => {
-                            this.handleIptChange({type: "y_code", value: e.target.value})
-                        }}/>
-                        <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {
-                            this.sendCode()
-                        }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "获取验证码"}</span>
-                    </li> : null}
                     <li>
                         <label>姓名：</label>
                         <input type="tel" placeholder = "请输入姓名" disabled = {!editing ? true : false} value = {state.name} onChange = {e => {
