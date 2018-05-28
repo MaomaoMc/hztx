@@ -177,7 +177,7 @@ class Register extends Component {
                 <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
                    <li>
                        <label>手机号:</label>
-                       <input type="text" placeholder = "请设置登录密码" value = {this.state.phone} onChange = {e => {
+                       <input type="text" placeholder = "请输入手机号码" value = {this.state.phone} onChange = {e => {
                            this.handleIptChange({type: "phone", value: e.target.value})
                        }}/>
                    </li>
@@ -188,7 +188,7 @@ class Register extends Component {
                        }}/>
                        <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {
                         this.sendCode()
-                    }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "验证码"}</span>
+                    }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "获取验证码"}</span>
                    </li>
                    <li>
                        <label>登录密码:</label>
@@ -215,7 +215,7 @@ class Register extends Component {
                         }}>注册</span>
                    </li>
                 </ul>
-                <p className = "text-center" style = {{marginTop: "1rem"}}>已有账号？直接<Link to = "/">登录</Link></p>
+                <p className = "text-center" style = {{fontSize: ".24rem", marginTop: "1rem"}}>已有账号？直接<Link to = "/">登录</Link></p>
            </div>
            {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
         </div>
