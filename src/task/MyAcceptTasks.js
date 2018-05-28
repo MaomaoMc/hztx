@@ -99,7 +99,7 @@ class MyAcceptTasks extends Component {
                                                 self.handleTask({type: "abandon", id: list.id})
                                             }}>放弃</span>
                                             <span className = "btn btn_orange" style = {{verticalAlign: "bottom", position: "relative",zIndex: 2}} onClick = {e => {
-                                                self.props.history.push("/task/submitTask/" + list.tid)
+                                                self.props.history.push("/task/submitTask/" + list.id)
                                             }}>提交</span>
                                             </p>:
                                              <p>{status}</p>}

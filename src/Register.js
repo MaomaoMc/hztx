@@ -144,7 +144,7 @@ class Register extends Component {
         const state = this.state;
         axios.post(window.baseUrl + "/home/Login/register", qs.stringify({
             phone: state.phone,
-            code: state.phone,
+            code: state.code,
             l_pass: state.l_pass,
             rl_pass: state.rl_pass,
             tui_id: state.tui_id
