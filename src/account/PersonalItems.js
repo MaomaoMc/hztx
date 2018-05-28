@@ -30,8 +30,37 @@ class PersonalItems extends Component {
             code: ""
         }
     }
-
-    uploadedFile (e){ //修改头像
+    setHeadPic (){//修改头像
+        const self = this;
+        axios.post(window.baseUrl +  "/home/Member/uploadPic", qs.stringify({
+            token: localStorage.getItem("token"),
+            pic: self.state.profile_pic
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            if(code === 1){
+                localStorage.setItem("head_pic", self.state.profile_pic);
+            }
+            self.setState({
+                warningDlgShow: true,
+                warningText: data.msg,
+                code: code
+            }, function(){
+                setTimeout(
+                    function(){
+                        self.setState({
+                            warningShow: false
+                        }, function(){
+                            if(code === 1){
+                                // window.location.reload();
+                            }
+                        })
+                    }
+                , 1000)
+            })
+        })
+    }
+    uploadedFile (e){ //上传图片
         const self = this;
         let file = document.getElementById("photo").files[0];
         let formData = new FormData()  // 创建form对象
@@ -46,18 +75,18 @@ class PersonalItems extends Component {
                 const pic = window.baseUrl +  data.data;
                 self.setState({
                     profile_pic: pic
+                }, function(){
+                    self.setHeadPic()
                 })
             } else {
                 self.setState({
                     warningDlgShow: true,
-                    warningText: data.msg
+                    warningText: data.msg,
+                    code: code
                 }, function(){
                     self.hanleWarningDlgTimer();
                 })
              }
-            self.setState({
-                code: code
-            })
         })
     }
     handleIptChange (e){
@@ -73,7 +102,6 @@ class PersonalItems extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){
-                        localStorage.setItem("head_pic", self.state.profile_pic);
                         window.history.back();
                     }
                 })
@@ -180,7 +208,7 @@ class PersonalItems extends Component {
             wx_num: state.wx_num,
             bank_name: state.bank_name,
             bank_num: state.bank_num,
-            pic: state.profile_pic , //头像
+            // pic: state.profile_pic , //头像
             t_pass: state.t_pass,
             t_repass: state.t_repass
         })).then(function(res){
@@ -204,8 +232,9 @@ class PersonalItems extends Component {
             const code = data.code;
             if(code === 1){
                 const obj = data.data[0];
+                localStorage.setItem("head_pic", obj.pic)
                 self.setState({
-                    profile_pic: window.baseUrl + obj.pic,
+                    profile_pic: obj.pic,
                     username: obj.username,
                     phone: obj.phone,
                     card_num: obj.card_num,

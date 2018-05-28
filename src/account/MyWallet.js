@@ -106,8 +106,8 @@ class MyWallet extends Component {
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
-                <p>现金：{(data.money * 1).toFixed(2)}元</p>
-                <p style = {{marginTop: ".3rem"}}>金豆：{data.jd_num}JD <span style = {{marginLeft: ".3rem"}}>冻结数量：{(data.dmoney * 1).toFixed(2)}JD</span></p>
+                <p>现金：{(data.money * 1).toFixed(2)}元 <span style = {{marginLeft: ".3rem"}}>冻结金额：{(data.dmoney * 1).toFixed(2)}JD</span></p>
+                <p style = {{marginTop: ".3rem"}}>金豆：{data.jd_num}JD <span style = {{marginLeft: ".3rem"}}>冻结金豆：{(data.djd_num * 1).toFixed(2)}JD</span></p>
                 <p style = {{overflow: "hidden", marginTop: ".3rem"}}>
                     <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
                         this.handleOpt({type: "tx"})

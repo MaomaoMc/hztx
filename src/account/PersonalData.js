@@ -77,7 +77,7 @@ class PersonalData extends Component {
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
-                <div className = "head_pic" style = {{backgroundImage: "url(" + window.baseUrl + localStorage.getItem("head_pic") + ")"}}>
+                <div className = "head_pic" style = {{backgroundImage: "url(" + localStorage.getItem("head_pic") + ")"}}>
                 </div>
                     <p className = "text-right" style = {{fontSize: ".24rem"}}>
                     <a className = "exitApp f_lt" onClick = {e => {

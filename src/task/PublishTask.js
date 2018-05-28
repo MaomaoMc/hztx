@@ -197,7 +197,7 @@ class PublishTask extends Component {
                 </li>
                 <li>
                     <label>任务类型：</label> 
-                    <select onChange = {e => {
+                    <select value = {this.state.typeid} onChange = {e => {
                         this.handleIptChange({type: "typeid", value: e.target.value})
                     }}>
                         {

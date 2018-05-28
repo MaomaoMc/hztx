@@ -8,9 +8,6 @@ class Title extends Component {
             menuShow: false
         }
     }
-    componentDidMount (){
-        
-    }
     render(){
         if(this.props.code > 10000){  //token过期 回登陆页面去
             window.removeLocalItemsFun()
@@ -20,7 +17,7 @@ class Title extends Component {
            <header>
                <span className = "f_lt" style = {{marginLeft: ".15rem"}}>
                 <Link to = "/account/personalData" style = {{display: "block", width: ".75rem", height: ".75rem"}}>
-                    <img src={window.baseUrl + localStorage.getItem("head_pic")} alt="" style = {{width: "100%", height: "100%"}}/>
+                    <img src={localStorage.getItem("head_pic")} alt="" style = {{width: "100%", height: "100%"}}/>
                 </Link>
                </span>
                <span>{this.props.title}</span>

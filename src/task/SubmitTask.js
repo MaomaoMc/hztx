@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import QRCode from 'qrcode.react';
 import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
@@ -88,7 +87,6 @@ class SubmitTask extends Component {
     }
     
     render(){
-        const type_arr = this.state.type_arr;
         const pic_arr = this.state.pic_arr;
         return <div> 
             <Title title = "提交任务" code = {this.state.code}/>
