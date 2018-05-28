@@ -145,6 +145,7 @@ class ForgetPwd extends Component {
     }
     render(){
         const type = this.props.match.params.type;
+        const countDown = this.state.countDown;
         return <div> 
             <Title title = {type === "tradePwd" ? "忘记交易密码" : "忘记登录密码"} code = {this.state.data_code}/>
             <div className = "pb_100" style = {{marginTop: "1rem"}}>
@@ -160,9 +161,9 @@ class ForgetPwd extends Component {
                        <input type="text" placeholder = "请输入收到的验证码" style = {{width: "40%"}} value = {this.state.code} onChange = {e => {
                            this.handleIptChange({type: "code", value: e.target.value})
                        }}/>
-                       <span className = "btn btn_primary f_rt" onClick = {e =>{
-                           this.sendCode()
-                       }}>获取验证码</span>
+                       <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {
+                         this.sendCode()
+                    }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "验证码"}</span>
                    </li>
                    <li>
                        <label>设置新密码:</label>
