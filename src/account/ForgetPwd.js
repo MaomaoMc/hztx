@@ -149,7 +149,7 @@ class ForgetPwd extends Component {
         return <div> 
             <Title title = {type === "tradePwd" ? "忘记交易密码" : "忘记登录密码"} code = {this.state.data_code}/>
             <div className = "pb_100" style = {{marginTop: "1rem"}}>
-               <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
+               <ul className = "f_flex forgetPwdrUl" style = {{padding: ".3rem"}}>
                     <li>
                        <label>手机号:</label>
                        <input type="text" placeholder = "请输入手机号" value = {this.state.phone} onChange = {e => {
@@ -158,7 +158,7 @@ class ForgetPwd extends Component {
                    </li>
                    <li>
                        <label>验证码:</label>
-                       <input type="text" placeholder = "请输入收到的验证码" style = {{width: "40%"}} value = {this.state.code} onChange = {e => {
+                       <input type="text" placeholder = "请输入收到的验证码" style = {{width: "45%"}} value = {this.state.code} onChange = {e => {
                            this.handleIptChange({type: "code", value: e.target.value})
                        }}/>
                        <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {

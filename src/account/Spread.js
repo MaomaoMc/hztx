@@ -92,27 +92,24 @@ class Spead extends Component {
         this.speadAjax();
     }
     render (){
-        return <div>
+        return <div className = "pb_100">
             <Title title="推广" code = {this.state.code}/>
-            <div className = "inviteOpt f_flex" style = {{padding: ".2rem .3rem"}}>
-                    <p className = "">我的推荐链接</p>
-                    <p style = {{margin: ".2rem 0"}}>
-                        <span className="inviteLink">{this.state.path} </span>
-                        <span className = "btn btn_primary"
-                        onClick = {e => {this.copy({text: this.state.path})}}
-                        >复制</span>
-                    </p>
-                <p><i className="f_lt inviteCode"></i>
-                    <span className="f_lt" style={{marginTop: ".2rem"}}>推荐二维码</span></p>
+            <div style = {{padding: ".2rem"}}>
+                <p className = "">我的推荐链接</p>
+                <p style = {{margin: ".2rem 0"}}>
+                    <span className="inviteLink">{this.state.path} </span>
+                    <span className = "btn btn_primary"
+                    onClick = {e => {this.copy({text: this.state.path})}}
+                    >复制</span>
+                </p>
             </div>
-            <div className="text-center mt_40">
-                {this.state.path !== "" ? <QRCode value = {this.state.path}/> : null}
+            <div className = "inviteOpt">
+                <div>{this.state.path !== "" ? <QRCode value = {this.state.path} style = {{width: "100%", height: "100%"}}/> : null}</div>
             </div>
             <table className = "normal_table" style = {{backgroundColor: "white", marginTop: ".3rem"}}>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>姓名</th>
                         <th>手机号</th>
                         <th>微信号</th>
                     </tr>
@@ -122,8 +119,7 @@ class Spead extends Component {
                         this.state.data.map(function(item, i){
                            
                             return <tr key = {i}>
-                                <td>{item.member_id}</td>
-                                <td><Link to = {"/account/speads/" + item.member_id}>{item.name}</Link></td>
+                                <td><Link to = {"/account/speads/" + item.member_id}>{item.member_id}</Link></td>
                                 <td>{item.phone}</td>
                                 <td>{item.wx_num}</td>
                             </tr>

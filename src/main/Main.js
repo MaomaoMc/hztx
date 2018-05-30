@@ -136,12 +136,15 @@ class Main extends Component {
                 </div>
                 <div style = {{backgroundColor: "white"}}>
                     <h3 className = "text-center" style = {{paddingTop: ".2rem"}}>{company_data.title}</h3>
-                    <div style = {{padding: ".2rem .3rem"}}>
-                        <p>{company_data.content}</p>
+                    <div style = {{padding: "0 .3rem",
+                            overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box",
+                            WebkitLineClamp: "4"
+                        }}>
+                        <Link to = "/introduce" style = {{color: "#666"}} dangerouslySetInnerHTML={{__html: company_data.content}} ></Link>
                     </div>
                 </div>
                 <div>
-                   <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0"}}>
+                   <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".3rem 0"}}>
                     <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>最新公告</h3>
                    </div>
                    <ul className = "noticeUl">

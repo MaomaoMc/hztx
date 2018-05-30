@@ -16,7 +16,7 @@ const heads = [
     },
     {
         name: "money",
-        text: "收入(BTA)"
+        text: "收入(JD)"
     }
 ]
 class MinerEarnings extends Component {

@@ -98,6 +98,8 @@ class TaskDetail extends Component {
                         <span className = "f_rt fc_red"><span className = "icon">赏</span>{data.money}元</span>
                     </p><br/>
                     <p>发布人昵称：{data.name}</p>
+                    <p>发布时间：{new Date(data.add_time * 1000).format("yyyy-MM-dd hh:mm:ss")}</p>
+                    <p>任务时限：{data.time}小时</p>
                     <p style = {{marginTop: ".3rem", textIndent: ".3rem"}}>{data.content}</p>
                     <h4>任务所需截图：</h4>
                     <p className = "text-center">

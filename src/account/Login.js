@@ -4,13 +4,15 @@ import axios from 'axios';
 import qs from 'qs';
 import WarningDlg from "./../WarningDlg";
 
-const loginImg = require("../img/logo.jpg");
+const loginImg = require("../img/logo.png");
+const loginItemsImg = require("../img/logo_item.png");
+const bg = require("../img/bg.png");
 class Login extends Component {
     constructor (props){
         super(props);
         this.state = {
-            phone: "18796271508",
-            l_pass: "123",
+            phone: "",
+            l_pass: "",
             logined: false,
             warningShow: false,
             warningText: ""
@@ -27,13 +29,6 @@ class Login extends Component {
             function(){
                 self.setState({
                     warningShow: false
-                }, function(){
-                    if(obj && obj.code === 1){
-                       
-                        self.setState({
-                            logined: true
-                        })
-                    }
                 })
             }
         , 1000)
@@ -48,44 +43,49 @@ class Login extends Component {
         })).then(function(res){
             const data = res.data;
             const code = data.code;
-            if(code === 1){
+            if(code === 1){  //登陆成功
                 localStorage.setItem("token", data.data.token);
                 localStorage.setItem("head_pic", data.data.pic);
+                self.setState({
+                    logined: true
+                })
             }
-            self.setState({
-                warningShow: true,
-                warningText: data.msg,
-                code: code
-            }, function(){
-                self.hanleWarningDlgTimer({code: code})
-            })
+            else{
+                self.setState({
+                    warningShow: true,
+                    warningText: data.msg,
+                    code: code
+                }, function(){
+                    self.hanleWarningDlgTimer()
+                })
+            }
         })
     }
     render(){
         if(this.state.logined){  //登录成功 跳转到主页
             return <Redirect to = "/main" />
         }
-        return <div> 
-            <img src={loginImg} alt="" style={{width: "36%", marginLeft: "32%", marginTop: ".5rem", marginBottom: ".5rem"}}/>
+        return <div style = {{width: "100%", height: "100%", position: "fixed", left: "0", top: "0",
+        backgroundImage: "url(" + bg + ")", backgroundSize: "cover"}}> 
+            <img src={loginImg} alt="" style={{width: "75%", marginLeft: "14%", marginTop: "2.5rem", marginBottom: ".5rem"}}/>
+            <img src={loginItemsImg} alt="" style={{width: "65%", marginLeft: "17%", marginBottom: "1rem"}}/>
             <div>
                 <form action="" id="loginFrom" className = "loginFrom" style = {{paddingBottom: ".3rem"}}>
                     <ul>
-                        <li style = {{borderBottom: ".02rem solid #e5e5e5"}}>
-                            <span><i></i></span>
+                        <li>
                             <input type="text" className = "input-txt" placeholder = "请输入会员账号" value = {this.state.phone}
                             onChange = {e => {
                                 this.handleIptChange({type: "phone", value: e.target.value})
                             }}/>
                         </li>
                         <li>
-                            <span><i></i></span>
                             <input type="password" className = "input-txt" placeholder = "请输入登录密码" value = {this.state.l_pass}
                             onChange = {e => {
                                 this.handleIptChange({type: "l_pass", value: e.target.value})
                             }}/>
                         </li>
                     </ul>
-                    <div style = {{padding: '0 .3rem'}}>
+                    <div>
                         <button className = "submit" onClick = {e => {
                             this.login()
                         }}>登录</button>

@@ -228,7 +228,7 @@ class PublishTask extends Component {
                     <label>任务时限：</label> 
                     <input type="text" placeholder = "请输入任务时限" value = {this.state.time} onChange = {e => {
                         this.handleIptChange({type: "time", value: e.target.value})
-                    }}/>
+                    }}/><span>&nbsp;小时</span>
                 </li>
                 <li>
                     <label style = {{verticalAlign: "top"}}>任务内容：</label>

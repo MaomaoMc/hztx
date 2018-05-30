@@ -106,8 +106,8 @@ class MyWallet extends Component {
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
-                <p>现金：{(data.money * 1).toFixed(2)}元 <span style = {{marginLeft: ".3rem"}}>冻结金额：{(data.dmoney * 1).toFixed(2)}JD</span></p>
-                <p style = {{marginTop: ".3rem"}}>金豆：{data.jd_num}JD <span style = {{marginLeft: ".3rem"}}>冻结金豆：{(data.djd_num * 1).toFixed(2)}JD</span></p>
+                <p>现金：{(data.money * 1).toFixed(2)}元 <span style = {{marginLeft: ".3rem"}}>冻结金额：{(data.dmoney * 1).toFixed(2)}</span></p>
+                <p style = {{marginTop: ".3rem"}}>金豆：{data.jd_num} <span style = {{marginLeft: ".3rem"}}>冻结金豆：{(data.djd_num * 1).toFixed(2)}</span></p>
                 <p style = {{overflow: "hidden", marginTop: ".3rem"}}>
                     <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
                         this.handleOpt({type: "tx"})
@@ -117,7 +117,7 @@ class MyWallet extends Component {
                     }}>充值</span>
                 </p>
                 <p className = "text-center fc_red" style = {{fontSize: ".12rem", marginTop: ".01rem"}}>注！提现需扣除一定的手续费(和金豆交易时按手续费比例计算的手续费)</p>
-                {this.state.form_show ? <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
+                {this.state.form_show ? <ul className = "f_flex forgetPwdrUl" style = {{padding: ".3rem"}}>
                    <li>
                        <label>名称:</label>
                        <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号名称" : "请输入充值账号名称"} value = {this.state.name} onChange = {e => {
@@ -158,9 +158,6 @@ class MyWallet extends Component {
                        <span className = "btn btn_primary f_lt" style = {{width : "95%"}} onClick = {e => {
                             this.handleSubmit()
                         }}>提交</span>
-                        {/* <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
-                            this.handleSubmit()
-                        }}>充值</span> */}
                    </li>
                    <li>
                     <p className = "text-center fc_red" style = {{fontSize: ".12rem"}}>可提现/充值时间段：9:00-17:00</p>

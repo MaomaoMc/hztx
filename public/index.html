@@ -44,8 +44,9 @@
             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
 
         function setHtmlFontSize() {
-            let docHtmlWidth = docHtml.getBoundingClientRect().width; //设备宽度
-            let fontSize = docHtmlWidth<320
+          console.log(docHtml, docHtml.getBoundingClientRect().width, 'docHtml')
+            var docHtmlWidth = docHtml.getBoundingClientRect().width; //设备宽度
+            var fontSize = docHtmlWidth<320
                 ?320*100/UIwidth
                 :docHtmlWidth>420
                     ?420*100/UIwidth

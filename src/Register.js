@@ -6,7 +6,8 @@ import qs from 'qs';
 import Title from "./Title";
 import WarningDlg from "./WarningDlg";
 
-const loginImg = require("./img/logo.jpg");
+const loginImg = require("./img/logo.png");
+const bg = require("./img/bg.png");
 class Register extends Component {
     constructor(props){
         super(props);
@@ -170,20 +171,18 @@ class Register extends Component {
         if(this.state.registered){
             return <Redirect to = "/"/>
         }
-        return <div> 
-           <Title title = "注册" code = {this.state.code}/>
-           <div className = "pb_100" style = {{marginTop: ".2rem", padding: "0 .3rem"}}>
-           <img src={loginImg} alt="" style={{width: "36%", marginLeft: "32%", marginTop: ".5rem", marginBottom: ".5rem"}}/>
+        return <div style = {{width: "100%", height: "100%", position: "fixed", left: "0", top: "0",
+        backgroundImage: "url(" + bg + ")", backgroundSize: "cover"}}> 
+           <div className = "pb_100" style = {{marginTop: "1.2rem", padding: "0 .3rem"}}>
+           <img src={loginImg} alt="" style={{width: "75%", marginLeft: "14%", marginTop: "2rem", marginBottom: ".5rem"}}/>
                 <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
                    <li>
-                       <label>手机号:</label>
-                       <input type="text" placeholder = "请输入手机号码" value = {this.state.phone} onChange = {e => {
+                       <input type="text" placeholder = "手机号：" value = {this.state.phone} onChange = {e => {
                            this.handleIptChange({type: "phone", value: e.target.value})
                        }}/>
                    </li>
                    <li>
-                       <label>验证码:</label>
-                       <input type="text" placeholder = "请输入收到的验证码" style = {{width: "40%"}} value = {this.state.code} onChange = {e => {
+                       <input type="text" placeholder = "验证码：" style = {{width: "70%"}} value = {this.state.code} onChange = {e => {
                            this.handleIptChange({type: "code", value: e.target.value})
                        }}/>
                        <span className={countDown > 0 && countDown < 60 ? "btn btn_default f_rt" : "btn btn_primary f_rt"} onClick = {e => {
@@ -191,19 +190,16 @@ class Register extends Component {
                     }}>{countDown > 0 && countDown < 60 ? countDown + "s后重试" : countDown === 0 ? "重新发送" : "获取验证码"}</span>
                    </li>
                    <li>
-                       <label>登录密码:</label>
-                       <input type="password" placeholder = "请设置登录密码" value = {this.state.l_pass} onChange = {e => {
+                       <input type="password" placeholder = "创建密码：" value = {this.state.l_pass} onChange = {e => {
                            this.handleIptChange({type: "l_pass", value: e.target.value})
                        }}/>
                    </li>
                    <li>
-                       <label>确认登录密码:</label>
-                       <input type="password" placeholder = "请确认登录密码" value = {this.state.rl_pass} onChange = {e => {
+                       <input type="password" placeholder = "重复确认密码：" value = {this.state.rl_pass} onChange = {e => {
                            this.handleIptChange({type: "rl_pass", value: e.target.value})
                        }}/>
                    </li>
                    <li>
-                       <label>推荐人ID:</label>
                        {window.location.hash.indexOf("tui_id") !== -1 ? <input type="text" placeholder="推荐人手机号或ID：" disabled = "true" readOnly="true" defaultValue= {this.state.tui_id} />
                         : <input type="text" placeholder="推荐人ID：" value = {this.state.tui_id} onChange = {e => {
                             this.handleIptChange({type: "tui_id", value: e.target.value})
@@ -215,7 +211,7 @@ class Register extends Component {
                         }}>注册</span>
                    </li>
                 </ul>
-                <p className = "text-center" style = {{fontSize: ".24rem", marginTop: "1rem"}}>已有账号？直接<Link to = "/">登录</Link></p>
+                <p className = "text-center" style = {{fontSize: ".24rem", color: "white", marginTop: "1rem"}}>已有账号？直接<Link to = "/" style = {{color: "#00a8ff"}}>登录</Link></p>
            </div>
            {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
         </div>

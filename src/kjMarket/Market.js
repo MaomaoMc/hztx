@@ -104,7 +104,7 @@ class Market extends Component {
                                     <h4>{item.name}</h4>
                                     <p><span></span>租金价格{item.price}JD</p>
                                     <p><span></span>最终产量{item.earning}JD</p>
-                                    <span className = "total">租{item.use_num}棵&nbsp;剩{item.y_num}棵</span>
+                                    <span className = "total">租{item.use_num}&nbsp;剩{item.y_num}</span>
                                 </div>
                                 <div style = {{flexGrow: "1", textAlign: "right", marginRight: ".2rem"}}>
                                     <p>产力{item.force}</p>

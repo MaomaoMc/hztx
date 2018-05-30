@@ -60,13 +60,7 @@ class Introduce extends Component {
             <Title title = "公司简介" code = {this.state.code}/>
             <div className = "taskDetail">
                 <h3 className = "text-center">{data.title}</h3>
-                <div style = {{padding: ".2rem .3rem"}}>
-                   <p>{data.content}</p>
-                   <p>QQ1: {data.qq1}</p>
-                   <p>QQ2: {data.qq2}</p>
-                   <p>QQ3: {data.qq3}</p>
-                   <p>QQ4: {data.qq4}</p>
-                </div>
+                <div style = {{lineHeight: ".6rem", padding: ".2rem .3rem"}} dangerouslySetInnerHTML = {{__html: data.content}}></div>
             </div>
             <Footer />
         </div>
