@@ -61,11 +61,11 @@ class JDmyAcceptTask extends Component {
             }
         })
     }
-    handleTask (e){ //放弃任务 提交任务
+    handleTask (e){ //放弃任务
         const self = this;
-        axios.post(window.baseUrl + "/home/Member/unTask", qs.stringify({
+        axios.post(window.baseUrl + "/home/Jdtask/unjdTask", qs.stringify({
             token: localStorage.getItem("token"),
-            id: e.id
+            mytask_id: e.id
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -115,12 +115,12 @@ class JDmyAcceptTask extends Component {
                                     </div>
                                     <div className="f_rt">
                                         {status === "正进行" ? <p>
-                                            <span className = "btn btn_orange" style = {{marginRight: ".2rem"}}
+                                            <span className = "btn btn_orange" style = {{marginRight: ".2rem", position: "relative",zIndex: 2}}
                                             onClick = {e =>{
-                                                self.handleTask({type: "abandon", id: list.task_id})
+                                                self.handleTask({type: "abandon", id: list.id})
                                             }}>放弃</span>
                                             <span className = "btn btn_orange" style = {{verticalAlign: "bottom", position: "relative",zIndex: 2}} onClick = {e => {
-                                                self.props.history.push("/account/jdsubmitTask/" + list.task_id)
+                                                self.props.history.push("/account/jdsubmitTask/" + list.id)
                                             }}>提交</span>
                                             </p>:
                                              <p>{status}</p>}
