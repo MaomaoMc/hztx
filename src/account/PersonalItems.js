@@ -278,19 +278,10 @@ class PersonalItems extends Component {
                         </span>
                     </li>
                     <li>
-                        {state.phone === "" ? <Link to = "/account/creditCertify/unauthorized">
-                            <span className="f_lt">手机号验证</span>
-                            <span className="f_rt">
-                                <span className="fc_blue">{state.bank_num}</span>
-                                <span className="mark unauthorized">未认证</span>
-                            </span>
-                        </Link> : <span><span className="f_lt">手机号验证</span>
-                                <span className="f_rt">
-                                    <span className="fc_blue">{state.phone}</span>
-                                    <span className="mark authenticated">已认证</span>
-                                </span>
-                            </span>
-                        }
+                        <span className="f_lt">手机号</span>
+                        <span className="f_rt">
+                            <span className="fc_blue">{state.phone}</span>
+                        </span>
                     </li>
                     <li>
                         {state.bank_num === "" ? <Link to = "/account/creditCertify/unauthorized">

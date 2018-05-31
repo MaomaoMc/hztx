@@ -9,12 +9,8 @@ class SetPwd extends Component {
     constructor(props){
         super(props);
         this.state = {
-           oldl_pass: "",
-           newl_pass: "",
-           renewl_pass: "",
-           oldt_pass: "",
-           newt_pass: "",
-           renewt_pass: "",
+           pass: "",
+           repass: "",
             warningShow: false,
             warningText: "",
             code: ""
@@ -33,19 +29,18 @@ class SetPwd extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){
-                        window.location.reload();
+                        window.history.back();
                     }
                 })
             }
         , 1000)
     }
     handleSubmit (e){
-       const type = e.type;
        const state = this.state;
        const self = this;
-       axios.post(window.baseUrl + "/home/Member/editPass?token=" + localStorage.getItem("token"), qs.stringify({
-            pass: state.newl_pass,
-            repass: state.renewl_pass,
+       axios.post(window.baseUrl + "/home/Member/addPass?token=" + localStorage.getItem("token"), qs.stringify({
+            pass: state.pass,
+            repass: state.repass,
        })).then(function(res){
           const data = res.data;
           const code = data.code;
@@ -66,13 +61,13 @@ class SetPwd extends Component {
                    <li>
                        <label>交易密码:</label>
                        <input type="password" placeholder = "请设置交易密码" onChange = {e => {
-                           this.handleIptChange({type: "oldl_pass", value: e.target.value})
+                           this.handleIptChange({type: "pass", value: e.target.value})
                        }}/>
                    </li>
                    <li>
                        <label>确认交易密码:</label>
                        <input type="password" placeholder = "请确认交易密码" onChange = {e => {
-                           this.handleIptChange({type: "newl_pass", value: e.target.value})
+                           this.handleIptChange({type: "repass", value: e.target.value})
                        }}/>
                    </li>
                </ul>

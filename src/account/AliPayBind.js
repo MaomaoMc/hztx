@@ -10,17 +10,14 @@ class AliPayBind extends Component{
         this.state ={
             zfb_num: "",  //账号
             warningDlgShow: false,
-            warningText: ""
+            warningText: "",
+            code: ""
         }
     }
     handleInputChange (e){
-        const type = e.type;
-        const value = e.val;
-        if(type === "zfb_num"){
-            this.setState({
-                zfb_num: value
-            })
-        }
+        this.setState({
+            [e.type]: e.value
+        })
     }
     hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
         const self = this;
@@ -38,10 +35,9 @@ class AliPayBind extends Component{
     }
     submit (){ //提交
         const self = this;
-        const zfb_num = this.state.zfb_num;
         axios.post(window.baseUrl + "/home/Member/bindZfbNum", qs.stringify({
             token: localStorage.getItem("token"),
-            zfb_num: zfb_num
+            zfb_num: self.state.zfb_num
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -61,7 +57,7 @@ class AliPayBind extends Component{
                 <ul className = "f_flex">
                         <li>
                         <label>账号:</label>
-                        <input type="password" placeholder = "请输入支付宝账号" onChange = {e => {
+                        <input type="text" placeholder = "请输入支付宝账号" onChange = {e => {
                             this.handleInputChange({type: "zfb_num", value: e.target.value})
                         }}/>
                     </li>

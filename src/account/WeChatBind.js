@@ -10,17 +10,14 @@ class WeChatBind extends Component{
         this.state ={
             wx_num: "",  //账号
             warningDlgShow: false,
-            warningText: ""
+            warningText: "",
+            code: ""
         }
     }
     handleInputChange (e){
-        const type = e.type;
-        const value = e.val;
-        if(type === "wx_num"){
-            this.setState({
-                wx_num: value
-            })
-        }
+        this.setState({
+            [e.type]: e.value
+        })
     }
     hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
         const self = this;
@@ -38,10 +35,9 @@ class WeChatBind extends Component{
     }
     submit (){ //提交
         const self = this;
-        const wx_num = this.state.wx_num;
         axios.post(window.baseUrl + "/home/Member/bindWxNum", qs.stringify({
             token: localStorage.getItem("token"),
-            wx_num: wx_num
+            wx_num: self.state.wx_num
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -61,7 +57,7 @@ class WeChatBind extends Component{
                 <ul className = "f_flex">
                         <li>
                         <label>账号:</label>
-                        <input type="password" placeholder = "请输入微信账号" onChange = {e => {
+                        <input type="text" placeholder = "请输入微信账号" onChange = {e => {
                             this.handleInputChange({type: "wx_num", value: e.target.value})
                         }}/>
                     </li>

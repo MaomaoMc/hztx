@@ -11,16 +11,14 @@ class CreditCertify extends Component{
             bank_user: "",
             bank_name: "",
             bank_num: "",
-            data: {bank_name: "", bank_num: ""},
             warningDlgShow: false,
             warningDlgText: "",
         }
     }
     handleInputChange (e){
         const type = e.type;
-        const value = e.val;
         this.setState({
-            [type]: value
+            [type]: e.value
         })
     }
     hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
@@ -42,6 +40,7 @@ class CreditCertify extends Component{
         const bank_user = this.state.bank_user;
         const bank_name = this.state.bank_name;
         const bank_num = this.state.bank_num;
+        console.log(bank_user, 'sd')
         axios.post(window.baseUrl + "/home/Member/bindBankNum", qs.stringify({
             token: localStorage.getItem("token"),
             bank_user: bank_user,
@@ -58,34 +57,6 @@ class CreditCertify extends Component{
                 self.hanleWarningDlgTimer({code: code})
             })
         })
-    }
-    ajax (){
-        const self = this;
-        axios.post(window.baseUrl + "/home/Member/getBankMsg", qs.stringify({
-            token: localStorage.getItem("token"),
-        })).then(function(res){
-            const data = res.data;
-            const code = data.code;
-            if(code === 1){
-                self.setState({
-                    data: data.data
-                })
-            }else{
-                self.setState({
-                    warningDlgShow: true,
-                    warningText: data.msg,
-                    code: code
-                }, function(){
-                    self.hanleWarningDlgTimer()
-                })
-            }
-        })
-    }
-    componentDidMount(){
-        const type = this.props.match.params.type;
-        if(type === "authorized"){  //已认证的话 就显示认证的信息
-            this.ajax();
-        }
     }
     render (){
         const type = this.props.match.params.type;
@@ -111,26 +82,26 @@ class CreditCertify extends Component{
                     <ul className = "f_flex">
                             <li>
                             <label>持卡人:</label>
-                            <input type="password" placeholder = "请输入持卡人姓名" onChange = {e => {
-                                this.handleIptChange({type: "bank_user", value: e.target.value})
+                            <input type="text" placeholder = "请输入持卡人姓名" value = {this.state.bank_user} onChange = {e => {
+                                this.handleInputChange({type: "bank_user", value: e.target.value})
                             }}/>
                         </li>
                         <li>
                             <label>银行名称:</label>
-                            <input type="password" placeholder = "请输入银行名称" onChange = {e => {
-                                this.handleIptChange({type: "bank_name", value: e.target.value})
+                            <input type="text" placeholder = "请输入银行名称" value = {this.state.bank_name} onChange = {e => {
+                                this.handleInputChange({type: "bank_name", value: e.target.value})
                             }}/>
                         </li>
                         <li>
                             <label>银行卡号:</label>
-                            <input type="password" placeholder = "请确认银行卡号" onChange = {e => {
-                                this.handleIptChange({type: "bank_num", value: e.target.value})
+                            <input type="text" placeholder = "请确认银行卡号" value = {this.state.bank_num} onChange = {e => {
+                                this.handleInputChange({type: "bank_num", value: e.target.value})
                             }}/>
                         </li>
                     </ul>
                     <span className="btn btn_primary login_btn h_80 fz_26 f_lt mt_50" style={{ width: '100%' }}
                         onClick={e => {
-                            this.submit({})
+                            this.submit()
                         }}>提交</span>
                 </div>
             }

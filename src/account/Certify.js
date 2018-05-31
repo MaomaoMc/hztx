@@ -20,10 +20,8 @@ class Certify extends Component{
         }
     }
     handleInputChange (e){
-        const type = e.type;
-        const value = e.val;
         this.setState({
-            [type]: value
+            [e.type]: e.value
         })
     }
     hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
@@ -155,13 +153,13 @@ class Certify extends Component{
                             <li>
                             <label>真实姓名:</label>
                             <input type="password" placeholder = "请输入真实姓名" onChange = {e => {
-                                this.handleIptChange({type: "username", value: e.target.value})
+                                this.handleInputChange({type: "username", value: e.target.value})
                             }}/>
                         </li>
                         <li>
                             <label>身份证号:</label>
                             <input type="password" placeholder = "请确认身份证号" onChange = {e => {
-                                this.handleIptChange({type: "card_num", value: e.target.value})
+                                this.handleInputChange({type: "card_num", value: e.target.value})
                             }}/>
                         </li>
                     </ul>
