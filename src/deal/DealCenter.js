@@ -323,13 +323,21 @@ class DealCenter extends Component {
             <div id = "chart"></div>
             <div className = "dealWrap">
                 <form>
-                    <input type="text" placeholder = "请输入数量" value = {this.state.num} onChange = {e => {
-                        this.handleIptChange({type: "num", value: e.target.value})
-                    }}/>
-                    <input type="text" placeholder = "请输入单价" value = {this.state.price} onChange = {e => {
-                        this.handleIptChange({type: "price", value: e.target.value})
-                    }}/>
-                    <span className = "btn" onClick = {e => {
+                    <div className = "f_lt" style = {{width: "70%"}}>
+                        <p>
+                            <label style = {{marginRight: ".2rem"}}>输入数量</label>
+                            <input type="text" placeholder = "请输入数量" value = {this.state.num} onChange = {e => {
+                                this.handleIptChange({type: "num", value: e.target.value})
+                            }}/>
+                        </p>
+                        <p>
+                            <label style = {{marginRight: ".2rem"}}>输入单价</label>
+                            <input type="text" placeholder = "请输入单价" value = {this.state.price} onChange = {e => {
+                                this.handleIptChange({type: "price", value: e.target.value})
+                            }}/>
+                        </p>
+                    </div>
+                    <span className = "btn f_rt" onClick = {e => {
                         this.handleBuyJd()
                     }}>发布买币</span>
                 </form>

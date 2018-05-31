@@ -85,7 +85,6 @@ class TaskDetail extends Component {
     render(){
         const data = this.state.data;
         const hash = window.location.hash;
-        console.log(data, '2')
         return <div> 
             <Title title = "任务详情" code = {this.state.code}/>
             <div className = "taskDetail">

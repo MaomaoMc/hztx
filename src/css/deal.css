@@ -69,18 +69,16 @@ ul.chartNav {
     margin: 0 auto;
     padding-top: .2rem; }
     .dealWrap form input {
-      float: left;
-      width: 60%;
       height: .6rem;
       line-height: .6rem;
       margin-bottom: .2rem;
       text-align: right;
       padding-right: .1rem;
       border: .01rem solid #333;
-      border-radius: .1rem; }
+      border-radius: .05rem; }
     .dealWrap form span.btn {
       float: right;
-      width: 33%;
+      width: 30%;
       height: .6rem;
       line-height: .6rem;
       text-align: center;
@@ -88,4 +86,4 @@ ul.chartNav {
       background-color: #0093fb;
       border-radius: .1rem;
       border: 0;
-      margin-top: -.4rem; }
+      margin-top: .4rem; }

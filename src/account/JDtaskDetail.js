@@ -37,9 +37,9 @@ class JDtaskDetail extends Component {
             }
         , 1000)
     }
-    handleAcceptTask (){  //接收任务
+    handleAcceptTask (){  //接收金豆任务
         const self = this;
-        axios.post(window.baseUrl + "/home/Member/getTask", qs.stringify({
+        axios.post(window.baseUrl + "/home/Jdtask/getJdtask", qs.stringify({
             token: localStorage.getItem("token"),
             task_id: this.props.match.params.id
         })).then(function(res){
