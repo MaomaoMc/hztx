@@ -37,6 +37,7 @@ class Login extends Component {
         const self = this;
         const phone = this.state.phone;
         const l_pass = this.state.l_pass;
+        console.log("SDa")
         axios.post(window.baseUrl + "/home/Login/login", qs.stringify({
             phone: phone,
             l_pass: l_pass
@@ -89,7 +90,7 @@ class Login extends Component {
                         <button className = "submit" onClick = {e => {
                             this.login()
                         }}>登录</button>
-                        <p style = {{textAlign: "right"}}><Link to = "/forgetPwd/loginPwd" style = {{color: "#f04447"}}>忘记密码</Link></p>
+                        <p style = {{textAlign: "right"}}><Link to = "/forgetPwd/loginPwd" style = {{color: "#00a8ff"}}>忘记密码</Link></p>
                         {/* <p className = "text-center"><Link to = "/register">注册</Link></p> */}
                     </div>
                 </form>

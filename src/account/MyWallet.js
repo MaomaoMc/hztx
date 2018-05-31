@@ -17,7 +17,7 @@ class MyWallet extends Component {
             name: "",
             num: "",
             type: "1",
-            money: "",
+            money: "10",
             note: "",
             form_show: false,
             opt_type: "tx",
@@ -142,9 +142,18 @@ class MyWallet extends Component {
                    </li>
                    <li>
                        <label>金额:</label>
-                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现金额" : "请输入充值金额"} value = {this.state.money} onChange = {e => {
+                       <select style = {{width: "40%", border: ".01rem solid #ddd", height: ".6rem", lineHeight: ".6rem"}} value = {this.state.money} onChange = {e => {
                            this.handleIptChange({type: "money", value: e.target.value})
-                       }}/>
+                       }}>
+                            <option value = "10">10</option>
+                            <option value = "30">30</option>
+                            <option value = "50">50</option>
+                            <option value = "100">100</option>
+                            <option value = "200">200</option>
+                            <option value = "500">500</option>
+                            <option value = "1000">1000</option>
+                       </select>
+                       {/* <input type="text" placeholder = {opt_type === "tx" ? "请输入提现金额" : "请输入充值金额"} /> */}
                    </li>
                    <li style = {{height: "3rem"}}>
                        <label>备注:</label>
@@ -171,11 +180,3 @@ class MyWallet extends Component {
 }
 
 export default MyWallet;
-{/* <li className = "over_hidden" style = {{marginTop: ".3rem"}}>
-                       <span className = "btn btn_primary f_lt" style = {{width : "40%"}} onClick = {e => {
-                            this.handleSubmit()
-                        }}>提现</span>
-                        <span className = "btn btn_primary f_rt" style = {{width : "40%"}} onClick = {e => {
-                            this.handleSubmit()
-                        }}>充值</span>
-                   </li> */}

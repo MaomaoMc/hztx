@@ -13,7 +13,8 @@ class PersonalItems extends Component {
         const head_pic = localStorage.getItem("head_pic");
         this.state = {
             profile_pic: head_pic === "null" ? defaultHeadPic : head_pic ,//头像
-            editing: false,  //是否编辑了
+            editName: false,  //是否编辑了 昵称
+            member_id: "",
             username: "",
             phone: "",
             y_code: "",  //验证码
@@ -101,7 +102,7 @@ class PersonalItems extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){
-                        window.history.back();
+                        window.location.reload();
                     }
                 })
             }
@@ -179,6 +180,7 @@ class PersonalItems extends Component {
                 localStorage.setItem("head_pic", obj.pic)
                 self.setState({
                     profile_pic: obj.pic,
+                    member_id: obj.member_id,
                     name: obj.name,
                     username: obj.username,
                     phone: obj.phone,
@@ -199,11 +201,34 @@ class PersonalItems extends Component {
             }
         })
     }
+    editName (e){  //设置昵称
+        const type = e.type;
+        if(type === "edit"){
+            this.setState({
+                editName: true
+            });
+            return;
+        }
+        const self = this;
+        axios.post(window.baseUrl + "//home/Member/editName", qs.stringify({
+            token: localStorage.getItem("token"),
+            name: self.state.name
+        })).then(function(res){
+            const data = res.data;
+            const code = data.code;
+            self.setState({
+                warningShow: true,
+                warningText: data.msg,
+                code: code
+            }, function(){
+                self.hanleWarningDlgTimer({code: code})
+            })
+        })
+    }
     componentDidMount(){
         this.ajax();
     }
     render(){
-        const editing = this.state.editing;
         const state = this.state;
         const countDown = state.countDown;
         const profile_pic = state.profile_pic;
@@ -219,81 +244,138 @@ class PersonalItems extends Component {
                     </form>
                 </div>  
                 <p className = "text-center" style = {{fontSize: ".12rem", color: "#999", marginTop: ".1rem"}}>点击可修改头像</p>
-                <ul className = "f_flex personalUl">
+                <ul className="lists f_flex fz_26 mb_100">
                     <li>
-                        <label>昵称：</label>
-                        <input type="tel" placeholder = "请输入昵称" disabled = {!editing ? true : false} value = {state.name} onChange = {e => {
-                            this.handleIptChange({type: "name", value: e.target.value})
-                        }}/>
+                        <span className="f_lt">ID</span>
+                        <span className="f_rt">
+                            <span className="fc_blue">{state.member_id}</span>
+                        </span>
                     </li>
                     <li>
-                        <label>手机号码：</label> 
-                        <input type="tel" placeholder = "请输入手机号" disabled = {!editing ? true : false} value = {state.phone} onChange = {e => {
-                            this.handleIptChange({type: "phone", value: e.target.value})
-                        }}/>
+                        <span className="f_lt">设置昵称</span>
+                        <span className="f_rt">
+                            {state.name  === "" || this.state.editName ?
+                                <span>
+                                    <input type = "text"  value = {state.name} placeholder = "输入昵称"
+                                    style = {{height: ".6rem", lineHeight: ".6rem", 
+                                    border: ".01rem solid #0093fb", borderRadius: ".05rem", textIndent: ".15rem", marginRight: ".1rem"}}
+                                     onChange = {e => {
+                                         this.setState({
+                                             name: e.target.value
+                                         })
+                                     }}/>
+                                    <span className="btn btn_primary" onClick = {e => {
+                                        this.editName({type: "submit"})
+                                    }}>完成</span>
+                                </span> : <span>
+                                    <span style = {{marginRight: ".1rem"}}>{state.name}</span>
+                                    <span className="btn btn_primary" onClick = {e => {
+                                        this.editName({type: "edit"})
+                                    }}>修改</span>
+                                </span>
+                            }
+                            
+                        </span>
                     </li>
                     <li>
-                        <label>姓名：</label>
-                        <input type="tel" placeholder = "请输入姓名" disabled = {!editing ? true : false} value = {state.username} onChange = {e => {
-                            this.handleIptChange({type: "username", value: e.target.value})
-                        }}/>
+                        {state.phone === "" ? <Link to = "/account/creditCertify/unauthorized">
+                            <span className="f_lt">手机号验证</span>
+                            <span className="f_rt">
+                                <span className="fc_blue">{state.bank_num}</span>
+                                <span className="mark unauthorized">未认证</span>
+                            </span>
+                        </Link> : <span><span className="f_lt">手机号验证</span>
+                                <span className="f_rt">
+                                    <span className="fc_blue">{state.phone}</span>
+                                    <span className="mark authenticated">已认证</span>
+                                </span>
+                            </span>
+                        }
                     </li>
                     <li>
-                        <label>身份证号码：</label>
-                        <input type="tel" placeholder = "请输入身份证号码" disabled = {!editing ? true : false} value = {state.card_num} onChange = {e => {
-                            this.handleIptChange({type: "card_num", value: e.target.value})
-                        }}/>
+                        {state.bank_num === "" ? <Link to = "/account/creditCertify/unauthorized">
+                            <span className="f_lt">银行卡</span>
+                            <span className="f_rt">
+                                <span className="fc_blue">{state.bank_num}</span>
+                                <span className="mark unauthorized">未认证</span>
+                            </span>
+                        </Link> :  <span><span className="f_lt fc_blue">银行卡</span>
+                                <span className="f_rt">
+                                    <span className="fc_blue">{state.bank_num}</span>
+                                    <span className="mark authenticated">已认证</span> 
+                                </span>
+                            </span>
+                        }
                     </li>
                     <li>
-                        <label>银行名称：</label>
-                        <input type="tel" placeholder = "请输入银行名称" disabled = {!editing ? true : false} value = {state.bank_name} onChange = {e => {
-                            this.handleIptChange({type: "bank_name", value: e.target.value})
-                        }}/>
+                        {state.username === "" ? <Link to = "/account/certify/unauthorized">
+                            <span className="f_lt">实名认证</span>
+                            <span className="f_rt">
+                                <span className="fc_blue">{state.username}</span>
+                                <span className="mark unauthorized">未认证</span>
+                            </span>
+                        </Link> : <span><span className="f_lt fc_blue">实名认证</span>
+                                <span className="f_rt">
+                                    <span className="fc_blue">{state.username}</span>
+                                    <span className="mark authenticated">已认证</span> 
+                                </span>
+                            </span>
+                        }
+                    </li>
+                    <li style={{height: ".21rem"}}></li>
+                    <li>
+                        {state.wx_num === "" ? <Link to="/account/weChatBind">
+                            <span className="f_lt">微信</span>
+                            <span className="f_rt">
+                                <span className="mark unauthorized">未认证</span>
+                            </span>
+                        </Link> : <a>
+                            <span className="f_lt">微信</span>
+                            <span className="f_rt">
+                                <span className="fc_blue">{state.wx_num}</span>
+                                <span className="mark authenticated">已认证</span> 
+                            </span>
+                        </a>}
                     </li>
                     <li>
-                        <label>银行卡号：</label>
-                        <input type="tel" placeholder = "请输入银行卡号" disabled = {!editing ? true : false} value = {state.bank_num} onChange = {e => {
-                            this.handleIptChange({type: "bank_num", value: e.target.value})
-                        }}/>
+                        {state.zfb_num === "" ? <Link to="/account/aliPayBind">
+                            <span className="f_lt">支付宝</span>
+                            <span className="f_rt">
+                                <span className="mark unauthorized">未认证</span>
+                            </span>
+                        </Link> :
+                        <a>
+                            <span className="f_lt">支付宝</span>
+                            <span className="f_rt">
+                                <span className="fc_blue">{state.zfb_num}</span>
+                                <span className="mark authenticated">已认证</span> 
+                            </span>
+                        </a>}
                     </li>
                     <li>
-                        <label>支付宝：</label>
-                        <input type="tel" placeholder = "请输入支付宝账号" disabled = {!editing ? true : false} value = {state.zfb_num} onChange = {e => {
-                            this.handleIptChange({type: "zfb_num", value: e.target.value})
-                        }}/>
+                        <Link to="/account/setpwd">
+                            <span className="f_lt">设置交易密码</span>
+                            <span className="f_rt">
+                            <span className="go_arrow"></span>
+                            </span>
+                        </Link>
                     </li>
                     <li>
-                        <label>微信号：</label>
-                        <input type="tel" placeholder = "请输入微信账号" disabled = {!editing ? true : false} value = {state.wx_num} onChange = {e => {
-                            this.handleIptChange({type: "wx_num", value: e.target.value})
-                        }}/>
+                        <Link to="/account/changeLoginPwd">
+                            <span className="f_lt">修改登录密码</span>
+                            <span className="f_rt">
+                            <span className="go_arrow"></span>
+                            </span>
+                        </Link>
                     </li>
                     <li>
-                        <label>交易密码：</label>
-                        <input type="password" placeholder = "请设置交易密码" disabled = {!editing ? true : false} value = {state.t_pass} onChange = {e => {
-                            this.handleIptChange({type: "t_pass", value: e.target.value})
-                        }}/>
+                        <Link to="/account/changeTradePwd"> 
+                            <span className="f_lt">修改交易密码</span>
+                            <span className="f_rt">
+                            <span className="go_arrow"></span> 
+                            </span>
+                        </Link>
                     </li>
-                    <li>
-                        <label>确认交易密码：</label>
-                        <input type="password" placeholder = "请确认交易密码" disabled = {!editing ? true : false} value = {state.t_repass} onChange = {e => {
-                            this.handleIptChange({type: "t_repass", value: e.target.value})
-                        }}/>
-                        <Link to = "/account/pwdControl"><span className = "btn btn_primary f_rt">更换密码</span></Link>
-                    </li>
-                    {!editing ? <li style = {{height: "1rem"}}>
-                        <span className = "btn btn_primary submit" style = {{width: "95%"}} onClick = {e => {
-                            this.setState({
-                                editing: true
-                            })
-                        }}>编辑</span> </li>
-                        : <li><span className = "btn btn_primary submit" style = {{width: "95%"}} onClick = {e => {
-                            this.submit()
-                        }}>完成</span><span className = "btn btn_default submit text-center" style = {{width: "95%", marginTop: ".2rem"}} onClick = {e => {
-                            this.setState({
-                                editing: false
-                            })
-                    }}>取消编辑</span></li>}
                 </ul>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText} /> : null}

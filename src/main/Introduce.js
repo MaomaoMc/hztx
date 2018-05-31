@@ -9,11 +9,7 @@ class Introduce extends Component {
         super(props);
         this.state = {
             data: {title: "",
-             content: "",
-                qq1: "",
-                qq2: "",
-                qq3: "",
-                qq4: ""
+             content: ""
             },
             warningShow: false,
             warningText: ""
@@ -57,7 +53,7 @@ class Introduce extends Component {
     render(){
         const data = this.state.data;
         return <div> 
-            <Title title = "公司简介" code = {this.state.code}/>
+            <Title title = "汇赚天下简介" code = {this.state.code}/>
             <div className = "taskDetail">
                 <h3 className = "text-center">{data.title}</h3>
                 <div style = {{lineHeight: ".6rem", padding: ".2rem .3rem"}} dangerouslySetInnerHTML = {{__html: data.content}}></div>

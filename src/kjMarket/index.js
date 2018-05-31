@@ -11,11 +11,11 @@ const kj_nav = [
         link: "/kjMarket",
     },
     {
-        text: "我的矿机",
+        text: "我的金豆树",
         link: "/kjMarket/myminer"
     },
     {
-        text: "矿机收益",
+        text: "收益",
         link: "/kjMarket/minerEarnings"
     }
 ]

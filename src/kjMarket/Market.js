@@ -93,7 +93,7 @@ class Market extends Component {
         const data = this.state.data;
         const self = this;
         return <div> 
-            <Title title = "矿机商城" code = {this.state.code} />
+            <Title title = "金豆中心" code = {this.state.code} />
             <div className = "pb_100">
                 <ul className = "kjLists f_flex">
                     {
@@ -110,7 +110,7 @@ class Market extends Component {
                                     <p>产力{item.force}</p>
                                     <span className = "btn" onClick = {e => {
                                         self.hanldBuyMill({id: item.id})
-                                    }}>兑换</span>
+                                    }}>雇佣</span>
                                 </div>
                             </li>
                         })

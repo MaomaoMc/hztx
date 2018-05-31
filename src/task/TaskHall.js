@@ -24,13 +24,14 @@ const taskNav = [
         value: "vip"
     }
 ]
+const icon_mul = require("../img/icon_mul.png");
 class TaskHall extends Component {
     constructor(props) {
         super(props);
         this.state = {
             type_arr: [],
             page: 1,
-            pageSize: 6,
+            pageSize: 5,
             total: 0,  //总条数
             pageTotal: 0,  //总页数
             page_arr: [],
@@ -87,7 +88,7 @@ class TaskHall extends Component {
                     total: total,
                     pageTotal: pageTotal,
                     page_arr: page_arr,
-                    taskclass_id: lists[0].id
+                    // taskclass_id: lists[0].id
                 }, function () {
                     self.getTaskListAjax()
                 })
@@ -142,11 +143,18 @@ class TaskHall extends Component {
     }
     render() {
         const self = this;
+        const taskclass_id = this.state.taskclass_id;
         const taskLists = this.state.taskLists;
         return <div>
             <Title title="任务中心" code = {this.state.code}/>
             <div className="pb_100">
                 <div className="weui_grids">
+                    {this.state.page === 1 ? <a className="weui_grid js_grid" onClick={e => {
+                            self.handleChangeType({ id: ""})
+                        }}>
+                        <div className="weui_grid_icon" style={{ backgroundImage: "url(" + icon_mul + ")", backgroundSize: "100% 100%" }}></div>
+                        <p className="weui_grid_label" style={{ marginTop: ".24rem" }}>综合类</p>
+                    </a> : null }
                     {
                         this.getRows().map(function (item, i) {
                             return <a className="weui_grid js_grid" key={i} onClick={e => {
@@ -182,11 +190,13 @@ class TaskHall extends Component {
                     {
                         taskLists.length === 0 ? <li>暂时没有数据可显示...</li> :
                             taskLists.length > 0 && taskLists.map(function (list, i) {
+                                console.log(taskclass_id, 'taskclass_id' , taskclass_id === "")
                                 return <li key={i}>
                                     <Link to = {"/task/taskDetail/" + list.id}>
                                     <img className="f_lt" src={list.member_pic} alt="" />
                                         <div className="f_lt">
-                                            <h4>{list.title}</h4>
+                                            <span style = {{fontWeight: "600", fontSize: ".32rem"}}>{list.title}</span>&nbsp;&nbsp;
+                                            {taskclass_id === "" ? <span style = {{fontSize: ".26rem"}}>【{list.taskclass_id.name}】</span> : null}
                                             <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赚{list.count} 接{list.ynum} 剩{list.leftover}</p>
                                         </div>
                                         <div className="f_rt">

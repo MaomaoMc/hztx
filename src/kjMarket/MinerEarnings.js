@@ -71,7 +71,7 @@ class MinerEarnings extends Component {
     render(){
         const data = this.state.data;
         return <div> 
-            <Title title = "矿机收益" code = {this.state.code}/>
+            <Title title = "收益" code = {this.state.code}/>
             <div style = {{backgroundColor: "white", marginTop: ".2rem"}}>
                 <table className = "normal_table">
                     <thead>

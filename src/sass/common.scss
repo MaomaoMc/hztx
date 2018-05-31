@@ -15,6 +15,11 @@ body{
 html, body{
  font-size: .2rem;
 }
+input:-webkit-autofill {
+    background-color: transparent;
+    background-image: none;
+    color: rgb(0, 0, 0);
+}
 body, button, input, select, textarea {
     font: 14px/1.5 "San Francisco","Helvetica Neue","Hiragino Sans GB","Hiragino Sans GB W3","Microsoft Yahei", "微软雅黑",Tahoma,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing: "antialiased"

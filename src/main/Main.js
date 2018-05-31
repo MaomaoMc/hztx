@@ -132,16 +132,20 @@ class Main extends Component {
                }
                </Slider>
                 <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".2rem 0", marginTop: ".6rem"}}>
-                    <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>公司简介</h3>
+                    <h3 style = {{width: "30%", textIndent: ".2rem", color: "#0093fb", borderLeft: ".1rem solid #0093fb"}}>汇赚天下简介</h3>
                 </div>
                 <div style = {{backgroundColor: "white"}}>
-                    <h3 className = "text-center" style = {{paddingTop: ".2rem"}}>{company_data.title}</h3>
+                    {/* <h3 className = "text-center" style = {{paddingTop: ".2rem"}}>{company_data.title}</h3> */}
                     <div style = {{padding: "0 .3rem",
                             overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box",
-                            WebkitLineClamp: "4"
+                            WebkitLineClamp: "4", WebkitBoxOrient: "vertical"
                         }}>
-                        <Link to = "/introduce" style = {{color: "#666"}} dangerouslySetInnerHTML={{__html: company_data.content}} ></Link>
+                        <div style = {{color: "#666"}} dangerouslySetInnerHTML={{__html: company_data.content}} ></div>
+                        
                     </div>
+                    <p style = {{padding: ".1rem .4rem", textAlign: "right"}}>
+                        <Link to = "/introduce" style = {{color: "#00a8ff"}}>点击展开全部</Link>
+                    </p>
                 </div>
                 <div>
                    <div style = {{backgroundColor: "white", borderBottom: ".01rem solid #ddd", padding: ".3rem 0"}}>
