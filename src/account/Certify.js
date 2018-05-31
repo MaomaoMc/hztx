@@ -13,8 +13,8 @@ class Certify extends Component{
             data: {card_num: "", username: ""}, //实名认证 已认证的返回信息
             username: "",  //姓名
             card_num: "", //身份证号码
-            z_idpic: "",  //身份证正面
-            f_idpic: "",  //身份证反面
+            // z_idpic: "",  //身份证正面
+            // f_idpic: "",  //身份证反面
             warningDlgShow: false,
             warningText: ""
         }
@@ -95,8 +95,8 @@ class Certify extends Component{
             token: localStorage.getItem("token"),
             username: username,
             card_num: card_num,
-            z_idpic: z_idpic,
-            f_idpic: f_idpic
+            // z_idpic: z_idpic,
+            // f_idpic: f_idpic
         })).then(function(res){
             const data = res.data;
             const code = data.code;
@@ -108,34 +108,6 @@ class Certify extends Component{
                 this.hanleWarningDlgTimer({code: code})
             })
         })
-    }
-    ajax(){
-        const self = this;
-        axios.post(window.baseUrl + "/home/Member/trueNamePic", qs.stringify({
-            token: localStorage.getItem("token"),
-        })).then(function(res){
-            const data = res.data;
-            const code = data.code;
-            if(code === 1){
-                self.setState({
-                    data: data.data
-                })
-            }else{
-                self.setState({
-                    warningDlgShow: true,
-                    warningText: data.msg,
-                    code: code
-                }, function(){
-                    self.hanleWarningDlgTimer()
-                })
-            }
-        })
-    }
-    componentDidMount(){
-        const type = this.props.match.params.type;
-        if(type === "authorized"){  //已认证的话 就显示认证的信息
-            this.ajax();
-        }
     }
     render (){
         const type = this.props.match.params.type;
@@ -152,18 +124,18 @@ class Certify extends Component{
                     <ul className = "f_flex">
                             <li>
                             <label>真实姓名:</label>
-                            <input type="password" placeholder = "请输入真实姓名" onChange = {e => {
+                            <input type="text" placeholder = "请输入真实姓名" value = {this.state.username} onChange = {e => {
                                 this.handleInputChange({type: "username", value: e.target.value})
                             }}/>
                         </li>
                         <li>
                             <label>身份证号:</label>
-                            <input type="password" placeholder = "请确认身份证号" onChange = {e => {
+                            <input type="text" placeholder = "请确认身份证号" value = {this.state.card_num} onChange = {e => {
                                 this.handleInputChange({type: "card_num", value: e.target.value})
                             }}/>
                         </li>
                     </ul>
-                    <form action="" id="card_from">
+                    {/* <form action="" id="card_from">
                         <p>
                             <input className="card_pic" id = "front_pic" type="file" onChange = {e => {
                                 this.uploadedFile({type: "front_pic"})
@@ -179,10 +151,10 @@ class Certify extends Component{
                             <img className="card_behind" src={this.state.f_idpic} alt=""/>
                             {this.state.f_idpic !== "" ? null : <span>+身份证反面照</span>}
                         </p>
-                    </form>
+                    </form> */}
                     <span className="btn btn_primary login_btn h_80 fz_26 f_lt mt_50" style={{ width: '95%' }}
                     onClick={e => {
-                        this.submit({})
+                        this.submit()
                     }}>提交</span>
                 </div>
             }
