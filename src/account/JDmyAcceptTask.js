@@ -104,7 +104,7 @@ class JDmyAcceptTask extends Component {
                                 const task = list.task;
                                 const status = list.status;
                                 return <li key={i}>
-                                    <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/>
+                                    {/* <img className="f_lt" src={task.pic} alt="" style = {{marginRight: ".1rem"}}/> */}
                                     <a style = {{display: "block", width: "100%", height: "100%", 
                                         position: "absolute", left: "0", top: "0", zIndex: "1"}} onClick = {e => {
                                             self.props.history.push("/account/jdtaskDetail/" + list.task_id + "/nonebtn")

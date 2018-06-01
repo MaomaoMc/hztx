@@ -86,7 +86,7 @@ class JDTask extends Component {
                             data.length > 0 && data.map(function (list, i) {
                                 return <li key={i}>
                                     <Link to = {"/account/jdtaskDetail/" + list.id}>
-                                        <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/>
+                                        {/* <img className="f_lt" src={list.pic} alt="" style = {{marginRight: ".1rem"}}/> */}
                                         <div className="f_lt">
                                             <h4>{list.title}</h4>
                                             <p style={{ fontSize: ".24rem", color: "#666", marginTop: ".1rem" }}>赚{list.count} 接{list.ynum} 剩{list.leftover}</p>
