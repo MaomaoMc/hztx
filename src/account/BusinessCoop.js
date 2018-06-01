@@ -60,6 +60,7 @@ class BusinessCoop extends Component {
                         <th>姓名</th>
                         <th>手机号</th>
                         <th>邮箱</th>
+                        <th>链接</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,7 @@ class BusinessCoop extends Component {
                             <td>{item.name}</td>
                             <td>{item.phone}</td>
                             <td>{item.email}</td>
+                            <td><a href = {item.url} target = "_blank">{item.url}</a></td>
                         </tr>
                     })
                 }

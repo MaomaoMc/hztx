@@ -59,8 +59,8 @@ class ContactUs extends Component {
             <Title title = "联系我们" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
                 <h3 style = {{marginBottom: ".2rem"}}>联系方式：</h3>
-                <p>qq1：{company_data.qq1}</p>
-                <p>qq2：{company_data.qq2}</p>
+                <p>官方QQ群：{company_data.qq1}</p>
+                <p>官方QQ群：{company_data.qq2}</p>
             </div>
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
