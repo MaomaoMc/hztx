@@ -13,6 +13,11 @@ class MyWallet extends Component {
                 "jd_num": "0", //金豆
                 "money": "0", //现金
                 "dmoney": "0",  //冻结金豆
+                "bank_user": "",
+                "bank_name": "",
+                "id_num": "",
+                "wx_num": "",
+                "zfb_num": "",
             } , //个人信息数据
             name: "",
             num: "",
@@ -51,15 +56,17 @@ class MyWallet extends Component {
             opt_type: e.type
         })
     }
-    handleSubmit (){ //提现
+    handleSubmit (){ //提现 充值
         const self = this;
         const state = this.state;
         const opt_type = state.opt_type;
+        const type　= this.state.type;
+        const data= this.state.data;
         const paramsStr = opt_type === "tx" ? "/home/Member/withDraw" : "/home/Member/topUp";
         axios.post(window.baseUrl + paramsStr, qs.stringify({
             token: localStorage.getItem("token"),
-            name: state.name,
-            num: state.num,
+            name: type === "3" ? data.bank_user : data.id_num,
+            num: type === "3" ? data.bank_num : type === "1" ? data.wx_num : data.zfb_num,
             type: state.type,
             money: state.money,
             note: state.note,
@@ -103,6 +110,7 @@ class MyWallet extends Component {
     render(){
         const opt_type = this.state.opt_type;
         const data = this.state.data;
+        const type　= this.state.type;
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
@@ -118,19 +126,7 @@ class MyWallet extends Component {
                 </p>
                 <p className = "text-center fc_red" style = {{fontSize: ".12rem", marginTop: ".01rem"}}>注！提现需扣除一定的手续费(和金豆交易时按手续费比例计算的手续费)</p>
                 {this.state.form_show ? <ul className = "f_flex forgetPwdrUl" style = {{padding: ".3rem"}}>
-                   <li>
-                       <label>名称:</label>
-                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号名称" : "请输入充值账号名称"} value = {this.state.name} onChange = {e => {
-                           this.handleIptChange({type: "name", value: e.target.value})
-                       }}/>
-                   </li>
-                   <li>
-                       <label>账号:</label>
-                       <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号" : "请输入充值账号"} value = {this.state.num} onChange = {e => {
-                           this.handleIptChange({type: "num", value: e.target.value})
-                       }}/>
-                   </li>
-                   <li>
+                    <li>
                        <label>类型:</label>
                        <select style = {{width: "40%", border: ".01rem solid #ddd", height: ".6rem", lineHeight: ".6rem"}} onChange = {e => {
                            this.handleIptChange({type: "type", value: e.target.value})
@@ -140,6 +136,22 @@ class MyWallet extends Component {
                            <option value="3">银行卡</option>
                        </select>
                    </li>
+                   <li>
+                       <label>名称:</label>
+                       {type === "3" ? <span>{data.bank_user}</span> : <span>{data.id_num}</span>}
+                       {/* <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号名称" : "请输入充值账号名称"} value = {this.state.name} onChange = {e => {
+                           this.handleIptChange({type: "name", value: e.target.value})
+                       }}/> */}
+                   </li>
+                   <li>
+                       <label>账号:</label>
+                       {type === "3" ? <span>{data.bank_num}</span> : type === "1" ? 
+                        <span>{data.wx_num}</span> : <span>{data.zfb_num}</span>}
+                       {/* <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号" : "请输入充值账号"} value = {this.state.num} onChange = {e => {
+                           this.handleIptChange({type: "num", value: e.target.value})
+                       }}/> */}
+                   </li>
+                   
                    <li>
                        <label>金额:</label>
                        <select style = {{width: "40%", border: ".01rem solid #ddd", height: ".6rem", lineHeight: ".6rem"}} value = {this.state.money} onChange = {e => {

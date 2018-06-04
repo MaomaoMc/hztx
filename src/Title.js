@@ -32,7 +32,7 @@ class Title extends Component {
            <ul className = {this.state.menuShow ? "head_menu f_flex" : "head_menu f_flex hide"}>
                 <li><Link to = "/main">我的主页</Link></li>
                 <li><Link to = "/task">我的任务</Link></li>
-                <li><Link to = "/kjMarket">我的金豆树</Link></li>
+                <li><Link to = "/kjMarket">我的矿工</Link></li>
                 <li><Link to = "/deal">我的交易</Link></li>
                 <li><Link to = "/account/personalData">个人中心</Link></li>
             </ul>

@@ -337,9 +337,13 @@ class DealCenter extends Component {
                             }}/>
                         </p>
                     </div>
-                    <span className = "btn f_rt" onClick = {e => {
-                        this.handleBuyJd()
-                    }}>发布买币</span>
+                    <div className = "f_rt text_center" style = {{width: "30%"}}>
+                        <span style = {{lineHeight: ".6rem"}}>总价：{(this.state.price * this.state.num * 1).toFixed(2)}</span><br/>
+                        <span className = "btn" onClick = {e => {
+                            this.handleBuyJd()
+                        }}>发布买币</span>
+                    </div>
+                    
                 </form>
                 <table className = "normal_table">
                     <thead>

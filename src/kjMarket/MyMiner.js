@@ -77,7 +77,7 @@ class MyMiner extends Component {
         const data = this.state.data;
         const self = this;
         return <div> 
-            <Title title = "我的金豆树" code = {this.state.code}/>
+            <Title title = "我的矿工" code = {this.state.code}/>
             <div className = "pb_100" style = {{ marginTop: ".2rem"}}>
                 <ul className = "f_flex kjLists" style = {{backgroundColor: "white"}}>
                     {

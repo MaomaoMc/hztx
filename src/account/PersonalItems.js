@@ -14,7 +14,7 @@ class PersonalItems extends Component {
         this.state = {
             profile_pic: head_pic === "null" ? defaultHeadPic : head_pic ,//头像
             editName: false,  //是否编辑了 昵称
-            member_id: "",
+            id_num: "",
             username: "",
             phone: "",
             y_code: "",  //验证码
@@ -180,7 +180,7 @@ class PersonalItems extends Component {
                 localStorage.setItem("head_pic", obj.pic)
                 self.setState({
                     profile_pic: obj.pic,
-                    member_id: obj.member_id,
+                    id_num: obj.id_num,
                     name: obj.name,
                     username: obj.username,
                     phone: obj.phone,
@@ -248,7 +248,7 @@ class PersonalItems extends Component {
                     <li>
                         <span className="f_lt">ID</span>
                         <span className="f_rt">
-                            <span className="fc_blue">{state.member_id}</span>
+                            <span className="fc_blue">{state.id_num}</span>
                         </span>
                     </li>
                     <li>
