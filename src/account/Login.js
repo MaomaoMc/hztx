@@ -67,7 +67,7 @@ class Login extends Component {
             return <Redirect to = "/main" />
         }
         return <div style = {{width: "100%", height: "100%", position: "fixed", left: "0", top: "0",
-        backgroundImage: "url(" + bg + ")", backgroundSize: "cover"}}> 
+        backgroundImage: "url(" + bg + ")", backgroundSize: "cover", overflow: "auto"}}> 
             <img src={loginImg} alt="" style={{width: "75%", marginLeft: "14%", marginTop: "2.5rem", marginBottom: ".5rem"}}/>
             <img src={loginItemsImg} alt="" style={{width: "65%", marginLeft: "17%", marginBottom: "1rem"}}/>
             <div>

@@ -219,7 +219,7 @@ class DealCenter extends Component {
         const price_data = this.state.price_data;
         let time_arr = [] , data_arr = [];
         price_data.map(function(item, i){
-            time_arr[i] = new Date(item.add_time * 1000).format("hh:mm");
+            time_arr[i] = new Date(item.add_time * 1000).format("MM-dd");
             data_arr[i] = item.price;
         })
         return {
@@ -245,7 +245,6 @@ class DealCenter extends Component {
                  
                 }
             },
-            // backgroundColor: "white",
             tooltip : {
                 trigger: 'axis',
                 axisPointer: {
@@ -255,8 +254,6 @@ class DealCenter extends Component {
                     }
                 }
             },
-           
-            // toolbox: false,
             grid: {
                 left: '3%',
                 right: '4%',
