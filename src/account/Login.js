@@ -45,6 +45,7 @@ class Login extends Component {
             const data = res.data;
             const code = data.code;
             if(code === 1){  //登陆成功
+                localStorage.setItem("logined", true);
                 localStorage.setItem("token", data.data.token);
                 localStorage.setItem("head_pic", data.data.pic);
                 self.setState({
@@ -87,9 +88,9 @@ class Login extends Component {
                         </li>
                     </ul>
                     <div>
-                        <button className = "submit" onClick = {e => {
+                        <span className = "btn" onClick = {e => {
                             this.login()
-                        }}>登录</button>
+                        }}>登录</span>
                         <p style = {{textAlign: "right"}}><Link to = "/forgetPwd/loginPwd" style = {{color: "#00a8ff"}}>忘记密码</Link></p>
                         {/* <p className = "text-center"><Link to = "/register">注册</Link></p> */}
                     </div>
