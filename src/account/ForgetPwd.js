@@ -23,12 +23,16 @@ class ForgetPwd extends Component {
             [e.type]: e.value
         })
     }
-    hanleWarningDlgTimer (){  //定时关闭 警告弹窗
+    hanleWarningDlgTimer (obj){  //定时关闭 警告弹窗
         const self = this;
         setTimeout(
             function(){
                 self.setState({
                     warningShow: false
+                }, function(){
+                    if(obj && obj.code === 1){
+                        window.history.back();
+                    }
                 })
             }
         , 1000)
@@ -139,7 +143,7 @@ class ForgetPwd extends Component {
               warningText: data.msg,
               data_code: data_code
           }, function(){
-              self.hanleWarningDlgTimer();
+              self.hanleWarningDlgTimer({code: data_code});
           })
        })
     }

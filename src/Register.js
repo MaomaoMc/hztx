@@ -37,7 +37,9 @@ class Register extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){  //注册成功回到登录页面
-                        window.history.back();
+                        self.setState({
+                            registered: true
+                        })
                     }
                 })
             }
@@ -126,7 +128,6 @@ class Register extends Component {
                 }, function(){
                     self.resendCode();
                 })
-                
             }
            self.setState({
                warningShow: true,
@@ -152,11 +153,6 @@ class Register extends Component {
         })).then(function(res){
             const data = res.data;
             const data_code = data.code;
-            if(data_code === 1){
-                self.setState({
-                    registered: true
-                })
-            }
             self.setState({
                 warningShow: true, 
                 warningText: data.msg,

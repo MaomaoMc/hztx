@@ -6,11 +6,13 @@ import Title from "./../Title";
 import Footer from "./../Footer";
 import WarningDlg from "./../WarningDlg";
 
+const defaultHeadPic = require("../img/pic_morentx.png");
 class PersonalData extends Component {
     constructor (props){
         super(props);
         this.state = {
             exitApp: false,
+            head_pic: localStorage.getItem("head_pic") || defaultHeadPic, 
             data: {
                 "jd_num": "0",
                 "money": "0",
@@ -77,7 +79,7 @@ class PersonalData extends Component {
         return <div className = "pb_100"> 
             <Title title = "个人中心" code = {this.state.code}/>
             <div className = "personal_overview">
-                <div className = "head_pic" style = {{backgroundImage: "url(" + localStorage.getItem("head_pic") + ")"}}>
+                <div className = "head_pic" style = {{backgroundImage: "url(" + this.state.head_pic + ")"}}>
                 </div>
                     <p className = "text-right" style = {{fontSize: ".24rem"}}>
                     <a className = "exitApp f_lt" onClick = {e => {

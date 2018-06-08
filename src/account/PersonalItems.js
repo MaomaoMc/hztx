@@ -12,7 +12,7 @@ class PersonalItems extends Component {
         super(props);
         const head_pic = localStorage.getItem("head_pic");
         this.state = {
-            profile_pic: head_pic === "null" ? defaultHeadPic : head_pic ,//头像
+            profile_pic: !head_pic ? defaultHeadPic : head_pic ,//头像
             editName: false,  //是否编辑了 昵称
             id_num: "",
             username: "",
@@ -179,7 +179,7 @@ class PersonalItems extends Component {
                 const obj = data.data[0];
                 localStorage.setItem("head_pic", obj.pic)
                 self.setState({
-                    profile_pic: obj.pic,
+                    profile_pic: !obj.pic ? defaultHeadPic : obj.pic,
                     id_num: obj.id_num,
                     name: obj.name,
                     username: obj.username,
