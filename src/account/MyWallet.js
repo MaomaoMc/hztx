@@ -111,6 +111,7 @@ class MyWallet extends Component {
         const opt_type = this.state.opt_type;
         const data = this.state.data;
         const type　= this.state.type;
+        console.log(opt_type, 'opt_type')
         return <div className = "pb_100"> 
             <Title title = "我的钱包" code = {this.state.code}/>
             <div className = "pb_100" style = {{padding: ".2rem .2rem 2rem"}}>
@@ -127,7 +128,7 @@ class MyWallet extends Component {
                 <p className = "text-center fc_red" style = {{fontSize: ".12rem", marginTop: ".01rem"}}>注！提现需扣除一定的手续费(和金豆交易时按手续费比例计算的手续费)</p>
                 {this.state.form_show ? <ul className = "f_flex forgetPwdrUl" style = {{padding: ".3rem"}}>
                     <li>
-                       <label>类型:</label>
+                      {opt_type === "tx" ? <label>提现类型:</label> : <label>充值类型:</label> }
                        <select style = {{width: "40%", border: ".01rem solid #ddd", height: ".6rem", lineHeight: ".6rem"}} onChange = {e => {
                            this.handleIptChange({type: "type", value: e.target.value})
                        }}>
@@ -137,14 +138,14 @@ class MyWallet extends Component {
                        </select>
                    </li>
                    <li>
-                       <label>名称:</label>
+                      {opt_type === "tx" ? <label>提现名称:</label> : <label>充值名称:</label>}
                        {type === "3" ? <span>{data.bank_user}</span> : <span>{data.id_num}</span>}
                        {/* <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号名称" : "请输入充值账号名称"} value = {this.state.name} onChange = {e => {
                            this.handleIptChange({type: "name", value: e.target.value})
                        }}/> */}
                    </li>
                    <li>
-                       <label>账号:</label>
+                       {opt_type === "tx" ? <label>提现账号:</label> : <label>充值账号:</label>}
                        {type === "3" ? <span>{data.bank_num}</span> : type === "1" ? 
                         <span>{data.wx_num}</span> : <span>{data.zfb_num}</span>}
                        {/* <input type="text" placeholder = {opt_type === "tx" ? "请输入提现账号" : "请输入充值账号"} value = {this.state.num} onChange = {e => {
@@ -153,7 +154,7 @@ class MyWallet extends Component {
                    </li>
                    
                    <li>
-                       <label>金额:</label>
+                    {opt_type === "tx" ? <label>提现金额:</label> : <label>充值金额:</label>}
                        <select style = {{width: "40%", border: ".01rem solid #ddd", height: ".6rem", lineHeight: ".6rem"}} value = {this.state.money} onChange = {e => {
                            this.handleIptChange({type: "money", value: e.target.value})
                        }}>
