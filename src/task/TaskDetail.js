@@ -104,7 +104,7 @@ class TaskDetail extends Component {
                     <p className = "text-center">
                         {
                             this.state.pic_arr.map(function(pic, i){
-                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}/>
+                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "3rem", height: "3rem", margin: "0 auto .2rem"}}/>
                             })
                         }
                     </p>

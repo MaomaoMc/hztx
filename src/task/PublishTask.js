@@ -250,9 +250,9 @@ class PublishTask extends Component {
                     <label>任务截图：</label> 
                     {
                         pic_arr.length > 0 && pic_arr.map(function(pic, i){
-                            return <p key = {i} style = {{overflow: "hidden"}}><i style = {{display: "block", float: "left", width: "1.5rem", height: "1.5rem",
+                            return <p key = {i} style = {{overflow: "hidden"}}><i style = {{display: "block", float: "left", width: "3rem", height: "3rem",
                              backgroundImage: "url(" + pic +")", backgroundRepeat: "no-repeat",
-                              backgroundSize: "100% 100%", marginLeft: "10%", marginBottom: ".2rem"}}></i>
+                              backgroundSize: "100% 100%", margin: ".2rem .2rem .2rem 10%"}}></i>
                              <span style = {{float: "left", fontSize: ".12rem", marginLeft: "1%", marginTop: "10%"}}
                              onClick = {e => {
                                  self.deletePic({index: i})
