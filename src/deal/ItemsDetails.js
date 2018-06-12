@@ -160,7 +160,7 @@ class ItemsDetails extends Component {
                                         />   
                             </span>
                         </form>
-                        <p className = "text-center"><img src = {this.state.pic} alt="" style = {{width: "2rem", height: "2rem"}} /></p>
+                        <p className = "text-center"><img src = {this.state.pic} alt="" style = {{width: "3rem", height: "3rem"}} /></p>
                         <p className = "text-center"><span className = "btn btn_primary" style = {{width: "80%", marginTop: ".3rem"}} onClick = {e => {
                             this.handlePayMoney()
                         }}>确认打款</span></p>   
@@ -174,7 +174,8 @@ class ItemsDetails extends Component {
                         <p>账号：{data.buy_member.name}</p>
                         <p>手机号：{data.buy_member.phone}</p>
                         <h3>买家上传的打款凭证：</h3>
-                        <p className = "text-center" style = {{marginTop: ".3rem"}}><img src={data.trade.pic} alt="" style = {{width: "1rem", height: "1rem", verticalAlign: "middle", marginRight: ".15rem"}}/></p>
+                        <p className = "text-center" style = {{marginTop: ".3rem"}}>
+                            <img src={data.trade.pic} alt="" style = {{width: "3rem", height: "3rem", verticalAlign: "middle", marginRight: ".15rem"}}/></p>
                         <p className = "text-center"><span className = "btn btn_primary" style = {{width: "80%", marginTop: ".3rem"}} onClick = {e => {
                             this.handleGetMoney()
                         }}>确认收款</span></p>
