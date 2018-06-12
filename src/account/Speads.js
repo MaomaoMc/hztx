@@ -77,7 +77,7 @@ class Speads extends Component {
                     {
                         this.state.data.length > 0 && this.state.data.map(function(item, i){
                             return <tr key = {i}>
-                                <td><Link to = {"/account/speads/" + item.member_id}>{item.member_id}</Link></td>
+                                <td><Link to = {"/account/speads/" + item.member_id}>{item.id_num}</Link></td>
                                 <td>{item.phone}</td>
                                 <td>{item.wx_num}</td>
                             </tr>

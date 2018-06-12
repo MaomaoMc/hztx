@@ -37,6 +37,7 @@ class Register extends Component {
                     warningShow: false
                 }, function(){
                     if(obj && obj.code === 1){  //注册成功回到登录页面
+                        window.removeLocalItemsFun();
                         self.setState({
                             registered: true
                         })
