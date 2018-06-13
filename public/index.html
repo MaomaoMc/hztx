@@ -65,12 +65,6 @@
         docHtml.addEventListener('DOMContentLoaded', setHtmlFontSize, false);
 
         })(window);
-        window.baseUrl = "http://hztx518.com";
-          window.tokenLoseFun = function(){
-          localStorage.removeItem("logined");
-          localStorage.removeItem("sundryData");
-          localStorage.removeItem("token");
-        }
         Date.prototype.format = function(fmt) { 
           var o = { 
             "M+" : this.getMonth()+1,                 //月份 
@@ -91,7 +85,7 @@
           }
           return fmt; 
         }   
-        window.baseUrl = "http://hzxt.it8851.com";
+        window.baseUrl = "http://www.hztx518.com";
         window.removeLocalItemsFun = function(){
           localStorage.removeItem("logined");
           localStorage.removeItem("token"); 
