@@ -49,9 +49,11 @@ class ShenheTask extends Component {
             }
         , 1000)
     }
-    passTask (){  //通过审核
+    passTask (e){  //通过审核  或者 不通过
         const self = this;
-        axios.post(window.baseUrl + "/home/Member/completeTask", qs.stringify({
+        const type = e.type;
+        const paramsStr = type === "pass" ? "/home/Member/completeTask" : "/home/Member/notpass";
+        axios.post(window.baseUrl + paramsStr, qs.stringify({
             token: localStorage.getItem("token"),
             id: this.props.match.params.id
         })).then(function(res){
@@ -130,8 +132,11 @@ class ShenheTask extends Component {
                     </p>
                     {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
                     onClick = {e => {
-                        this.passTask()
-                    }}>通过审核</span></p> : null}
+                        this.passTask({type: "pass"})
+                    }}>通过审核</span><span className = "btn" style = {{marginTop: ".3rem"}}
+                    onClick = {e => {
+                        this.passTask({type: "unpass"})
+                    }}>不通过</span></p> : null}
                 </div>
             </div>
             {this.state.fullScreen ? 

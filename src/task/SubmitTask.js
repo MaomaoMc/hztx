@@ -24,7 +24,7 @@ class SubmitTask extends Component {
                 self.setState({
                     warningShow: false
                 }, function(){
-                    if(obj && obj.code === 1){
+                    if(obj && (obj.code === 1 || obj.code === -2)){ //提交成功 或者 任务超时都返回回去
                         window.history.back();
                     }
                 })
@@ -65,7 +65,7 @@ class SubmitTask extends Component {
              }
         })
     }
-    submit (){  //发布任务
+    submit (){  //提交任务
         const self = this;
         const state = this.state;
         axios.post(window.baseUrl + "/home/Member/commitTask", qs.stringify({
