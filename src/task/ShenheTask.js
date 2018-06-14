@@ -27,6 +27,8 @@ class ShenheTask extends Component {
                 note: "",
                 // data: {},
             },
+            fullScreen: false,
+            imgSrc: "",
             pic_arr: [],
             warningShow: false,
             warningText: "",
@@ -96,7 +98,7 @@ class ShenheTask extends Component {
         const data = this.state.data;
         const member = data.member;
         const task = data.task;
-        const hash = window.location.hash;
+        const hash = window.location.hash, self = this;
         return <div> 
             <Title title = "任务审核页面" code = {this.state.code}/>
             <div className = "taskDetail">
@@ -109,15 +111,20 @@ class ShenheTask extends Component {
                         
                     </p><br/>
                     <p>接受人昵称：{member.name}</p>
-                    <p><h4>任务名称：{task.title}</h4>
-                    <span className = "f_rt fc_red" style = {{marginTop: "-.5rem"}}><span className = "icon">赏</span>{task.money}元</span></p>
+                    <div><h4>任务名称：{task.title}</h4>
+                    <span className = "f_rt fc_red" style = {{marginTop: "-.5rem"}}><span className = "icon">赏</span>{task.money}元</span></div>
                     <h4>任务内容：</h4>
                     <p style = {{marginTop: ".3rem", textIndent: ".3rem"}}>{task.content}</p>
                     <h4>任务所需截图：</h4>
                     <p className = "text-center">
                         {
                             this.state.pic_arr.map(function(pic, i){
-                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}/>
+                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}
+                                onClick = {e => {
+                                    self.setState({
+                                        fullScreen: true,
+                                        imgSrc: pic})
+                                }}/>
                             })
                         }
                     </p>
@@ -127,6 +134,13 @@ class ShenheTask extends Component {
                     }}>通过审核</span></p> : null}
                 </div>
             </div>
+            {this.state.fullScreen ? 
+                <div className = "fullScreen" style = {{backgroundImage: "url("+ this.state.imgSrc +")"}} onClick = {e => {
+                    this.setState({
+                        fullScreen: false,
+                        imgSrc: ""
+                    })
+                }}></div> : null}
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>

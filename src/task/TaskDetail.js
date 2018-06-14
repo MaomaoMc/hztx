@@ -17,6 +17,8 @@ class TaskDetail extends Component {
                 member_id: "",
                 data: {},
             },
+            fullScreen: false,
+            imgSrc: "",
             pic_arr: [],
             warningShow: false,
             warningText: "",
@@ -85,6 +87,7 @@ class TaskDetail extends Component {
     render(){
         const data = this.state.data;
         const hash = window.location.hash;
+        const self = this;
         return <div> 
             <Title title = "任务详情" code = {this.state.code}/>
             <div className = "taskDetail">
@@ -104,7 +107,12 @@ class TaskDetail extends Component {
                     <p className = "text-center">
                         {
                             this.state.pic_arr.map(function(pic, i){
-                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "3rem", height: "3rem", margin: "0 auto .2rem"}}/>
+                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "3rem", height: "3rem", margin: "0 auto .2rem"}}
+                                onClick = {e => {
+                                    self.setState({
+                                        fullScreen: true,
+                                        imgSrc: pic})
+                                }}/>
                             })
                         }
                     </p>
@@ -121,6 +129,13 @@ class TaskDetail extends Component {
                         </p> : null}
                 </div>
             </div>
+            {this.state.fullScreen ? 
+                <div className = "fullScreen" style = {{backgroundImage: "url("+ this.state.imgSrc +")"}} onClick = {e => {
+                    this.setState({
+                        fullScreen: false,
+                        imgSrc: ""
+                    })
+                }}></div> : null}
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>

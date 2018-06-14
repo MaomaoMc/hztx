@@ -17,6 +17,8 @@ class JDtaskDetail extends Component {
                 member_id: "",
                 data: {},
             },
+            fullScreen: false,
+            imgSrc: "",
             warningShow: false,
             warningText: "",
             code: ""
@@ -80,6 +82,18 @@ class JDtaskDetail extends Component {
     componentDidMount(){
         this.ajax();
     }
+    componentDidUpdate (){
+        const imgs =  document.getElementsByClassName("imgWrap")[0].getElementsByTagName("img");
+        const imgsLen = imgs.length, self = this;
+         for(var i = 0;i < imgsLen;i++){
+             imgs[i].onclick = function () {
+                 self.setState({
+                    fullScreen: true,
+                    imgSrc: this.getAttribute("src"),
+                 })
+             }
+         }
+    }
     render(){
         const data = this.state.data;
         const hash = window.location.hash;
@@ -96,20 +110,27 @@ class JDtaskDetail extends Component {
                     <p>任务链接：{data.url}</p>
                     <p style = {{marginTop: ".2rem"}}><span style = {{verticalAlign: "top"}}>任务二维码：</span><QRCode value = {window.baseUrl + data.qr_code}/></p>
                     <h4>任务所需截图：</h4>
-                    <p className = "text-center">
-                    <div className = "imgWrap" dangerouslySetInnerHTML = {{__html: this.state.data.pic}}></div>
-                        {/* {
-                            this.state.pic_arr.map(function(pic, i){
-                                return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}/>
-                            })
-                        } */}
-                    </p>
-                    {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
-                    onClick = {e => {
-                        this.handleAcceptTask()
-                    }}>接受任务</span></p> : null}
+                    <div className = "text-center">
+                        <div className = "imgWrap" dangerouslySetInnerHTML = {{__html: this.state.data.pic}}></div>
+                            {/* {
+                                this.state.pic_arr.map(function(pic, i){
+                                    return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}/>
+                                })
+                            } */}
+                        </div>
+                        {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
+                        onClick = {e => {
+                            this.handleAcceptTask()
+                        }}>接受任务</span></p> : null}
                 </div>
             </div>
+            {this.state.fullScreen ? 
+            <div className = "fullScreen" style = {{backgroundImage: "url("+ this.state.imgSrc +")"}} onClick = {e => {
+                this.setState({
+                    fullScreen: false,
+                    imgSrc: ""
+                })
+            }}></div> : null}
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>

@@ -21,6 +21,8 @@ class ItemsDetails extends Component {
             data: {},
             trade_id: this.props.match.params.id,
             hash: hash,
+            fullScreen: false,
+            imgSrc: "",
             pic: "", //打款凭证
             warningShow: false,
             warningText: "",
@@ -53,7 +55,6 @@ class ItemsDetails extends Component {
             const data = res.data;
             const code = data.code;
             if(code === 1){ //成功
-                console.log(window.baseUrl + data.pic,'2')
                 self.setState({
                     pic: window.baseUrl + data.data
                 })
@@ -106,7 +107,6 @@ class ItemsDetails extends Component {
     ajax (){
         const self = this;
         const page_type = this.state.page_type;
-        console.log(self.state.trade_id)
         let paramStr = page_type === "buyPay" ? "/home/Trade/remitMoneyshow" : "/home/Trade/my_selltradeshow";
         axios.post(window.baseUrl + paramStr, qs.stringify({
             token: localStorage.getItem("token"),
@@ -135,7 +135,7 @@ class ItemsDetails extends Component {
     }
     render(){
         const data = this.state.data;
-        const page_type = this.state.page_type;
+        const page_type = this.state.page_type, self = this;
         let title = page_type === "buyPay" ? "打款页面" : "收款页面";
         return <div> 
             <Title title = {title} code = {this.state.code}/>
@@ -160,7 +160,14 @@ class ItemsDetails extends Component {
                                         />   
                             </span>
                         </form>
-                        <p className = "text-center"><img src = {this.state.pic} alt="" style = {{width: "3rem", height: "3rem"}} /></p>
+                        <p className = "text-center">
+                            <img src = {this.state.pic} alt="" style = {{width: "3rem", height: "3rem"}}
+                             onClick = {e => {
+                                    self.setState({
+                                        fullScreen: true,
+                                        imgSrc: this.state.pic})
+                                }}/>
+                        </p>
                         <p className = "text-center"><span className = "btn btn_primary" style = {{width: "80%", marginTop: ".3rem"}} onClick = {e => {
                             this.handlePayMoney()
                         }}>确认打款</span></p>   
@@ -175,13 +182,26 @@ class ItemsDetails extends Component {
                         <p>手机号：{data.buy_member.phone}</p>
                         <h3>买家上传的打款凭证：</h3>
                         <p className = "text-center" style = {{marginTop: ".3rem"}}>
-                            <img src={data.trade.pic} alt="" style = {{width: "3rem", height: "3rem", verticalAlign: "middle", marginRight: ".15rem"}}/></p>
+                            <img src={data.trade.pic} alt="" style = {{width: "3rem", height: "3rem", verticalAlign: "middle", marginRight: ".15rem"}}
+                             onClick = {e => {
+                                self.setState({
+                                    fullScreen: true,
+                                    imgSrc: data.trade.pic})
+                            }}/>
+                        </p>
                         <p className = "text-center"><span className = "btn btn_primary" style = {{width: "80%", marginTop: ".3rem"}} onClick = {e => {
                             this.handleGetMoney()
                         }}>确认收款</span></p>
                     </div> : null}
                 </div>}
             </div>
+            {this.state.fullScreen ? 
+                <div className = "fullScreen" style = {{backgroundImage: "url("+ this.state.imgSrc +")"}} onClick = {e => {
+                    this.setState({
+                        fullScreen: false,
+                        imgSrc: ""
+                    })
+                }}></div> : null}
             {this.state.warningShow ? <WarningDlg text = {this.state.warningText}/> : null}
             <Footer />
         </div>
