@@ -168,11 +168,11 @@ class Register extends Component {
         if(this.state.registered){
             return <Redirect to = "/"/>
         }
-        return <div style = {{width: "100%", height: "100%", position: "fixed", left: "0", top: "0",
-        backgroundImage: "url(" + bg + ")", backgroundSize: "cover"}}> 
-           <div className = "pb_100" style = {{marginTop: "1.2rem", padding: "0 .3rem"}}>
+        return <div style = {{width: "100%", height: "100%",
+        backgroundImage: "url(" + bg + ")", backgroundSize: "cover", marginTop: "-1rem"}}> 
+           <div style = {{ padding: "0 .3rem 1rem", marginBottom: "1rem"}}>
            <img src={loginImg} alt="" style={{width: "75%", marginLeft: "14%", marginTop: "2rem", marginBottom: ".5rem"}}/>
-                <ul className = "f_flex registerUl" style = {{padding: ".3rem"}}>
+                <ul className = "f_flex registerUl" style = {{padding: ".3rem 0 .5rem"}}>
                    <li>
                        <input type="text" placeholder = "手机号：" value = {this.state.phone} onChange = {e => {
                            this.handleIptChange({type: "phone", value: e.target.value})

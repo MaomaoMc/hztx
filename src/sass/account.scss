@@ -621,6 +621,12 @@
         }
     }
 }
+.imgWrap{
+    img{
+        width: 4rem;
+        height: 4rem;
+    }
+}
 /*个人资料*/
 .personalUl{
     flex-direction: column;

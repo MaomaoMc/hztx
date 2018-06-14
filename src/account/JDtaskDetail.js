@@ -17,7 +17,6 @@ class JDtaskDetail extends Component {
                 member_id: "",
                 data: {},
             },
-            pic_arr: [],
             warningShow: false,
             warningText: "",
             code: ""
@@ -66,7 +65,6 @@ class JDtaskDetail extends Component {
                 console.log(data.data.pic)
                 self.setState({
                     data: data.data,
-                    pic_arr: data.data.pic.split(",")
                 })
             }else{
                 self.setState({
@@ -85,7 +83,6 @@ class JDtaskDetail extends Component {
     render(){
         const data = this.state.data;
         const hash = window.location.hash;
-        console.log(data, '2')
         return <div> 
             <Title title = "任务详情" code = {this.state.code}/>
             <div className = "taskDetail">
@@ -100,11 +97,12 @@ class JDtaskDetail extends Component {
                     <p style = {{marginTop: ".2rem"}}><span style = {{verticalAlign: "top"}}>任务二维码：</span><QRCode value = {window.baseUrl + data.qr_code}/></p>
                     <h4>任务所需截图：</h4>
                     <p className = "text-center">
-                        {
+                    <div className = "imgWrap" dangerouslySetInnerHTML = {{__html: this.state.data.pic}}></div>
+                        {/* {
                             this.state.pic_arr.map(function(pic, i){
                                 return <img key = {i} src = {pic} alt="" style = {{display: "block", width: "1.2rem", height: "1.2rem", margin: "0 auto .2rem"}}/>
                             })
-                        }
+                        } */}
                     </p>
                     {hash.indexOf("nonebtn") === -1 ?<p className = "text-center"><span className = "btn"
                     onClick = {e => {
